@@ -15,3 +15,4 @@ function chargerClasse($classe)
 
     spl_autoload_register('chargerClasse'); // On enregistre la fonction comme __autoload
 }
+
