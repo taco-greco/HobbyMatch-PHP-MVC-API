@@ -12,7 +12,7 @@ class Article
 
     private ?String $Auteur = null;
 
-    private ?String $Date = null;
+    private ?\DateTime $Date = null;
 
     private ?String $ImageRepository = null;
 
@@ -96,7 +96,7 @@ class Article
     /**
      * Get the value of Date
      */
-    public function getDate(): ?String
+    public function getDate(): ?\DateTime
     {
         return $this->Date;
     }
@@ -104,7 +104,7 @@ class Article
     /**
      * Set the value of Date
      */
-    public function setDate(?String $Date): self
+    public function setDate(?\DateTime $Date): Article
     {
         $this->Date = $Date;
 
@@ -145,5 +145,22 @@ class Article
         $this->ImageFileName = $ImageFileName;
 
         return $this;
+    }
+
+    public static function SqlAdd(\PDO $bdd, Article $article)
+    {
+        try {
+            $requete = $bdd->prepare("INSERT INTO articles (Titre,Description,DatePublication,Auteur, ImageRepository, ImageFileName) VALUES (:Titre,:Description,:DatePublication,:Auteur, :ImageRepository, :ImageFileName)");
+            $requete->bindValue(':Titre',$article->getTitre());
+            $requete->bindValue(':Description',$article->getDescription());
+            $requete->bindValue(':Date',$article->getDate()->format('Y-m-d'));
+            $requete->bindValue(':Auteur',$article->getAuteur());
+            $requete->bindValue(':ImageRepository',$article->getImageRepository());
+            $requete->bindValue(':ImageFileName',$article->getImageFileName());
+            $requete->execute();
+            return $bdd->lastInsertId();
+        }catch (\PDOException $e) {
+            return $e->getMessage();
+        }
     }
 }
