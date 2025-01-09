@@ -189,4 +189,24 @@ LIMIT :limit');
         }
         return $hobbiesObjet;
     }
+
+    public static function SqlGetAll()
+    {
+        $bdd = BDD::getInstance();
+        $requete = $bdd->prepare('SELECT * FROM hobbies ORDER BY Id DESC');
+        $requete->execute();
+        $hobbiesSQL = $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $hobbiesObjet = [];
+        foreach ($hobbiesSQL as $hobbySQL) {
+            $hobby = new Hobby();
+            $date = new \DateTime($hobbySQL["DatePublication"]);
+            $hobby->setTitre($hobbySQL["Titre"])
+                ->setId($hobbySQL["Id"])
+                ->setDescription($hobbySQL["Description"])
+                ->setDate($date)
+                ->setAuteur($hobbySQL["Auteur"]);
+            $hobbiesObjet[] = $hobby;
+        }
+        return $hobbiesObjet;
+    }
 }

@@ -121,7 +121,7 @@ class __TwigTemplate_e8aee39d0f72bde01636212e0c5b6371 extends Template
 
 {%block title %} {{parent()}} - Les derniers Hobbies {%endblock%}
 
-{% block body%}
+{% block body %}
 <h1>Voici les derniers 20 hobbies :</h1>
 <ul>
 {% for hobby in hobbies %}

@@ -54,24 +54,26 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
         // line 10
         yield "\t\t</title>
-\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css\"> ";
-        // line 11
+\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css\">
+\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\">
+         ";
+        // line 13
         yield from $this->unwrap()->yieldBlock('css', $context, $blocks);
-        // line 12
+        // line 14
         yield "\t\t</head>
 \t\t<body>
 \t\t\t<div class=\"container\"> ";
-        // line 14
+        // line 16
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 15
+        // line 17
         yield "
 \t\t\t\t</div>
 
 \t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
 \t\t\t\t";
-        // line 19
+        // line 21
         yield from $this->unwrap()->yieldBlock('javascript', $context, $blocks);
-        // line 20
+        // line 22
         yield "
 \t\t\t</body>
 \t\t</html>
@@ -92,7 +94,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 11
+    // line 13
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -102,7 +104,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 14
+    // line 16
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -112,7 +114,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 19
+    // line 21
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -135,7 +137,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  116 => 19,  106 => 14,  96 => 11,  90 => 8,  83 => 7,  75 => 20,  73 => 19,  67 => 15,  65 => 14,  61 => 12,  59 => 11,  56 => 10,  54 => 7,  46 => 1,);
+        return array (  118 => 21,  108 => 16,  98 => 13,  92 => 8,  85 => 7,  77 => 22,  75 => 21,  69 => 17,  67 => 16,  63 => 14,  61 => 13,  56 => 10,  54 => 7,  46 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -150,7 +152,9 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\tHobbies
 \t\t\t{% endblock %}
 \t\t</title>
-\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css\"> {% block css %}{% endblock %}
+\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css\">
+\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\">
+         {% block css %}{% endblock %}
 \t\t</head>
 \t\t<body>
 \t\t\t<div class=\"container\"> {% block body %}{% endblock %}
