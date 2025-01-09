@@ -1,3 +1,12 @@
-<h1>Voici les derniers 20 hobbies :</h1>
+{% extends "base.html.twig" %}
 
-{{dump(hobbies)}}
+{%block title %} {{parent()}} - Les derniers Hobbies {%endblock%}
+
+{% block body %}
+<h1>Voici les derniers 20 hobbies :</h1>
+<ul>
+{% for hobby in hobbies %}
+    <li> {{hobby.Titre}} </li>
+{% endfor %}
+</ul>
+{% endblock %}
