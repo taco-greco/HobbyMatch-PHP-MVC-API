@@ -6,16 +6,14 @@ use src\Model\Hobby;
 use src\Model\BDD;
 
 
-class HobbyController
+class HobbyController extends AbstractController
 {
     public function index()
     {
-        $html = '<h1>bonjour voici la liste des 20 derniers hobbies</h1>';
         $hobbies = Hobby::SqlGetLast(20);
-        foreach ($hobbies as $hobby) {
-            $html .= "<p>{$hobby->getTitre()}</p>";
-        }
-        return $html;
+        return $this->twig->render('Hobby/index.html.twig', [
+            'hobbies' => $hobbies
+        ]);
     }
 
     public function fixtures()

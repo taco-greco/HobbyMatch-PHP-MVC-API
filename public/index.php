@@ -1,5 +1,5 @@
 <?php
-
+require '../vendor/autoload.php';
 // Chargement automatique des classes
 function chargerClasse($classe)
 {
