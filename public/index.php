@@ -13,7 +13,6 @@ function chargerClasse($classe)
 // enregistrement de la fonction "chargerClasse" sur une instanciation de classe
 spl_autoload_register('chargerClasse');
 
-
 // Router
 $controller = (isset($_GET['controller'])) ? $_GET['controler'] : '';
 $action = (isset($_GET['action'])) ? $_GET['action'] : '';
