@@ -55,25 +55,62 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         // line 10
         yield "\t\t</title>
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css\">
-\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\">
-         ";
-        // line 13
+\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\"> ";
+        // line 12
         yield from $this->unwrap()->yieldBlock('css', $context, $blocks);
-        // line 14
+        // line 13
         yield "\t\t</head>
 \t\t<body>
-\t\t\t<div class=\"container\"> ";
-        // line 16
+
+\t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
+  <div class=\"container\">
+    <a class=\"navbar-brand\" href=\"#\">Navbar</a>
+    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+      <span class=\"navbar-toggler-icon\"></span>
+    </button>
+    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+      <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
+        <li class=\"nav-item\">
+          <a class=\"nav-link active\" aria-current=\"page\" href=\"#\">Home</a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">Link</a>
+        </li>
+        <li class=\"nav-item dropdown\">
+          <a class=\"nav-link dropdown-toggle\" href=\"#\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+            Dropdown
+          </a>
+          <ul class=\"dropdown-menu\">
+            <li><a class=\"dropdown-item\" href=\"#\">Action</a></li>
+            <li><a class=\"dropdown-item\" href=\"#\">Another action</a></li>
+            <li><hr class=\"dropdown-divider\"></li>
+            <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>
+          </ul>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link disabled\" aria-disabled=\"true\">Disabled</a>
+        </li>
+      </ul>
+      <form class=\"d-flex\" role=\"search\">
+        <input class=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
+        <button class=\"btn btn-outline-light\" type=\"submit\">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+\t\t\t<div class=\"container mt-3\"> ";
+        // line 53
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 17
+        // line 54
         yield "
 \t\t\t\t</div>
 
 \t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
 \t\t\t\t";
-        // line 21
+        // line 58
         yield from $this->unwrap()->yieldBlock('javascript', $context, $blocks);
-        // line 22
+        // line 59
         yield "
 \t\t\t</body>
 \t\t</html>
@@ -94,7 +131,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 13
+    // line 12
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -104,7 +141,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 16
+    // line 53
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -114,7 +151,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 21
+    // line 58
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -137,7 +174,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  118 => 21,  108 => 16,  98 => 13,  92 => 8,  85 => 7,  77 => 22,  75 => 21,  69 => 17,  67 => 16,  63 => 14,  61 => 13,  56 => 10,  54 => 7,  46 => 1,);
+        return array (  155 => 58,  145 => 53,  135 => 12,  129 => 8,  122 => 7,  114 => 59,  112 => 58,  106 => 54,  104 => 53,  62 => 13,  60 => 12,  56 => 10,  54 => 7,  46 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -153,11 +190,48 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t{% endblock %}
 \t\t</title>
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css\">
-\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\">
-         {% block css %}{% endblock %}
+\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\"> {% block css %}{% endblock %}
 \t\t</head>
 \t\t<body>
-\t\t\t<div class=\"container\"> {% block body %}{% endblock %}
+
+\t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
+  <div class=\"container\">
+    <a class=\"navbar-brand\" href=\"#\">Navbar</a>
+    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+      <span class=\"navbar-toggler-icon\"></span>
+    </button>
+    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+      <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
+        <li class=\"nav-item\">
+          <a class=\"nav-link active\" aria-current=\"page\" href=\"#\">Home</a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">Link</a>
+        </li>
+        <li class=\"nav-item dropdown\">
+          <a class=\"nav-link dropdown-toggle\" href=\"#\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+            Dropdown
+          </a>
+          <ul class=\"dropdown-menu\">
+            <li><a class=\"dropdown-item\" href=\"#\">Action</a></li>
+            <li><a class=\"dropdown-item\" href=\"#\">Another action</a></li>
+            <li><hr class=\"dropdown-divider\"></li>
+            <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>
+          </ul>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link disabled\" aria-disabled=\"true\">Disabled</a>
+        </li>
+      </ul>
+      <form class=\"d-flex\" role=\"search\">
+        <input class=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
+        <button class=\"btn btn-outline-light\" type=\"submit\">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+\t\t\t<div class=\"container mt-3\"> {% block body %}{% endblock %}
 
 \t\t\t\t</div>
 
