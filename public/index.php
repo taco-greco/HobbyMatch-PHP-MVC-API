@@ -13,5 +13,27 @@ function chargerClasse($classe)
 // enregistrement de la fonction "chargerClasse" sur une instanciation de classe
 spl_autoload_register('chargerClasse');
 
-$controller = new \src\Controller\HobbyController();
-echo $controller->index();
+
+// Router
+$controller = (isset($_GET['controller'])) ? $_GET['controler'] : '';
+$action = (isset($_GET['action'])) ? $_GET['action'] : '';
+$param = (isset($_GET['param'])) ? $_GET['param'] : '';
+
+if($controller != ''){
+    try {
+    $class = "src\Controller\\".$controller."Controller";
+    if (class_exists($class)) {
+    $controller = new $class();
+    if (method_exists($class, $action)) {
+    echo $controller->$action($param);
+    }else { throw new Exception("Action {$action} does not exist in {$class}"); }
+    }else { throw new Exception("Controller {$controller} does not exist"); }
+    }
+    catch(Exception $e) {
+    // Penser à Gérer l’exception
+    }
+    }else {
+    //Route par défaut (/)
+    $controller = new \src\Controller\HobbyController();
+    echo $controller->index();
+    }

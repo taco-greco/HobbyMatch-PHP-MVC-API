@@ -1,4 +1,5 @@
 <?php
+
 namespace src\Model;
 
 use src\Model\BDD;
@@ -151,42 +152,41 @@ class Hobby
 
     public static function SqlAdd(Hobby $hobby)
     {
-            $requete = BDD::getInstance()->prepare("INSERT INTO hobbies (Titre,Description,DatePublication,Auteur, ImageRepository, ImageFileName) VALUES (:Titre,:Description,:DatePublication,:Auteur, :ImageRepository, :ImageFileName)");
-            $requete->bindValue(':Titre', $hobby->getTitre());
-            $requete->bindValue(':Description', $hobby->getDescription());
-            $requete->bindValue(':DatePublication', $hobby->getDate()->format('Y-m-d'));
-            $requete->bindValue(':Auteur', $hobby->getAuteur());
-            $requete->bindValue(':ImageRepository', $hobby->getImageRepository());
-            $requete->bindValue(':ImageFileName', $hobby->getImageFileName());
-            $requete->execute([
-                'Titre' => $hobby->getTitre(),
-                'Description' => $hobby->getDescription(),
-                'DatePublication' => $hobby->getDate()->format('Y-m-d'),
-                'Auteur' => $hobby->getAuteur(),
-                'ImageRepository' => $hobby->getImageRepository(),
-                'ImageFileName' => $hobby->getImageFileName()
-            ]);
-       
+        $requete = BDD::getInstance()->prepare("INSERT INTO hobbies (Titre,Description,DatePublication,Auteur, ImageRepository, ImageFileName) VALUES (:Titre,:Description,:DatePublication,:Auteur, :ImageRepository, :ImageFileName)");
+        $requete->bindValue(':Titre', $hobby->getTitre());
+        $requete->bindValue(':Description', $hobby->getDescription());
+        $requete->bindValue(':DatePublication', $hobby->getDate()->format('Y-m-d'));
+        $requete->bindValue(':Auteur', $hobby->getAuteur());
+        $requete->bindValue(':ImageRepository', $hobby->getImageRepository());
+        $requete->bindValue(':ImageFileName', $hobby->getImageFileName());
+        $requete->execute([
+            'Titre' => $hobby->getTitre(),
+            'Description' => $hobby->getDescription(),
+            'DatePublication' => $hobby->getDate()->format('Y-m-d'),
+            'Auteur' => $hobby->getAuteur(),
+            'ImageRepository' => $hobby->getImageRepository(),
+            'ImageFileName' => $hobby->getImageFileName()
+        ]);
     }
 
     public static function SqlGetLast(int $nb)
-{
-$requete = BDD::getInstance()->prepare('SELECT * FROM hobbies ORDER BY Id DESC
+    {
+        $requete = BDD::getInstance()->prepare('SELECT * FROM hobbies ORDER BY Id DESC
 LIMIT :limit');
-$requete->bindValue("limit", $nb, \PDO::PARAM_INT);
-$requete->execute();
-$hobbiesSql = $requete->fetchAll(\PDO::FETCH_ASSOC);
-$hobbiesObjet = [];
-foreach ($hobbiesSql as $hobbySql){
-    $hobby = new Hobby();
-    $hobby->setTitre($hobbySql["Titre"])
-    ->setDescription($hobbySql["Description"])
-    ->setDate(new \DateTime($hobbySql["DatePublication"]))
-    ->setAuteur($hobbySql["Auteur"])
-    ->setImageRepository($hobbySql["ImageRepository"])
-    ->setImageFileName($hobbySql["ImageFileName"]);
-    $hobbiesObjet[] = $hobby;
+        $requete->bindValue("limit", $nb, \PDO::PARAM_INT);
+        $requete->execute();
+        $hobbiesSql = $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $hobbiesObjet = [];
+        foreach ($hobbiesSql as $hobbySql) {
+            $hobby = new Hobby();
+            $hobby->setTitre($hobbySql["Titre"])
+                ->setDescription($hobbySql["Description"])
+                ->setDate(new \DateTime($hobbySql["DatePublication"]))
+                ->setAuteur($hobbySql["Auteur"])
+                ->setImageRepository($hobbySql["ImageRepository"])
+                ->setImageFileName($hobbySql["ImageFileName"]);
+            $hobbiesObjet[] = $hobby;
+        }
+        return $hobbiesObjet;
     }
-    return $hobbiesObjet;
-}
 }
