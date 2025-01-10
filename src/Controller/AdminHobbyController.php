@@ -13,4 +13,8 @@ class AdminHobbyController extends AbstractController
             'hobbies' => $hobbies
         ]);
     }
+    public function delete(int $id){
+        Hobby::SqlDelete($id);
+        header("Location:/?controller=AdminHobby&action=list");
+    }
 }

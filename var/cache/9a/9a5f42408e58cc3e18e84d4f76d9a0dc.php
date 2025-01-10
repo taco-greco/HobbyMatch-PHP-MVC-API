@@ -103,7 +103,10 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
             // line 21
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Auteur", [], "any", false, false, false, 21), "html", null, true);
             yield "</td>
-<td><a href=\"#\"><i class=\"bi bi-trash\"></i></a></td>
+<td><a href=\"/?controller=AdminHobby&action=delete&param=";
+            // line 22
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 22), "html", null, true);
+            yield "\"><i class=\"bi bi-trash\"></i></a></td>
 </tr>
 ";
         }
@@ -138,7 +141,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  114 => 25,  104 => 21,  100 => 20,  96 => 19,  92 => 18,  89 => 17,  85 => 16,  71 => 4,  64 => 3,  52 => 2,  41 => 1,);
+        return array (  117 => 25,  108 => 22,  104 => 21,  100 => 20,  96 => 19,  92 => 18,  89 => 17,  85 => 16,  71 => 4,  64 => 3,  52 => 2,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -164,7 +167,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
 <td>{{ hobby.Titre }}</td>
 <td>{{ hobby.DatePublication|date('d/m/Y') }}
 <td>{{ hobby.Auteur }}</td>
-<td><a href=\"#\"><i class=\"bi bi-trash\"></i></a></td>
+<td><a href=\"/?controller=AdminHobby&action=delete&param={{hobby.Id}}\"><i class=\"bi bi-trash\"></i></a></td>
 </tr>
 {% endfor %}
 </tbody>

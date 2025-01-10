@@ -209,4 +209,11 @@ LIMIT :limit');
         }
         return $hobbiesObjet;
     }
+    public static function SqlDelete(int $Id)
+    {
+        $requete = BDD::getInstance()->prepare("DELETE FROM hobbies WHERE Id=:Id");
+        $execute = $requete->execute([
+            'Id' => $Id
+        ]);
+    }
 }

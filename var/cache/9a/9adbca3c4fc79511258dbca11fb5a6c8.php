@@ -64,31 +64,23 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 
 \t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
   <div class=\"container\">
-    <a class=\"navbar-brand\" href=\"#\">Navbar</a>
+    <a class=\"navbar-brand\" href=\"#\">HobbyMatch</a>
     <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
       <span class=\"navbar-toggler-icon\"></span>
     </button>
     <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
       <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
         <li class=\"nav-item\">
-          <a class=\"nav-link active\" aria-current=\"page\" href=\"#\">Home</a>
+          <a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Link</a>
-        </li>
-        <li class=\"nav-item dropdown\">
-          <a class=\"nav-link dropdown-toggle\" href=\"#\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-            Dropdown
-          </a>
-          <ul class=\"dropdown-menu\">
-            <li><a class=\"dropdown-item\" href=\"#\">Action</a></li>
-            <li><a class=\"dropdown-item\" href=\"#\">Another action</a></li>
-            <li><hr class=\"dropdown-divider\"></li>
-            <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>
-          </ul>
+          <a class=\"nav-link\" href=\"/?controller=AdminHobby&action=list\">Admin List</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link disabled\" aria-disabled=\"true\">Disabled</a>
+          <a class=\"nav-link\" href=\"/?controller=AdminHobby&action=add\">Admin Add</a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"/?controller=Hobby&action=fixtures\">Fixtures</a>
         </li>
       </ul>
       <form class=\"d-flex\" role=\"search\">
@@ -99,18 +91,18 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
   </div>
 </nav>
 
-\t\t\t<div class=\"container mt-3\"> ";
-        // line 53
+\t\t\t<div class=\"container mt-4\"> ";
+        // line 45
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 54
+        // line 46
         yield "
 \t\t\t\t</div>
 
 \t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
 \t\t\t\t";
-        // line 58
+        // line 50
         yield from $this->unwrap()->yieldBlock('javascript', $context, $blocks);
-        // line 59
+        // line 51
         yield "
 \t\t\t</body>
 \t\t</html>
@@ -141,7 +133,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 53
+    // line 45
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -151,7 +143,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 58
+    // line 50
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -174,7 +166,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  155 => 58,  145 => 53,  135 => 12,  129 => 8,  122 => 7,  114 => 59,  112 => 58,  106 => 54,  104 => 53,  62 => 13,  60 => 12,  56 => 10,  54 => 7,  46 => 1,);
+        return array (  147 => 50,  137 => 45,  127 => 12,  121 => 8,  114 => 7,  106 => 51,  104 => 50,  98 => 46,  96 => 45,  62 => 13,  60 => 12,  56 => 10,  54 => 7,  46 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -196,31 +188,23 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 
 \t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
   <div class=\"container\">
-    <a class=\"navbar-brand\" href=\"#\">Navbar</a>
+    <a class=\"navbar-brand\" href=\"#\">HobbyMatch</a>
     <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
       <span class=\"navbar-toggler-icon\"></span>
     </button>
     <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
       <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
         <li class=\"nav-item\">
-          <a class=\"nav-link active\" aria-current=\"page\" href=\"#\">Home</a>
+          <a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Link</a>
-        </li>
-        <li class=\"nav-item dropdown\">
-          <a class=\"nav-link dropdown-toggle\" href=\"#\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-            Dropdown
-          </a>
-          <ul class=\"dropdown-menu\">
-            <li><a class=\"dropdown-item\" href=\"#\">Action</a></li>
-            <li><a class=\"dropdown-item\" href=\"#\">Another action</a></li>
-            <li><hr class=\"dropdown-divider\"></li>
-            <li><a class=\"dropdown-item\" href=\"#\">Something else here</a></li>
-          </ul>
+          <a class=\"nav-link\" href=\"/?controller=AdminHobby&action=list\">Admin List</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link disabled\" aria-disabled=\"true\">Disabled</a>
+          <a class=\"nav-link\" href=\"/?controller=AdminHobby&action=add\">Admin Add</a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"/?controller=Hobby&action=fixtures\">Fixtures</a>
         </li>
       </ul>
       <form class=\"d-flex\" role=\"search\">
@@ -231,7 +215,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
   </div>
 </nav>
 
-\t\t\t<div class=\"container mt-3\"> {% block body %}{% endblock %}
+\t\t\t<div class=\"container mt-4\"> {% block body %}{% endblock %}
 
 \t\t\t\t</div>
 
