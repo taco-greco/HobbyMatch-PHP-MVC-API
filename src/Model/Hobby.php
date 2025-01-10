@@ -3,8 +3,9 @@
 namespace src\Model;
 
 use src\Model\BDD;
+use JsonSerializable;
 
-class Hobby
+class Hobby implements JsonSerializable
 {
 
     private ?int $Id = null;
@@ -257,5 +258,19 @@ ImageRepository=:ImageRepository, ImageFileName=:ImageFileName WHERE Id=:Id");
             "ImageFileName" => $hobby->getImageFileName(),
             "Id" => $hobby->getId()
         ]);
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return
+            [
+                'Id' => $this->getId(),
+                'Titre' => $this->getTitre(),
+                'Auteur' => $this->getAuteur(),
+                'Description' => $this->getDescription(),
+                'DatePublication' => $this->getDate()->format('Y-m-d'),
+                'ImageRepository' => $this->getImageRepository(),
+                'ImageFileName' => $this->getImageFileName()
+            ];
     }
 }
