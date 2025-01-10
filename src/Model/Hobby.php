@@ -167,6 +167,8 @@ class Hobby
             'ImageRepository' => $hobby->getImageRepository(),
             'ImageFileName' => $hobby->getImageFileName()
         ]);
+
+        return BDD::getInstance()->lastInsertId();
     }
 
     public static function SqlGetLast(int $nb)

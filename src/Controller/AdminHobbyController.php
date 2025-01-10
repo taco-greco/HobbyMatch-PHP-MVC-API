@@ -57,7 +57,8 @@ class AdminHobbyController extends AbstractController
             $id = Hobby::SqlAdd($hobby);
 
             //4. Rédiriger l'internaute sur la page liste
-            header("location: /?controller=AdminHobby&action=list");
+            header("location: /?controller=AdminHobby&action=show&param={$id}");
+            exit();
 
         }
         return $this->twig->render('Admin/Hobby/add.html.twig');
