@@ -63,7 +63,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t<body>
 
 \t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
-  <div class=\"container\">
+  <div class=\"container-fluid px-4\">
     <a class=\"navbar-brand\" href=\"#\">HobbyMatch</a>
     <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
       <span class=\"navbar-toggler-icon\"></span>
@@ -187,7 +187,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t<body>
 
 \t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
-  <div class=\"container\">
+  <div class=\"container-fluid px-4\">
     <a class=\"navbar-brand\" href=\"#\">HobbyMatch</a>
     <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
       <span class=\"navbar-toggler-icon\"></span>

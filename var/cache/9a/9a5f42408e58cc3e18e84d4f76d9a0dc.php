@@ -69,7 +69,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
         $macros = $this->macros;
         // line 4
         yield "
-<table class=\"table\">
+<table class=\"table table-hover\">
 <thead>
 <tr>
 <th scope=\"col\">Id</th>
@@ -157,7 +157,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
 {% block title %}{{parent()}}- Liste des Hobbies{% endblock%}
 {% block body %}
 
-<table class=\"table\">
+<table class=\"table table-hover\">
 <thead>
 <tr>
 <th scope=\"col\">Id</th>
