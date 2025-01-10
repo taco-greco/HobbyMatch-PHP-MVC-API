@@ -15,7 +15,7 @@
 <tbody>
 {% for hobby in hobbies %}
 <tr>
-<th scope="row"><a href="#">{{ hobby.Id }}</a></th>
+<th scope="row"><a href="/?controller=AdminHobby&action=update&param={{hobby.id}}">{{ hobby.Id }}</a></th>
 <td><a href="/?controller=AdminHobby&action=show&param={{hobby.id}}">{{ hobby.Titre }}</a></td>
 <td>{{ hobby.DatePublication|date('d/m/Y') }}
 <td>{{ hobby.Auteur }}</td>

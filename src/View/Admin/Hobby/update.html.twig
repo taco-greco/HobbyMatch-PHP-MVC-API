@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+{% block title %}ADMIN -
+	{{ parent() }}
+	- Update d'un Hobby
+{% endblock %}
+{% block body %}
+	<h1>Update Hobby</h1>
+	<form method="post" enctype="multipart/form-data">
+		<div class="mb-3">
+			<input type="text" class="form-control" placeholder="Saisir un titre" name="Titre" value="{{ hobby.Titre }}">
+		</div>
+		<div class="mb-3">
+			<textarea class="form-control" name="Description" rows="3">{{
+hobby.Description }}</textarea>
+		</div>
+		<div class="mb-3">
+			<input type="date" class="form-control" name="DatePublication" value="{{ hobby.DatePublication|date("Y-m-d") }}">
+		</div>
+		<div class="mb-3">
+			<select class="form-select" name="Auteur">
+				<option value="Brice" {% if (hobby.Auteur == "Brice") %} selected {% endif %}>Brice</option>
+				<option value="Bruno" {% if (hobby.Auteur == "Bruno") %} selected {% endif %}>Bruno</option>
+				<option value="Fabien" {% if (hobby.Auteur == "Fabien") %} selected {% endif %}>Fabien</option>
+				<option value="Marion" {% if (hobby.Auteur == "Marion") %} selected {% endif %}>Marion</option>
+				<option value="Jean-Pierre" {% if (hobby.Auteur == "Jean-Pierre") %} selected {% endif %}>Jean-Pierre</option>
+				<option value="Benoit" {% if (hobby.Auteur == "Benoit") %} selected {% endif %}>Benoit</option>
+				<option value="Emmanuel" {% if (hobby.Auteur == "Emmanuel") %} selected {% endif %}>Emmanuel</option>
+				<option value="Sylvie" {% if (hobby.Auteur == "Sylvie") %} selected {% endif %}>Sylvie</option>
+			</select>
+		</div>
+		<div class="mb-3">
+			<input type="file" class="custom-file-input" name="Image">
+		</div>
+		{% if file_exist(
+'./uploads/images/'~hobby.ImageRepository~'/'~hobby.ImageFileName ) and
+hobby.ImageFileName !="" %}
+			<p>Image Actuelle :</p>
+			<p>
+				<img src="/uploads/images/{{ hobby.ImageRepository }}/{{
+					hobby.ImageFileName }}" class="img-thumbnail"/>
+			</p>
+			<input type="hidden" name="ImageRepository" value="{{ hobby.ImageRepository }}">
+			<input type="hidden" name="ImageFileName" value="{{ hobby.ImageFileName }}">
+		{% endif %}
+		<button type="submit" class="btn btn-primary">Valider</button>
+	</form>
+{% endblock %}

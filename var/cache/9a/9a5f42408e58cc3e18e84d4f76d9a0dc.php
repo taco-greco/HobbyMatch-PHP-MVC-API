@@ -87,8 +87,10 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
         foreach ($context['_seq'] as $context["_key"] => $context["hobby"]) {
             // line 17
             yield "<tr>
-<th scope=\"row\"><a href=\"#\">";
+<th scope=\"row\"><a href=\"/?controller=AdminHobby&action=update&param=";
             // line 18
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "id", [], "any", false, false, false, 18), "html", null, true);
+            yield "\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 18), "html", null, true);
             yield "</a></th>
 <td><a href=\"/?controller=AdminHobby&action=show&param=";
@@ -143,7 +145,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  119 => 25,  110 => 22,  106 => 21,  102 => 20,  96 => 19,  92 => 18,  89 => 17,  85 => 16,  71 => 4,  64 => 3,  52 => 2,  41 => 1,);
+        return array (  121 => 25,  112 => 22,  108 => 21,  104 => 20,  98 => 19,  92 => 18,  89 => 17,  85 => 16,  71 => 4,  64 => 3,  52 => 2,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -165,7 +167,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
 <tbody>
 {% for hobby in hobbies %}
 <tr>
-<th scope=\"row\"><a href=\"#\">{{ hobby.Id }}</a></th>
+<th scope=\"row\"><a href=\"/?controller=AdminHobby&action=update&param={{hobby.id}}\">{{ hobby.Id }}</a></th>
 <td><a href=\"/?controller=AdminHobby&action=show&param={{hobby.id}}\">{{ hobby.Titre }}</a></td>
 <td>{{ hobby.DatePublication|date('d/m/Y') }}
 <td>{{ hobby.Auteur }}</td>

@@ -243,4 +243,19 @@ LIMIT :limit');
         return null;
     }
 
+    public static function SqlUpdate(Hobby $hobby)
+    {
+        $requete = BDD::getInstance()->prepare("UPDATE hobbies SET Titre=:Titre,
+Description=:Description, DatePublication=:DatePublication, Auteur=:Auteur,
+ImageRepository=:ImageRepository, ImageFileName=:ImageFileName WHERE Id=:Id");
+        $bool = $requete->execute([
+            "Titre" => $hobby->getTitre(),
+            "Description" => $hobby->getDescription(),
+            "DatePublication" => $hobby->getDate()->format("Y-m-d"),
+            "Auteur" => $hobby->getAuteur(),
+            "ImageRepository" => $hobby->getImageRepository(),
+            "ImageFileName" => $hobby->getImageFileName(),
+            "Id" => $hobby->getId()
+        ]);
+    }
 }

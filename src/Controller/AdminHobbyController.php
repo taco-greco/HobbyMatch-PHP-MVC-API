@@ -13,19 +13,20 @@ class AdminHobbyController extends AbstractController
             'hobbies' => $hobbies
         ]);
     }
-    public function delete(int $id){
+    public function delete(int $id)
+    {
         Hobby::SqlDelete($id);
         header("Location:/?controller=AdminHobby&action=list");
     }
 
-    public function add() {
-        if(isset($_POST['Titre']) && isset($_POST['Description']))
-        {
+    public function add()
+    {
+        if (isset($_POST['Titre']) && isset($_POST['Description'])) {
             //1. Upload Fichier
             $sqlRepository = null; // On ne fera pas X requetes SQL différentes donc on déclare les variables dès le début pour les utiliser dans la requete SQL
             $nomImage = null;
 
-            if(!empty($_FILES['Image']['name']) ) {
+            if (!empty($_FILES['Image']['name'])) {
                 $tabExt = ['jpg', 'gif', 'png', 'jpeg'];    // Extensions autorisees
                 $extension = pathinfo($_FILES['Image']['name'], PATHINFO_EXTENSION);
                 // strtolower = on compare ce qui est comparage (JPEG =! jpeg)
@@ -44,7 +45,7 @@ class AdminHobbyController extends AbstractController
                     move_uploaded_file($_FILES['Image']['tmp_name'], $repository . '/' . $nomImage);
                 }
             }
-            //2. Créer un objet Article
+            //2. Créer un objet Hobby
             $hobby = new Hobby();
             $hobby->setTitre($_POST['Titre']);
             $hobby->setDescription($_POST['Description']);
@@ -59,7 +60,6 @@ class AdminHobbyController extends AbstractController
             //4. Rédiriger l'internaute sur la page liste
             header("location: /?controller=AdminHobby&action=show&param={$id}");
             exit();
-
         }
         return $this->twig->render('Admin/Hobby/add.html.twig');
     }
@@ -73,5 +73,55 @@ class AdminHobbyController extends AbstractController
         return $this->twig->render("Hobby/show.html.twig", [
             "hobby" => $hobby
         ]);
+    }
+
+    public function update(int $id) 
+    {
+        $hobby = Hobby::SqlGetById($id);
+
+        if(isset($_POST["Titre"])){
+            $sqlRepository = (isset($_POST["ImageRepository"])) ? $_POST["ImageRepository"]
+            : null; // Si champ image actuelle alors on prend la valeur sinon null
+            $nomImage = (isset($_POST["ImageFileName"])) ? $_POST["ImageFileName"] : null;
+            if(isset($_FILES["Image"]["name"])){
+            $extensionsAutorisee = ["jpg", "jpeg", "png"];
+            $extension = pathinfo($_FILES["Image"]["name"], PATHINFO_EXTENSION);
+            if(in_array($extension, $extensionsAutorisee)){
+            // Créer réperoire date "2023/12"
+            $dateNow = new \DateTime();
+            $sqlRepository = $dateNow->format("Y/m");
+            $repository = "./uploads/images/{$sqlRepository}";
+            if(!is_dir($repository)){
+            mkdir($repository,0777,true);
+            }
+            // Renommer le fichier image
+            $nomImage = uniqid().".".$extension;
+            //Envoyer le fichier dans le bon répetoire
+            move_uploaded_file($_FILES["Image"]["tmp_name"],
+            $repository."/".$nomImage);
+            }
+            //Si il y'avait une image déjà en place on la vire :
+            if(isset($_POST["ImageFileName"]) && $_POST["ImageFileName"] != '' &&
+            file_exists("{$_SERVER["DOCUMENT_ROOT"]}/uploads/images/{$_POST["ImageRepository"]}/{$_POST[
+            "ImageFileName"]}")){
+            unlink("{$_SERVER["DOCUMENT_ROOT"]}/uploads/images/{$_POST["ImageRepository"]}/{$_POST["Imag
+            eFileName"]}");
+            }
+            }
+            $date = new \DateTime($_POST["DatePublication"]);
+            $hobby->setTitre($_POST["Titre"])
+            ->setDescription($_POST["Description"])
+            ->setDate($date)
+            ->setAuteur($_POST["Auteur"])
+            ->setImageRepository($sqlRepository)
+            ->setImageFileName($nomImage);
+            Hobby::SqlUpdate($hobby);
+            header("Location:/?controller=AdminHobby&action=show&param={$id}");
+            exit();
+            }else{
+            return $this->twig->render("Admin/Hobby/update.html.twig",[
+            "hobby" => $hobby
+            ]);
+        }
     }
 }
