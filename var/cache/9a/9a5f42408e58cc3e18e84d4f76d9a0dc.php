@@ -87,13 +87,13 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
         foreach ($context['_seq'] as $context["_key"] => $context["hobby"]) {
             // line 17
             yield "<tr>
-<th scope=\"row\"><a href=\"/?controller=AdminHobby&action=update&param=";
+<th scope=\"row\"><a href=\"/AdminHobby/update/";
             // line 18
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "id", [], "any", false, false, false, 18), "html", null, true);
             yield "\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 18), "html", null, true);
             yield "</a></th>
-<td><a href=\"/?controller=AdminHobby&action=show&param=";
+<td><a href=\"/AdminHobby/show/";
             // line 19
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "id", [], "any", false, false, false, 19), "html", null, true);
             yield "\">";
@@ -107,7 +107,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
             // line 21
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Auteur", [], "any", false, false, false, 21), "html", null, true);
             yield "</td>
-<td><a href=\"/?controller=AdminHobby&action=delete&param=";
+<td><a href=\"/AdminHobby/delete/";
             // line 22
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 22), "html", null, true);
             yield "\"><i class=\"bi bi-trash\"></i></a></td>
@@ -167,11 +167,11 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
 <tbody>
 {% for hobby in hobbies %}
 <tr>
-<th scope=\"row\"><a href=\"/?controller=AdminHobby&action=update&param={{hobby.id}}\">{{ hobby.Id }}</a></th>
-<td><a href=\"/?controller=AdminHobby&action=show&param={{hobby.id}}\">{{ hobby.Titre }}</a></td>
+<th scope=\"row\"><a href=\"/AdminHobby/update/{{hobby.id}}\">{{ hobby.Id }}</a></th>
+<td><a href=\"/AdminHobby/show/{{hobby.id}}\">{{ hobby.Titre }}</a></td>
 <td>{{ hobby.DatePublication|date('d/m/Y') }}
 <td>{{ hobby.Auteur }}</td>
-<td><a href=\"/?controller=AdminHobby&action=delete&param={{hobby.Id}}\"><i class=\"bi bi-trash\"></i></a></td>
+<td><a href=\"/AdminHobby/delete/{{hobby.Id}}\"><i class=\"bi bi-trash\"></i></a></td>
 </tr>
 {% endfor %}
 </tbody>

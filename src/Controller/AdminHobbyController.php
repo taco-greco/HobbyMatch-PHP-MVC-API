@@ -16,7 +16,7 @@ class AdminHobbyController extends AbstractController
     public function delete(int $id)
     {
         Hobby::SqlDelete($id);
-        header("Location:/?controller=AdminHobby&action=list");
+        header("Location:/AdminHobby/list");
     }
 
     public function add()
@@ -58,7 +58,7 @@ class AdminHobbyController extends AbstractController
             $id = Hobby::SqlAdd($hobby);
 
             //4. Rédiriger l'internaute sur la page liste
-            header("location: /?controller=AdminHobby&action=show&param={$id}");
+            header("location: /AdminHobby/show/{$id}");
             exit();
         }
         return $this->twig->render('Admin/Hobby/add.html.twig');
@@ -68,7 +68,7 @@ class AdminHobbyController extends AbstractController
     {
         $hobby = Hobby::SqlGetById($id);
         if ($hobby == null) {
-            header("Location: /?controller=Hobby&action=all");
+            header("Location: /Hobby/all");
         }
         return $this->twig->render("Hobby/show.html.twig", [
             "hobby" => $hobby
@@ -116,7 +116,7 @@ class AdminHobbyController extends AbstractController
             ->setImageRepository($sqlRepository)
             ->setImageFileName($nomImage);
             Hobby::SqlUpdate($hobby);
-            header("Location:/?controller=AdminHobby&action=show&param={$id}");
+            header("Location:/AdminHobby/show/{$id}");
             exit();
             }else{
             return $this->twig->render("Admin/Hobby/update.html.twig",[

@@ -74,13 +74,13 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
           <a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/?controller=AdminHobby&action=list\">Admin List</a>
+          <a class=\"nav-link\" href=\"/AdminHobby/list\">Admin List</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/?controller=AdminHobby&action=add\">Admin Add</a>
+          <a class=\"nav-link\" href=\"/AdminHobby/add\">Admin Add</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/?controller=Hobby&action=fixtures\">Fixtures</a>
+          <a class=\"nav-link\" href=\"/Hobby/fixtures\">Fixtures</a>
         </li>
       </ul>
       <form class=\"d-flex\" role=\"search\">
@@ -198,13 +198,13 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
           <a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/?controller=AdminHobby&action=list\">Admin List</a>
+          <a class=\"nav-link\" href=\"/AdminHobby/list\">Admin List</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/?controller=AdminHobby&action=add\">Admin Add</a>
+          <a class=\"nav-link\" href=\"/AdminHobby/add\">Admin Add</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/?controller=Hobby&action=fixtures\">Fixtures</a>
+          <a class=\"nav-link\" href=\"/Hobby/fixtures\">Fixtures</a>
         </li>
       </ul>
       <form class=\"d-flex\" role=\"search\">
