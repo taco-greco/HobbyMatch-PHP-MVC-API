@@ -35,6 +35,7 @@ if ($controller != '') {
             throw new Exception("Controller {$controller} does not exist");
         }
     } catch (Exception $e) {
+        //Erreur classe avec Controller
         $controller = new ErrorController;
         echo $controller->show($e);
     }

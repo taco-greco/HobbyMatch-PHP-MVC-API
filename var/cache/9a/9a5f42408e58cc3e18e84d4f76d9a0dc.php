@@ -91,10 +91,12 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
             // line 18
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 18), "html", null, true);
             yield "</a></th>
-<td>";
+<td><a href=\"/?controller=AdminHobby&action=show&param=";
             // line 19
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "id", [], "any", false, false, false, 19), "html", null, true);
+            yield "\">";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Titre", [], "any", false, false, false, 19), "html", null, true);
-            yield "</td>
+            yield "</a></td>
 <td>";
             // line 20
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "DatePublication", [], "any", false, false, false, 20), "d/m/Y"), "html", null, true);
@@ -141,7 +143,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  117 => 25,  108 => 22,  104 => 21,  100 => 20,  96 => 19,  92 => 18,  89 => 17,  85 => 16,  71 => 4,  64 => 3,  52 => 2,  41 => 1,);
+        return array (  119 => 25,  110 => 22,  106 => 21,  102 => 20,  96 => 19,  92 => 18,  89 => 17,  85 => 16,  71 => 4,  64 => 3,  52 => 2,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -164,7 +166,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
 {% for hobby in hobbies %}
 <tr>
 <th scope=\"row\"><a href=\"#\">{{ hobby.Id }}</a></th>
-<td>{{ hobby.Titre }}</td>
+<td><a href=\"/?controller=AdminHobby&action=show&param={{hobby.id}}\">{{ hobby.Titre }}</a></td>
 <td>{{ hobby.DatePublication|date('d/m/Y') }}
 <td>{{ hobby.Auteur }}</td>
 <td><a href=\"/?controller=AdminHobby&action=delete&param={{hobby.Id}}\"><i class=\"bi bi-trash\"></i></a></td>

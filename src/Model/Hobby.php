@@ -216,4 +216,29 @@ LIMIT :limit');
             'Id' => $Id
         ]);
     }
+
+    public static function SqlGetById($Id): ?Hobby
+    {
+        $bdd = BDD::getInstance();
+        $requete = $bdd->prepare('SELECT * FROM hobbies WHERE Id=:Id');
+        $requete->execute([
+            "Id" => $Id
+        ]);
+        $hobbySQL = $requete->fetch(\PDO::FETCH_ASSOC);
+        if ($hobbySQL != false) {
+            $hobby = new Hobby();
+            $date = new \DateTime($hobbySQL["DatePublication"]);
+            $hobby->setTitre($hobbySQL["Titre"])
+                ->setId($hobbySQL["Id"])
+                ->setDescription($hobbySQL["Description"])
+                ->setDate($date)
+                ->setAuteur($hobbySQL["Auteur"])
+                ->setImageRepository($hobbySQL["ImageRepository"])
+                ->setId($hobbySQL["Id"])
+                ->setImageFileName($hobbySQL["ImageFileName"]);
+            return $hobby;
+        }
+        return null;
+    }
+
 }
