@@ -76,40 +76,43 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
 <th scope=\"col\">Titre</th>
 <th scope=\"col\">DatePublication</th>
 <th scope=\"col\">Auteur</th>
+<th scope=\"col\">Edit</th>
 <th scope=\"col\">Delete</th>
 </tr>
 </thead>
 <tbody>
 ";
-        // line 16
+        // line 17
         $context['_parent'] = $context;
         $context['_seq'] = CoreExtension::ensureTraversable(($context["hobbies"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["hobby"]) {
-            // line 17
-            yield "<tr>
-<th scope=\"row\"><a href=\"/AdminHobby/update/";
             // line 18
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "id", [], "any", false, false, false, 18), "html", null, true);
-            yield "\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 18), "html", null, true);
+            yield "<tr>
+<th scope=\"row\"><a>";
+            // line 19
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 19), "html", null, true);
             yield "</a></th>
 <td><a href=\"/AdminHobby/show/";
-            // line 19
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "id", [], "any", false, false, false, 19), "html", null, true);
+            // line 20
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "id", [], "any", false, false, false, 20), "html", null, true);
             yield "\">";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Titre", [], "any", false, false, false, 19), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Titre", [], "any", false, false, false, 20), "html", null, true);
             yield "</a></td>
 <td>";
-            // line 20
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "DatePublication", [], "any", false, false, false, 20), "d/m/Y"), "html", null, true);
+            // line 21
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "DatePublication", [], "any", false, false, false, 21), "d/m/Y"), "html", null, true);
             yield "
 <td>";
-            // line 21
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Auteur", [], "any", false, false, false, 21), "html", null, true);
-            yield "</td>
-<td><a href=\"/AdminHobby/delete/";
             // line 22
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 22), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Auteur", [], "any", false, false, false, 22), "html", null, true);
+            yield "</td>
+<td><a href=\"/AdminHobby/update/";
+            // line 23
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "id", [], "any", false, false, false, 23), "html", null, true);
+            yield "\"><i class=\"bi bi-pencil-square\"></i></a></td>
+<td><a href=\"/AdminHobby/delete/";
+            // line 24
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 24), "html", null, true);
             yield "\"><i class=\"bi bi-trash\"></i></a></td>
 </tr>
 ";
@@ -117,7 +120,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['hobby'], $context['_parent']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 25
+        // line 27
         yield "</tbody>
 </table>
 ";
@@ -145,7 +148,7 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  121 => 25,  112 => 22,  108 => 21,  104 => 20,  98 => 19,  92 => 18,  89 => 17,  85 => 16,  71 => 4,  64 => 3,  52 => 2,  41 => 1,);
+        return array (  124 => 27,  115 => 24,  111 => 23,  107 => 22,  103 => 21,  97 => 20,  93 => 19,  90 => 18,  86 => 17,  71 => 4,  64 => 3,  52 => 2,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -161,16 +164,18 @@ class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
 <th scope=\"col\">Titre</th>
 <th scope=\"col\">DatePublication</th>
 <th scope=\"col\">Auteur</th>
+<th scope=\"col\">Edit</th>
 <th scope=\"col\">Delete</th>
 </tr>
 </thead>
 <tbody>
 {% for hobby in hobbies %}
 <tr>
-<th scope=\"row\"><a href=\"/AdminHobby/update/{{hobby.id}}\">{{ hobby.Id }}</a></th>
+<th scope=\"row\"><a>{{ hobby.Id }}</a></th>
 <td><a href=\"/AdminHobby/show/{{hobby.id}}\">{{ hobby.Titre }}</a></td>
 <td>{{ hobby.DatePublication|date('d/m/Y') }}
 <td>{{ hobby.Auteur }}</td>
+<td><a href=\"/AdminHobby/update/{{hobby.id}}\"><i class=\"bi bi-pencil-square\"></i></a></td>
 <td><a href=\"/AdminHobby/delete/{{hobby.Id}}\"><i class=\"bi bi-trash\"></i></a></td>
 </tr>
 {% endfor %}
