@@ -1,4 +1,5 @@
 <?php
+session_start();
 use src\Controller\ErrorController;
 
 require '../vendor/autoload.php';
