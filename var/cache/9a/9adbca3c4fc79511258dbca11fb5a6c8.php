@@ -54,7 +54,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from $this->unwrap()->yieldBlock('title', $context, $blocks);
         // line 10
         yield "\t\t</title>
-\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css\">
+\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lumen/bootstrap.min.css\">
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\"> ";
         // line 12
         yield from $this->unwrap()->yieldBlock('css', $context, $blocks);
@@ -92,11 +92,11 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         // line 42
         if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 42)) {
             // line 43
-            yield "\t\t\t\t\t\t\t<a class=\"btn btn-warning bg-danger-subtle ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
+            yield "\t\t\t\t\t\t\t<a class=\"btn btn-danger ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
 \t\t\t\t\t\t";
         } else {
             // line 45
-            yield "\t\t\t\t\t\t\t<a class=\"btn btn-success bg-success-subtle ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
+            yield "\t\t\t\t\t\t\t<a class=\"btn btn-success ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
 \t\t\t\t\t\t";
         }
         // line 47
@@ -203,7 +203,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\tHobbies
 \t\t\t{% endblock %}
 \t\t</title>
-\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/journal/bootstrap.min.css\">
+\t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lumen/bootstrap.min.css\">
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\"> {% block css %}{% endblock %}
 \t\t</head>
 \t\t<body>
@@ -235,9 +235,9 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t\t\t</form>
             <div>
 \t\t\t\t\t\t{% if session.login is defined %}
-\t\t\t\t\t\t\t<a class=\"btn btn-warning bg-danger-subtle ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
+\t\t\t\t\t\t\t<a class=\"btn btn-danger ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
 \t\t\t\t\t\t{% else %}
-\t\t\t\t\t\t\t<a class=\"btn btn-success bg-success-subtle ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
+\t\t\t\t\t\t\t<a class=\"btn btn-success ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
 \t\t\t\t\t\t{% endif %}
             </div>
 \t\t\t\t\t</div>
