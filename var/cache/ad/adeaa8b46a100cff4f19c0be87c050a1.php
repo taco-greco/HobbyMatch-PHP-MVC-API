@@ -79,6 +79,7 @@ name=\"password\">
 </div>
 <button type=\"submit\" class=\"btn btn-primary\">Valider</button>
 </form>
+<p>Pas encore de compte ? <a href=\"/user/create\">Créez en un</a></p>
 ";
         yield from [];
     }
@@ -123,6 +124,7 @@ name=\"password\">
 </div>
 <button type=\"submit\" class=\"btn btn-primary\">Valider</button>
 </form>
+<p>Pas encore de compte ? <a href=\"/user/create\">Créez en un</a></p>
 {% endblock %}", "User/login.html.twig", "C:\\wamp64\\www\\php-individuel\\src\\View\\User\\login.html.twig");
     }
 }

@@ -62,47 +62,59 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield "\t\t</head>
 \t\t<body>
 
-\t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
-  <div class=\"container-fluid px-4\">
-    <a class=\"navbar-brand\" href=\"#\">HobbyMatch</a>
-    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-      <span class=\"navbar-toggler-icon\"></span>
-    </button>
-    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
-      <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
-        <li class=\"nav-item\">
-          <a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/AdminHobby/list\">Admin List</a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/AdminHobby/add\">Admin Add</a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/Hobby/fixtures\">Fixtures</a>
-        </li>
-      </ul>
-      <form class=\"d-flex\" role=\"search\">
-        <input class=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
-        <button class=\"btn btn-outline-light\" type=\"submit\">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+\t\t\t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
+\t\t\t\t<div class=\"container-fluid px-4\">
+\t\t\t\t\t<a class=\"navbar-brand\" href=\"#\">HobbyMatch</a>
+\t\t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+\t\t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>
+\t\t\t\t\t</button>
+\t\t\t\t\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+\t\t\t\t\t\t<ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
+\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t<a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
+\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/list\">Admin List</a>
+\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/add\">Admin Add</a>
+\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/Hobby/fixtures\">Fixtures</a>
+\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t</ul>
+\t\t\t\t\t\t<form class=\"d-flex\" role=\"search\">
+\t\t\t\t\t\t\t<input class=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
+\t\t\t\t\t\t\t<button class=\"btn btn-outline-light\" type=\"submit\">Search</button>
+\t\t\t\t\t\t</form>
+\t\t\t\t\t\t";
+        // line 41
+        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 41)) {
+            // line 42
+            yield "\t\t\t\t\t\t\t<a class=\"btn btn-danger\" href=\"/User/logout\" role=\"button\">Log OUT</a>
+\t\t\t\t\t\t";
+        } else {
+            // line 44
+            yield "\t\t\t\t\t\t\t<a class=\"btn btn-success\" href=\"/User/login\" role=\"button\">Log IN</a>
+\t\t\t\t\t\t";
+        }
+        // line 46
+        yield "\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</nav>
 
 \t\t\t<div class=\"container mt-4\"> ";
-        // line 45
+        // line 50
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 46
+        // line 51
         yield "
 \t\t\t\t</div>
 
 \t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
 \t\t\t\t";
-        // line 50
+        // line 55
         yield from $this->unwrap()->yieldBlock('javascript', $context, $blocks);
-        // line 51
+        // line 56
         yield "
 \t\t\t</body>
 \t\t</html>
@@ -133,7 +145,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 45
+    // line 50
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -143,7 +155,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 50
+    // line 55
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -164,9 +176,17 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
     /**
      * @codeCoverageIgnore
      */
+    public function isTraitable(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
     public function getDebugInfo(): array
     {
-        return array (  147 => 50,  137 => 45,  127 => 12,  121 => 8,  114 => 7,  106 => 51,  104 => 50,  98 => 46,  96 => 45,  62 => 13,  60 => 12,  56 => 10,  54 => 7,  46 => 1,);
+        return array (  159 => 55,  149 => 50,  139 => 12,  133 => 8,  126 => 7,  118 => 56,  116 => 55,  110 => 51,  108 => 50,  102 => 46,  98 => 44,  94 => 42,  92 => 41,  62 => 13,  60 => 12,  56 => 10,  54 => 7,  46 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -186,34 +206,39 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t</head>
 \t\t<body>
 
-\t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
-  <div class=\"container-fluid px-4\">
-    <a class=\"navbar-brand\" href=\"#\">HobbyMatch</a>
-    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-      <span class=\"navbar-toggler-icon\"></span>
-    </button>
-    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
-      <ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
-        <li class=\"nav-item\">
-          <a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/AdminHobby/list\">Admin List</a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/AdminHobby/add\">Admin Add</a>
-        </li>
-        <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"/Hobby/fixtures\">Fixtures</a>
-        </li>
-      </ul>
-      <form class=\"d-flex\" role=\"search\">
-        <input class=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
-        <button class=\"btn btn-outline-light\" type=\"submit\">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+\t\t\t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
+\t\t\t\t<div class=\"container-fluid px-4\">
+\t\t\t\t\t<a class=\"navbar-brand\" href=\"#\">HobbyMatch</a>
+\t\t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+\t\t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>
+\t\t\t\t\t</button>
+\t\t\t\t\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+\t\t\t\t\t\t<ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
+\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t<a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
+\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/list\">Admin List</a>
+\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/add\">Admin Add</a>
+\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/Hobby/fixtures\">Fixtures</a>
+\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t</ul>
+\t\t\t\t\t\t<form class=\"d-flex\" role=\"search\">
+\t\t\t\t\t\t\t<input class=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
+\t\t\t\t\t\t\t<button class=\"btn btn-outline-light\" type=\"submit\">Search</button>
+\t\t\t\t\t\t</form>
+\t\t\t\t\t\t{% if session.login is defined %}
+\t\t\t\t\t\t\t<a class=\"btn btn-danger\" href=\"/User/logout\" role=\"button\">Log OUT</a>
+\t\t\t\t\t\t{% else %}
+\t\t\t\t\t\t\t<a class=\"btn btn-success\" href=\"/User/login\" role=\"button\">Log IN</a>
+\t\t\t\t\t\t{% endif %}
+\t\t\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t</nav>
 
 \t\t\t<div class=\"container mt-4\"> {% block body %}{% endblock %}
 
