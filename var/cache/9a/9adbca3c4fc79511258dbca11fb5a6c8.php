@@ -64,8 +64,8 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield "\t</head>
 \t<body>
 
-\t\t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
-\t\t\t<div class=\"container-fluid px-4\">
+\t\t<nav class=\"navbar navbar-expand-lg bg-primary px-2 px-md-4\" data-bs-theme=\"dark\">
+\t\t\t<div class=\"container-fluid px-2 px-md-4\">
 \t\t\t\t<a class=\"navbar-brand\" href=\"/\">HobbyMatch</a>
 \t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
 \t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>
@@ -219,8 +219,8 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t</head>
 \t<body>
 
-\t\t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
-\t\t\t<div class=\"container-fluid px-4\">
+\t\t<nav class=\"navbar navbar-expand-lg bg-primary px-2 px-md-4\" data-bs-theme=\"dark\">
+\t\t\t<div class=\"container-fluid px-2 px-md-4\">
 \t\t\t\t<a class=\"navbar-brand\" href=\"/\">HobbyMatch</a>
 \t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
 \t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>
