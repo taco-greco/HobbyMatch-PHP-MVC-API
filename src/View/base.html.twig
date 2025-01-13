@@ -15,7 +15,7 @@
 
 			<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
 				<div class="container-fluid px-4">
-					<a class="navbar-brand" href="#">HobbyMatch</a>
+					<a class="navbar-brand" href="/">HobbyMatch</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
@@ -35,14 +35,16 @@
 							</li>
 						</ul>
 						<form class="d-flex" role="search">
-							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-							<button class="btn btn-outline-light" type="submit">Search</button>
+							<input class="form-control" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-light ms-1" type="submit">Search</button>
 						</form>
+            <div>
 						{% if session.login is defined %}
-							<a class="btn btn-danger" href="/User/logout" role="button">Log OUT</a>
+							<a class="btn btn-danger ms-2" href="/User/logout" role="button">Log OUT</a>
 						{% else %}
-							<a class="btn btn-success" href="/User/login" role="button">Log IN</a>
+							<a class="btn btn-success ms-2 mt-1 mt-xl-0" href="/User/login" role="button">Log IN</a>
 						{% endif %}
+            </div>
 					</div>
 				</div>
 			</nav>

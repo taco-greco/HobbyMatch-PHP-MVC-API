@@ -64,7 +64,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 
 \t\t\t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
 \t\t\t\t<div class=\"container-fluid px-4\">
-\t\t\t\t\t<a class=\"navbar-brand\" href=\"#\">HobbyMatch</a>
+\t\t\t\t\t<a class=\"navbar-brand\" href=\"/\">HobbyMatch</a>
 \t\t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
 \t\t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>
 \t\t\t\t\t</button>
@@ -84,37 +84,39 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t</ul>
 \t\t\t\t\t\t<form class=\"d-flex\" role=\"search\">
-\t\t\t\t\t\t\t<input class=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
-\t\t\t\t\t\t\t<button class=\"btn btn-outline-light\" type=\"submit\">Search</button>
+\t\t\t\t\t\t\t<input class=\"form-control\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
+\t\t\t\t\t\t\t<button class=\"btn btn-outline-light ms-1\" type=\"submit\">Search</button>
 \t\t\t\t\t\t</form>
+            <div>
 \t\t\t\t\t\t";
-        // line 41
-        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 41)) {
-            // line 42
-            yield "\t\t\t\t\t\t\t<a class=\"btn btn-danger\" href=\"/User/logout\" role=\"button\">Log OUT</a>
+        // line 42
+        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 42)) {
+            // line 43
+            yield "\t\t\t\t\t\t\t<a class=\"btn btn-danger ms-2\" href=\"/User/logout\" role=\"button\">Log OUT</a>
 \t\t\t\t\t\t";
         } else {
-            // line 44
-            yield "\t\t\t\t\t\t\t<a class=\"btn btn-success\" href=\"/User/login\" role=\"button\">Log IN</a>
+            // line 45
+            yield "\t\t\t\t\t\t\t<a class=\"btn btn-success ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
 \t\t\t\t\t\t";
         }
-        // line 46
-        yield "\t\t\t\t\t</div>
+        // line 47
+        yield "            </div>
+\t\t\t\t\t</div>
 \t\t\t\t</div>
 \t\t\t</nav>
 
 \t\t\t<div class=\"container mt-4\"> ";
-        // line 50
+        // line 52
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 51
+        // line 53
         yield "
 \t\t\t\t</div>
 
 \t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
 \t\t\t\t";
-        // line 55
+        // line 57
         yield from $this->unwrap()->yieldBlock('javascript', $context, $blocks);
-        // line 56
+        // line 58
         yield "
 \t\t\t</body>
 \t\t</html>
@@ -145,7 +147,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 50
+    // line 52
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -155,7 +157,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 55
+    // line 57
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -186,7 +188,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  159 => 55,  149 => 50,  139 => 12,  133 => 8,  126 => 7,  118 => 56,  116 => 55,  110 => 51,  108 => 50,  102 => 46,  98 => 44,  94 => 42,  92 => 41,  62 => 13,  60 => 12,  56 => 10,  54 => 7,  46 => 1,);
+        return array (  161 => 57,  151 => 52,  141 => 12,  135 => 8,  128 => 7,  120 => 58,  118 => 57,  112 => 53,  110 => 52,  103 => 47,  99 => 45,  95 => 43,  93 => 42,  62 => 13,  60 => 12,  56 => 10,  54 => 7,  46 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -208,7 +210,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 
 \t\t\t<nav class=\"navbar navbar-expand-lg bg-primary\" data-bs-theme=\"dark\">
 \t\t\t\t<div class=\"container-fluid px-4\">
-\t\t\t\t\t<a class=\"navbar-brand\" href=\"#\">HobbyMatch</a>
+\t\t\t\t\t<a class=\"navbar-brand\" href=\"/\">HobbyMatch</a>
 \t\t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
 \t\t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>
 \t\t\t\t\t</button>
@@ -228,14 +230,16 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t</ul>
 \t\t\t\t\t\t<form class=\"d-flex\" role=\"search\">
-\t\t\t\t\t\t\t<input class=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
-\t\t\t\t\t\t\t<button class=\"btn btn-outline-light\" type=\"submit\">Search</button>
+\t\t\t\t\t\t\t<input class=\"form-control\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
+\t\t\t\t\t\t\t<button class=\"btn btn-outline-light ms-1\" type=\"submit\">Search</button>
 \t\t\t\t\t\t</form>
+            <div>
 \t\t\t\t\t\t{% if session.login is defined %}
-\t\t\t\t\t\t\t<a class=\"btn btn-danger\" href=\"/User/logout\" role=\"button\">Log OUT</a>
+\t\t\t\t\t\t\t<a class=\"btn btn-danger ms-2\" href=\"/User/logout\" role=\"button\">Log OUT</a>
 \t\t\t\t\t\t{% else %}
-\t\t\t\t\t\t\t<a class=\"btn btn-success\" href=\"/User/login\" role=\"button\">Log IN</a>
+\t\t\t\t\t\t\t<a class=\"btn btn-success ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
 \t\t\t\t\t\t{% endif %}
+            </div>
 \t\t\t\t\t</div>
 \t\t\t\t</div>
 \t\t\t</nav>
