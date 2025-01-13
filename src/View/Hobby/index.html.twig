@@ -1,12 +1,38 @@
 {% extends "base.html.twig" %}
 
-{%block title %} {{parent()}} - Les derniers Hobbies {%endblock%}
+{% block title %}
+	{{ parent() }}
+	- Les derniers Hobbies
+{% endblock %}
 
 {% block body %}
-<h1>Voici les derniers 20 hobbies :</h1>
-<ul>
-{% for hobby in hobbies %}
-    <li> {{hobby.Titre}} </li>
-{% endfor %}
-</ul>
+	<h1 class="pb-3">Voici les derniers 20 hobbies :</h1>
+
+	<div class="row row-cols-1 row-cols-md-4 g-4">
+		{% for hobby in hobbies %}
+			<div class="col">
+				<div class="card h-100 border-dark">
+					<div class="card-body">
+						<div class="d-flex justify-content-between align-items-center">
+							<h5 class="card-title">
+								{{ hobby.Titre }}
+							</h5>
+							<p class="card-text">
+								<a href="/AdminHobby/show/{{hobby.id}}" class="btn btn-dark">
+                                Lire le Hobby
+									<i class="bi bi-box-arrow-up-right"></i>
+								</a>
+							</p>
+
+						</div>
+					</div>
+					{% if file_exist('./uploads/images/' ~ hobby.ImageRepository ~ '/' ~ hobby.ImageFileName) and hobby.ImageFileName != "" %}
+						<div class="p-3">
+							<img src="/uploads/images/{{ hobby.ImageRepository }}/{{ hobby.ImageFileName }}" class="card-img-bottom rounded fixed-size-img" alt="...">
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}

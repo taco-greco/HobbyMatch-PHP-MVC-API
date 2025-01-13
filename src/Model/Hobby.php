@@ -182,7 +182,8 @@ LIMIT :limit');
         $hobbiesObjet = [];
         foreach ($hobbiesSql as $hobbySql) {
             $hobby = new Hobby();
-            $hobby->setTitre($hobbySql["Titre"])
+            $hobby->setId($hobbySql["Id"])
+                ->setTitre($hobbySql["Titre"])
                 ->setDescription($hobbySql["Description"])
                 ->setDate(new \DateTime($hobbySql["DatePublication"]))
                 ->setAuteur($hobbySql["Auteur"])
