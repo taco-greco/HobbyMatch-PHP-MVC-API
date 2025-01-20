@@ -11,15 +11,49 @@ class ApiHobbyController
         header('Content-Type: application/json; charset=utf-8');
     }
 
-    public function getAll (){
-        if($_SERVER["REQUEST_METHOD"] != "GET"){
-        header("HTTP/1.1 405 Method Not Allowed");
-        return json_encode([
-        "code" => 1,
-        "Message" => "Get Attendu"
-        ]);
+    public function getAll()
+    {
+        if ($_SERVER["REQUEST_METHOD"] != "GET") {
+            header("HTTP/1.1 405 Method Not Allowed");
+            return json_encode([
+                "code" => 1,
+                "Message" => "Get Attendu"
+            ]);
         }
         $hobbies = Hobby::SqlGetAll();
         return json_encode($hobbies);
+    }
+
+    public function add()
+    {
+        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            header("HTTP/1.1 405 Method Not Allowed");
+            return json_encode([
+                "code" => 1,
+                "Message" => "POST Attendu"
+            ]);
         }
+        //Récupération du body en String
+        $data = file_get_contents("php://input");
+        //Conversion du string en JSON
+        $json = json_decode($data);
+        if (empty($json)) {
+            header("HTTP/1.1 400 Bad Request");
+            return json_encode([
+                "code" => 1,
+                "Message" => "Il faut des données"
+            ]);
+        }
+        $hobby = new Hobby();
+        $hobby->setTitre($json->Titre)
+            ->setDescription($json->Description)
+            ->setDate(new \DateTime($json->DatePublication))
+            ->setAuteur($json->Auteur);
+        $id = Hobby::SqlAdd($hobby);
+        return json_encode([
+            "code" => 0,
+            "Message" => "Hobby ajouté avec succès",
+            "Id" => $id
+        ]);
+    }
 }
