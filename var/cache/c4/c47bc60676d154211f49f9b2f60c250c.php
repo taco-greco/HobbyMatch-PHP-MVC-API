@@ -74,7 +74,7 @@ class __TwigTemplate_e8aee39d0f72bde01636212e0c5b6371 extends Template
         // line 9
         yield "\t<h1 class=\"pb-3\">Voici les derniers 20 hobbies :</h1>
 
-\t<div class=\"row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4\">
+\t<div class=\"row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 pb-3\">
 \t\t";
         // line 12
         $context['_parent'] = $context;
@@ -167,7 +167,7 @@ class __TwigTemplate_e8aee39d0f72bde01636212e0c5b6371 extends Template
 {% block body %}
 \t<h1 class=\"pb-3\">Voici les derniers 20 hobbies :</h1>
 
-\t<div class=\"row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4\">
+\t<div class=\"row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 pb-3\">
 \t\t{% for hobby in hobbies %}
 \t\t\t<div class=\"col\">
 \t\t\t\t<div class=\"card h-100 border-dark\">

@@ -114,22 +114,54 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t</div>
 \t\t\t</nav>
 
-\t\t\t<div class=\"container mt-4\"> ";
-        // line 56
+\t\t\t<div class=\"container mt-4\">
+\t\t\t\t<main>
+\t\t\t\t\t";
+        // line 58
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 57
-        yield "
-\t\t\t\t</div>
-\t\t\t\t<!-- Make sure you put this AFTER Leaflet's CSS -->
-\t\t\t\t<script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\" integrity=\"sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=\" crossorigin=\"\"></script>
-\t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
-\t\t\t\t";
-        // line 62
+        // line 59
+        yield "\t\t\t\t</main>
+\t\t\t</div>
+
+\t\t\t<div class=\"container-fluid py-4 mt-4 bg-dark\">
+\t\t\t\t<footer class=\"d-flex flex-wrap justify-content-between align-items-center border-top\">
+\t\t\t\t\t<p class=\"col-md-4 mb-0 text-light\">© 2024 Company, Inc</p>
+
+\t\t\t\t\t<a href=\"/\" class=\"col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none\">
+\t\t\t\t\t\t<svg class=\"bi me-2\" width=\"40\" height=\"32\">
+\t\t\t\t\t\t\t<use xlink:href=\"#bootstrap\"></use>
+\t\t\t\t\t\t</svg>
+\t\t\t\t\t</a>
+
+\t\t\t\t\t<ul class=\"nav col-md-4 justify-content-end\">
+\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">Home</a>
+\t\t\t\t\t\t</li>
+\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">Features</a>
+\t\t\t\t\t\t</li>
+\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">Pricing</a>
+\t\t\t\t\t\t</li>
+\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">FAQs</a>
+\t\t\t\t\t\t</li>
+\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">About</a>
+\t\t\t\t\t\t</li>
+\t\t\t\t\t</ul>
+\t\t\t\t</footer>
+\t\t\t</div>
+\t\t\t<!-- Make sure you put this AFTER Leaflet's CSS -->
+\t\t\t<script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\" integrity=\"sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=\" crossorigin=\"\"></script>
+\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
+\t\t\t";
+        // line 94
         yield from $this->unwrap()->yieldBlock('javascript', $context, $blocks);
-        // line 63
+        // line 95
         yield "
-\t\t\t</body>
-\t\t</html>
+\t\t</body>
+\t</html>
 ";
         yield from [];
     }
@@ -157,7 +189,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 56
+    // line 58
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -167,7 +199,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 62
+    // line 94
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -198,7 +230,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  171 => 62,  161 => 56,  151 => 14,  145 => 8,  138 => 7,  130 => 63,  128 => 62,  121 => 57,  119 => 56,  112 => 51,  108 => 49,  104 => 47,  102 => 46,  94 => 40,  82 => 30,  80 => 29,  64 => 15,  62 => 14,  56 => 10,  54 => 7,  46 => 1,);
+        return array (  203 => 94,  193 => 58,  183 => 14,  177 => 8,  170 => 7,  162 => 95,  160 => 94,  123 => 59,  121 => 58,  112 => 51,  108 => 49,  104 => 47,  102 => 46,  94 => 40,  82 => 30,  80 => 29,  64 => 15,  62 => 14,  56 => 10,  54 => 7,  46 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -258,16 +290,48 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t</div>
 \t\t\t</nav>
 
-\t\t\t<div class=\"container mt-4\"> {% block body %}{% endblock %}
+\t\t\t<div class=\"container mt-4\">
+\t\t\t\t<main>
+\t\t\t\t\t{% block body %}{% endblock %}
+\t\t\t\t</main>
+\t\t\t</div>
 
-\t\t\t\t</div>
-\t\t\t\t<!-- Make sure you put this AFTER Leaflet's CSS -->
-\t\t\t\t<script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\" integrity=\"sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=\" crossorigin=\"\"></script>
-\t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
-\t\t\t\t{% block javascript %}{% endblock %}
+\t\t\t<div class=\"container-fluid py-4 mt-4 bg-dark\">
+\t\t\t\t<footer class=\"d-flex flex-wrap justify-content-between align-items-center border-top\">
+\t\t\t\t\t<p class=\"col-md-4 mb-0 text-light\">© 2024 Company, Inc</p>
 
-\t\t\t</body>
-\t\t</html>
+\t\t\t\t\t<a href=\"/\" class=\"col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none\">
+\t\t\t\t\t\t<svg class=\"bi me-2\" width=\"40\" height=\"32\">
+\t\t\t\t\t\t\t<use xlink:href=\"#bootstrap\"></use>
+\t\t\t\t\t\t</svg>
+\t\t\t\t\t</a>
+
+\t\t\t\t\t<ul class=\"nav col-md-4 justify-content-end\">
+\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">Home</a>
+\t\t\t\t\t\t</li>
+\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">Features</a>
+\t\t\t\t\t\t</li>
+\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">Pricing</a>
+\t\t\t\t\t\t</li>
+\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">FAQs</a>
+\t\t\t\t\t\t</li>
+\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">About</a>
+\t\t\t\t\t\t</li>
+\t\t\t\t\t</ul>
+\t\t\t\t</footer>
+\t\t\t</div>
+\t\t\t<!-- Make sure you put this AFTER Leaflet's CSS -->
+\t\t\t<script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\" integrity=\"sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=\" crossorigin=\"\"></script>
+\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
+\t\t\t{% block javascript %}{% endblock %}
+
+\t\t</body>
+\t</html>
 ", "base.html.twig", "C:\\wamp64\\www\\php-individuel\\src\\View\\base.html.twig");
     }
 }
