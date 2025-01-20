@@ -57,78 +57,79 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lumen/bootstrap.min.css\">
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\">
 \t\t<link rel=\"stylesheet\" href=\"/assets/css/style.css\">
-\t\t ";
+\t\t<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" integrity=\"sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=\" crossorigin=\"\"/> ";
         // line 14
         yield from $this->unwrap()->yieldBlock('css', $context, $blocks);
         // line 15
-        yield "\t</head>
-\t<body>
+        yield "\t\t</head>
+\t\t<body>
 
-\t\t<nav class=\"navbar navbar-expand-lg bg-primary px-2 px-md-4\" data-bs-theme=\"dark\">
-\t\t\t<div class=\"container-fluid px-2 px-md-4\">
-\t\t\t\t<a class=\"navbar-brand\" href=\"/\">HobbyMatch</a>
-\t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-\t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>
-\t\t\t\t</button>
-\t\t\t\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
-\t\t\t\t\t<ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
-\t\t\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t\t\t<a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
-\t\t\t\t\t\t</li>
-\t\t\t\t\t\t";
+\t\t\t<nav class=\"navbar navbar-expand-lg bg-primary px-2 px-md-4\" data-bs-theme=\"dark\">
+\t\t\t\t<div class=\"container-fluid px-2 px-md-4\">
+\t\t\t\t\t<a class=\"navbar-brand\" href=\"/\">HobbyMatch</a>
+\t\t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+\t\t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>
+\t\t\t\t\t</button>
+\t\t\t\t\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+\t\t\t\t\t\t<ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
+\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t<a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
+\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t";
         // line 29
         if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 29)) {
             // line 30
-            yield "\t\t\t\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/list\">Admin List</a>
-\t\t\t\t\t\t\t</li>
-\t\t\t\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/add\">Admin Add</a>
-\t\t\t\t\t\t\t</li>
-\t\t\t\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/Hobby/fixtures\">Fixtures</a>
-\t\t\t\t\t\t\t</li>
-\t\t\t\t\t\t";
+            yield "\t\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/list\">Admin List</a>
+\t\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/add\">Admin Add</a>
+\t\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/Hobby/fixtures\">Fixtures</a>
+\t\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t";
         }
         // line 40
-        yield "\t\t\t\t\t</ul>
-\t\t\t\t\t<form class=\"d-flex\" role=\"search\">
-\t\t\t\t\t\t<input class=\"form-control\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
-\t\t\t\t\t\t<button class=\"btn btn-outline-light ms-1\" type=\"submit\">Search</button>
-\t\t\t\t\t</form>
-\t\t\t\t\t<div>
-\t\t\t\t\t\t";
+        yield "\t\t\t\t\t\t</ul>
+\t\t\t\t\t\t<form class=\"d-flex\" role=\"search\">
+\t\t\t\t\t\t\t<input class=\"form-control\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
+\t\t\t\t\t\t\t<button class=\"btn btn-outline-light ms-1\" type=\"submit\">Search</button>
+\t\t\t\t\t\t</form>
+\t\t\t\t\t\t<div>
+\t\t\t\t\t\t\t";
         // line 46
         if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 46)) {
             // line 47
-            yield "\t\t\t\t\t\t\t<a class=\"btn btn-danger ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
-\t\t\t\t\t\t";
+            yield "\t\t\t\t\t\t\t\t<a class=\"btn btn-danger ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
+\t\t\t\t\t\t\t";
         } else {
             // line 49
-            yield "\t\t\t\t\t\t\t<a class=\"btn btn-success ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
-\t\t\t\t\t\t";
+            yield "\t\t\t\t\t\t\t\t<a class=\"btn btn-success ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
+\t\t\t\t\t\t\t";
         }
         // line 51
-        yield "\t\t\t\t\t</div>
+        yield "\t\t\t\t\t\t</div>
+\t\t\t\t\t</div>
 \t\t\t\t</div>
-\t\t\t</div>
-\t\t</nav>
+\t\t\t</nav>
 
-\t\t<div class=\"container mt-4\"> ";
+\t\t\t<div class=\"container mt-4\"> ";
         // line 56
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
         // line 57
         yield "
-\t\t\t</div>
-
-\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
-\t\t\t";
-        // line 61
-        yield from $this->unwrap()->yieldBlock('javascript', $context, $blocks);
+\t\t\t\t</div>
+\t\t\t\t<!-- Make sure you put this AFTER Leaflet's CSS -->
+\t\t\t\t<script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\" integrity=\"sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=\" crossorigin=\"\"></script>
+\t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
+\t\t\t\t";
         // line 62
+        yield from $this->unwrap()->yieldBlock('javascript', $context, $blocks);
+        // line 63
         yield "
-\t\t</body>
-\t</html>
+\t\t\t</body>
+\t\t</html>
 ";
         yield from [];
     }
@@ -166,7 +167,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 61
+    // line 62
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -197,7 +198,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  170 => 61,  160 => 56,  150 => 14,  144 => 8,  137 => 7,  129 => 62,  127 => 61,  121 => 57,  119 => 56,  112 => 51,  108 => 49,  104 => 47,  102 => 46,  94 => 40,  82 => 30,  80 => 29,  64 => 15,  62 => 14,  56 => 10,  54 => 7,  46 => 1,);
+        return array (  171 => 62,  161 => 56,  151 => 14,  145 => 8,  138 => 7,  130 => 63,  128 => 62,  121 => 57,  119 => 56,  112 => 51,  108 => 49,  104 => 47,  102 => 46,  94 => 40,  82 => 30,  80 => 29,  64 => 15,  62 => 14,  56 => 10,  54 => 7,  46 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -215,57 +216,58 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lumen/bootstrap.min.css\">
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\">
 \t\t<link rel=\"stylesheet\" href=\"/assets/css/style.css\">
-\t\t {% block css %}{% endblock %}
-\t</head>
-\t<body>
+\t\t<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" integrity=\"sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=\" crossorigin=\"\"/> {% block css %}{% endblock %}
+\t\t</head>
+\t\t<body>
 
-\t\t<nav class=\"navbar navbar-expand-lg bg-primary px-2 px-md-4\" data-bs-theme=\"dark\">
-\t\t\t<div class=\"container-fluid px-2 px-md-4\">
-\t\t\t\t<a class=\"navbar-brand\" href=\"/\">HobbyMatch</a>
-\t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-\t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>
-\t\t\t\t</button>
-\t\t\t\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
-\t\t\t\t\t<ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
-\t\t\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t\t\t<a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
-\t\t\t\t\t\t</li>
-\t\t\t\t\t\t{% if session.login is defined %}
+\t\t\t<nav class=\"navbar navbar-expand-lg bg-primary px-2 px-md-4\" data-bs-theme=\"dark\">
+\t\t\t\t<div class=\"container-fluid px-2 px-md-4\">
+\t\t\t\t\t<a class=\"navbar-brand\" href=\"/\">HobbyMatch</a>
+\t\t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+\t\t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>
+\t\t\t\t\t</button>
+\t\t\t\t\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+\t\t\t\t\t\t<ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
 \t\t\t\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/list\">Admin List</a>
+\t\t\t\t\t\t\t\t<a class=\"nav-link active\" aria-current=\"page\" href=\"/\">Accueil</a>
 \t\t\t\t\t\t\t</li>
-\t\t\t\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/add\">Admin Add</a>
-\t\t\t\t\t\t\t</li>
-\t\t\t\t\t\t\t<li class=\"nav-item\">
-\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/Hobby/fixtures\">Fixtures</a>
-\t\t\t\t\t\t\t</li>
-\t\t\t\t\t\t{% endif %}
-\t\t\t\t\t</ul>
-\t\t\t\t\t<form class=\"d-flex\" role=\"search\">
-\t\t\t\t\t\t<input class=\"form-control\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
-\t\t\t\t\t\t<button class=\"btn btn-outline-light ms-1\" type=\"submit\">Search</button>
-\t\t\t\t\t</form>
-\t\t\t\t\t<div>
-\t\t\t\t\t\t{% if session.login is defined %}
-\t\t\t\t\t\t\t<a class=\"btn btn-danger ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
-\t\t\t\t\t\t{% else %}
-\t\t\t\t\t\t\t<a class=\"btn btn-success ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
-\t\t\t\t\t\t{% endif %}
+\t\t\t\t\t\t\t{% if session.login is defined %}
+\t\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/list\">Admin List</a>
+\t\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/AdminHobby/add\">Admin Add</a>
+\t\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t\t<li class=\"nav-item\">
+\t\t\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"/Hobby/fixtures\">Fixtures</a>
+\t\t\t\t\t\t\t\t</li>
+\t\t\t\t\t\t\t{% endif %}
+\t\t\t\t\t\t</ul>
+\t\t\t\t\t\t<form class=\"d-flex\" role=\"search\">
+\t\t\t\t\t\t\t<input class=\"form-control\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
+\t\t\t\t\t\t\t<button class=\"btn btn-outline-light ms-1\" type=\"submit\">Search</button>
+\t\t\t\t\t\t</form>
+\t\t\t\t\t\t<div>
+\t\t\t\t\t\t\t{% if session.login is defined %}
+\t\t\t\t\t\t\t\t<a class=\"btn btn-danger ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
+\t\t\t\t\t\t\t{% else %}
+\t\t\t\t\t\t\t\t<a class=\"btn btn-success ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
+\t\t\t\t\t\t\t{% endif %}
+\t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
 \t\t\t\t</div>
-\t\t\t</div>
-\t\t</nav>
+\t\t\t</nav>
 
-\t\t<div class=\"container mt-4\"> {% block body %}{% endblock %}
+\t\t\t<div class=\"container mt-4\"> {% block body %}{% endblock %}
 
-\t\t\t</div>
+\t\t\t\t</div>
+\t\t\t\t<!-- Make sure you put this AFTER Leaflet's CSS -->
+\t\t\t\t<script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\" integrity=\"sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=\" crossorigin=\"\"></script>
+\t\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
+\t\t\t\t{% block javascript %}{% endblock %}
 
-\t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
-\t\t\t{% block javascript %}{% endblock %}
-
-\t\t</body>
-\t</html>
+\t\t\t</body>
+\t\t</html>
 ", "base.html.twig", "C:\\wamp64\\www\\php-individuel\\src\\View\\base.html.twig");
     }
 }

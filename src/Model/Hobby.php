@@ -22,6 +22,9 @@ class Hobby implements JsonSerializable
 
     private ?String $ImageFileName = null;
 
+    private ?float $Latitude = null;
+
+    private ?float $Longitude = null;
 
 
 
@@ -151,6 +154,28 @@ class Hobby implements JsonSerializable
         return $this;
     }
 
+    public function getLatitude(): ?float
+    {
+        return $this->Latitude;
+    }
+
+    public function setLatitude(?float $Latitude): self
+    {
+        $this->Latitude = $Latitude;
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->Longitude;
+    }
+
+    public function setLongitude(?float $Longitude): self
+    {
+        $this->Longitude = $Longitude;
+        return $this;
+    }
+
     public static function SqlAdd(Hobby $hobby)
     {
         $requete = BDD::getInstance()->prepare("INSERT INTO hobbies (Titre,Description,DatePublication,Auteur, ImageRepository, ImageFileName) VALUES (:Titre,:Description,:DatePublication,:Auteur, :ImageRepository, :ImageFileName)");
@@ -239,7 +264,9 @@ LIMIT :limit');
                 ->setAuteur($hobbySQL["Auteur"])
                 ->setImageRepository($hobbySQL["ImageRepository"])
                 ->setId($hobbySQL["Id"])
-                ->setImageFileName($hobbySQL["ImageFileName"]);
+                ->setImageFileName($hobbySQL["ImageFileName"])
+                ->setLatitude($hobbySQL["Latitude"])
+                ->setLongitude($hobbySQL['Longitude']);
             return $hobby;
         }
         return null;

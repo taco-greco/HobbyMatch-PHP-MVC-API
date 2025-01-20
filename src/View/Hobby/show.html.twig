@@ -1,14 +1,62 @@
 {% extends "base.html.twig" %}
-{% block title %} Hobby {{ hobby.titre}} - {{ parent() }}{% endblock %}
+{% block title %}
+	Hobby
+	{{ hobby.titre}}
+	-
+	{{ parent() }}
+{% endblock %}
 {% block body %}
-<h1>{{ hobby.titre }}</h1>
-<p><strong>Description :</strong>{{ hobby.description }}</p>
-<p><strong>Auteur :</strong>{{ hobby.Auteur }}</p>
-<p><strong>Date :</strong>{{ hobby.date|date("d/m/Y") }}</p>
-<p>
- {% if file_exist( './uploads/images/'~hobby.ImageRepository~'/'~hobby.ImageFileName ) and hobby.ImageFileName !="" %}
 
-            <img src="/uploads/images/{{ hobby.ImageRepository }}/{{ hobby.ImageFileName }}" class="img-thumbnail"/>
-        {% endif %}
-</p>
+	<h1>{{ hobby.titre }}</h1>
+	<div class="d-xl-flex">
+		<div class="p-xl-2">
+			<p>
+				{% if file_exist( './uploads/images/'~hobby.ImageRepository~'/'~hobby.ImageFileName ) and hobby.ImageFileName !="" %}
+
+					<img src="/uploads/images/{{ hobby.ImageRepository }}/{{ hobby.ImageFileName }}" class="img-thumbnail" style="max-height:250px;"/>
+				{% endif %}
+			</p>
+			<p class="text-break">
+				<strong>Description :</strong>
+				{{ hobby.description }}</p>
+			<p>
+				<strong>Auteur :</strong>
+				{{ hobby.Auteur }}</p>
+			<p>
+				<strong>Date :</strong>
+				{{ hobby.date|date("d/m/Y") }}</p>
+		</div>
+        <div class="p-xl-2">
+		<div id="map"></div>
+	</div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+	<script>
+	var map = L.map('map', {
+        center: [
+            {{ hobby.Latitude }}, {{ hobby.Longitude }}
+        ],
+        zoom: 19
+    });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+    var marker = L.marker([{{ hobby.Latitude }}, {{ hobby.Longitude }}]).addTo(map);
+
+    // Reverse geocoding to get the street name and number
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat={{ hobby.Latitude }}&lon={{ hobby.Longitude }}&zoom=18&addressdetails=1`)
+        .then(response => response.json())
+        .then(data => {
+            var streetName = data.address.road || 'Unknown street';
+            var houseNumber = data.address.house_number || '';
+            var fullAddress = houseNumber ? `${houseNumber} ${streetName}` : streetName;
+            marker.bindPopup(fullAddress).openPopup();
+        })
+        .catch(error => {
+            console.error('Error fetching street name:', error);
+        });
+	</script>
 {% endblock %}
