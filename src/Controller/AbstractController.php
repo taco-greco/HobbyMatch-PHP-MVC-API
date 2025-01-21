@@ -21,5 +21,6 @@ abstract class AbstractController
         });
         $this->twig->addFunction($fileExist);
         $this->twig->addGlobal('session', $_SESSION);
+        $this->twig->addGlobal('current_uri', $_SERVER['REQUEST_URI']);
     }
 }

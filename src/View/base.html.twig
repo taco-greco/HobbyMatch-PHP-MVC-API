@@ -14,7 +14,6 @@
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/> {% block css %}{% endblock %}
 		</head>
 		<body>
-
 			<nav class="navbar navbar-expand-lg bg-primary px-2 px-md-4" data-bs-theme="dark">
 				<div class="container-fluid px-2 px-md-4">
 					<a class="navbar-brand" href="/">HobbyMatch</a>
@@ -24,17 +23,17 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Accueil</a>
+								<a class="{{ current_uri == '/' ? 'active nav-link' : 'nav-link' }}" href="/">Accueil</a>
 							</li>
 							{% if session.login is defined %}
 								<li class="nav-item">
-									<a class="nav-link" href="/AdminHobby/list">Admin List</a>
+									<a class="{{current_uri == '/AdminHobby/list' ? 'nav-link active' : 'nav-link'}}" href="/AdminHobby/list">Admin List</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="/AdminHobby/add">Admin Add</a>
+									<a class="{{current_uri == '/AdminHobby/add' ? 'nav-link active' : 'nav-link'}}" href="/AdminHobby/add">Admin Add</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="/Hobby/fixtures">Fixtures</a>
+									<a class="{{current_uri == '/Hobby/fixtures' ? 'nav-link active' : 'nav-link'}}" href="/Hobby/fixtures">Fixtures</a>
 								</li>
 							{% endif %}
 						</ul>
@@ -73,18 +72,18 @@
 						<li class="nav-item">
 							<a href="#" class="nav-link px-2 text-light">Home</a>
 						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link px-2 text-light">Features</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link px-2 text-light">Pricing</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link px-2 text-light">FAQs</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link px-2 text-light">About</a>
-						</li>
+						{% if session.login is defined %}
+
+							<li class="nav-item">
+								<a href="/AdminHobby/list" class="nav-link px-2 text-light">Admin List</a>
+							</li>
+							<li class="nav-item">
+								<a href="/AdminHobby/add" class="nav-link px-2 text-light">Admin Add</a>
+							</li>
+							<li class="nav-item">
+								<a href="/Hobby/fixtures" class="nav-link px-2 text-light">Fixtures</a>
+							</li>
+						{% endif %}
 					</ul>
 				</footer>
 			</div>
