@@ -124,7 +124,9 @@ class AdminHobbyController extends AbstractController
                 ->setDate($date)
                 ->setAuteur($_POST["Auteur"])
                 ->setImageRepository($sqlRepository)
-                ->setImageFileName($nomImage);
+                ->setImageFileName($nomImage)
+                ->setLatitude($_POST['Latitude'])
+                ->setLongitude($_POST['Longitude']);
             Hobby::SqlUpdate($hobby);
             header("Location:/AdminHobby/show/{$id}");
             exit();

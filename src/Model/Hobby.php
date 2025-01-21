@@ -281,7 +281,7 @@ LIMIT :limit');
     {
         $requete = BDD::getInstance()->prepare("UPDATE hobbies SET Titre=:Titre,
 Description=:Description, DatePublication=:DatePublication, Auteur=:Auteur,
-ImageRepository=:ImageRepository, ImageFileName=:ImageFileName WHERE Id=:Id");
+ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, Latitude=:Latitude, Longitude=:Longitude WHERE Id=:Id");
         $bool = $requete->execute([
             "Titre" => $hobby->getTitre(),
             "Description" => $hobby->getDescription(),
@@ -289,6 +289,8 @@ ImageRepository=:ImageRepository, ImageFileName=:ImageFileName WHERE Id=:Id");
             "Auteur" => $hobby->getAuteur(),
             "ImageRepository" => $hobby->getImageRepository(),
             "ImageFileName" => $hobby->getImageFileName(),
+            "Latitude" => $hobby->getLatitude(),
+            "Longitude" => $hobby->getLongitude(),
             "Id" => $hobby->getId()
         ]);
     }
