@@ -114,7 +114,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t</div>
 \t\t\t</nav>
 
-\t\t\t<div class=\"container mt-4\">
+\t\t\t<div class=\"container mt-4 min-vh-100\">
 \t\t\t\t<main>
 \t\t\t\t\t";
         // line 58
@@ -290,7 +290,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t</div>
 \t\t\t</nav>
 
-\t\t\t<div class=\"container mt-4\">
+\t\t\t<div class=\"container mt-4 min-vh-100\">
 \t\t\t\t<main>
 \t\t\t\t\t{% block body %}{% endblock %}
 \t\t\t\t</main>

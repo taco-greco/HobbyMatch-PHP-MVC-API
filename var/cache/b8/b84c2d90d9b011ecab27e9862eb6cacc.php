@@ -147,7 +147,7 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 39), "html", null, true);
         yield "
         ],
-        zoom: 19
+        zoom: 16
     });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -248,7 +248,7 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
         center: [
             {{ hobby.Latitude }}, {{ hobby.Longitude }}
         ],
-        zoom: 19
+        zoom: 16
     });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,

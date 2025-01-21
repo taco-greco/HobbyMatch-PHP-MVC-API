@@ -55,7 +55,7 @@ class __TwigTemplate_3d65dbd002be0a8806d02ab17fc2ecba extends Template
     public function block_title(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        yield "Login- ";
+        yield "Login - ";
         yield from $this->yieldParentBlock("title", $context, $blocks);
         yield from [];
     }
@@ -68,18 +68,23 @@ class __TwigTemplate_3d65dbd002be0a8806d02ab17fc2ecba extends Template
     {
         $macros = $this->macros;
         // line 4
-        yield "<h1>Login</h1>
-<form method=\"post\">
-<div class=\"mb-3\">
-<input type=\"email\" class=\"form-control\" placeholder=\"Votre mail\" name=\"mail\">
+        yield "<div class=\"d-flex justify-content-center align-items-center vh-100\">
+    <div class=\"card\" style=\"width: 24rem;\">
+        <div class=\"card-body\">
+            <h1 class=\"card-title text-center\">Login</h1>
+            <form method=\"post\">
+                <div class=\"mb-3\">
+                    <input type=\"email\" class=\"form-control\" placeholder=\"Votre mail\" name=\"mail\" required>
+                </div>
+                <div class=\"mb-3\">
+                    <input type=\"password\" class=\"form-control\" placeholder=\"Mot de passe\" name=\"password\" required>
+                </div>
+                <button type=\"submit\" class=\"btn btn-primary w-100\">Valider</button>
+            </form>
+            <p class=\"mt-3 text-center\">Pas encore de compte ? <a href=\"/user/create\">Créez en un</a></p>
+        </div>
+    </div>
 </div>
-<div class=\"mb-3\">
-<input type=\"password\" class=\"form-control\" placeholder=\"mot de passe\"
-name=\"password\">
-</div>
-<button type=\"submit\" class=\"btn btn-primary\">Valider</button>
-</form>
-<p>Pas encore de compte ? <a href=\"/user/create\">Créez en un</a></p>
 ";
         yield from [];
     }
@@ -111,20 +116,25 @@ name=\"password\">
     public function getSourceContext(): Source
     {
         return new Source("{% extends \"base.html.twig\" %}
-{% block title %}Login- {{ parent() }}{% endblock %}
+{% block title %}Login - {{ parent() }}{% endblock %}
 {% block body %}
-<h1>Login</h1>
-<form method=\"post\">
-<div class=\"mb-3\">
-<input type=\"email\" class=\"form-control\" placeholder=\"Votre mail\" name=\"mail\">
+<div class=\"d-flex justify-content-center align-items-center vh-100\">
+    <div class=\"card\" style=\"width: 24rem;\">
+        <div class=\"card-body\">
+            <h1 class=\"card-title text-center\">Login</h1>
+            <form method=\"post\">
+                <div class=\"mb-3\">
+                    <input type=\"email\" class=\"form-control\" placeholder=\"Votre mail\" name=\"mail\" required>
+                </div>
+                <div class=\"mb-3\">
+                    <input type=\"password\" class=\"form-control\" placeholder=\"Mot de passe\" name=\"password\" required>
+                </div>
+                <button type=\"submit\" class=\"btn btn-primary w-100\">Valider</button>
+            </form>
+            <p class=\"mt-3 text-center\">Pas encore de compte ? <a href=\"/user/create\">Créez en un</a></p>
+        </div>
+    </div>
 </div>
-<div class=\"mb-3\">
-<input type=\"password\" class=\"form-control\" placeholder=\"mot de passe\"
-name=\"password\">
-</div>
-<button type=\"submit\" class=\"btn btn-primary\">Valider</button>
-</form>
-<p>Pas encore de compte ? <a href=\"/user/create\">Créez en un</a></p>
 {% endblock %}", "User/login.html.twig", "C:\\wamp64\\www\\php-individuel\\src\\View\\User\\login.html.twig");
     }
 }

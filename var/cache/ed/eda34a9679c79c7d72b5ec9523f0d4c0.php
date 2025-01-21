@@ -32,6 +32,7 @@ class __TwigTemplate_273c093a928f38ea959aa500817ce034 extends Template
         $this->blocks = [
             'title' => [$this, 'block_title'],
             'body' => [$this, 'block_body'],
+            'javascript' => [$this, 'block_javascript'],
         ];
     }
 
@@ -48,61 +49,119 @@ class __TwigTemplate_273c093a928f38ea959aa500817ce034 extends Template
         yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 3
+    // line 2
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_title(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        yield "ADMIN - ";
+        yield "Add Hobby - ";
         yield from $this->yieldParentBlock("title", $context, $blocks);
-        yield " - Ajout d'un Hobby ";
         yield from [];
     }
 
-    // line 5
+    // line 3
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_body(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 6
-        yield "<h1>Ajout Hobby</h1>
-
-<form method=\"post\" enctype=\"multipart/form-data\">
-<div class=\"mb-3\">
-<input type=\"text\" class=\"form-control\" placeholder=\"Saisir un titre\"
-name=\"Titre\">
+        // line 4
+        yield "<div class=\"container mt-5\">
+    <div class=\"row justify-content-center\">
+        <div class=\"col-lg-8\">
+            <div class=\"card\">
+                <div class=\"card-body\">
+                    <h1 class=\"card-title text-center\">Add Hobby</h1>
+                    <form method=\"post\" enctype=\"multipart/form-data\">
+                        <div class=\"mb-3\">
+                            <label for=\"Titre\" class=\"form-label\">Titre</label>
+                            <input type=\"text\" class=\"form-control\" id=\"Titre\" name=\"Titre\" placeholder=\"Saisir un titre\" required>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Description\" class=\"form-label\">Description</label>
+                            <textarea class=\"form-control\" id=\"Description\" name=\"Description\" rows=\"3\" placeholder=\"Saisir une description\" required></textarea>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Date\" class=\"form-label\">Date</label>
+                            <input type=\"date\" class=\"form-control\" id=\"Date\" name=\"Date\" required>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Auteur\" class=\"form-label\">Auteur</label>
+                            <select class=\"form-select\" id=\"Auteur\" name=\"Auteur\" required>
+                                <option value=\"\" disabled selected>Choisir un auteur</option>
+                                <option value=\"Brice\">Brice</option>
+                                <option value=\"Bruno\">Bruno</option>
+                                <option value=\"Fabien\">Fabien</option>
+                                <option value=\"Marion\">Marion</option>
+                                <option value=\"Jean-Pierre\">Jean-Pierre</option>
+                                <option value=\"Benoit\">Benoit</option>
+                                <option value=\"Emmanuel\">Emmanuel</option>
+                                <option value=\"Sylvie\">Sylvie</option>
+                            </select>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Image\" class=\"form-label\">Image</label>
+                            <input type=\"file\" class=\"form-control\" id=\"Image\" name=\"Image\" required>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Latitude\" class=\"form-label\">Latitude</label>
+                            <input type=\"text\" class=\"form-control\" id=\"Latitude\" name=\"Latitude\" placeholder=\"Saisir la latitude\" required>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Longitude\" class=\"form-label\">Longitude</label>
+                            <input type=\"text\" class=\"form-control\" id=\"Longitude\" name=\"Longitude\" placeholder=\"Saisir la longitude\" required>
+                        </div>
+                        <div id=\"map\" style=\"height: 400px;\" class=\"mb-3\"></div>
+                        <div class=\"d-grid\">
+                            <button type=\"submit\" class=\"btn btn-primary\">Valider</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class=\"mb-3\">
-<textarea class=\"form-control\" name=\"Description\" rows=\"3\"></textarea>
-</div>
-<div class=\"mb-3\">
-<input type=\"date\" class=\"form-control\" name=\"Date\">
-</div>
-<div class=\"mb-3\">
-<select class=\"form-select\" name=\"Auteur\">
-<option value=\"Brice\">Brice</option>
-<option value=\"Bruno\">Bruno</option>
-<option value=\"Fabien\">Fabien</option>
-<option value=\"Marion\">Marion</option>
-<option value=\"Jean-Pierre\">Jean-Pierre</option>
-<option value=\"Benoit\">Benoit</option>
-<option value=\"Emmanuel\">Emmanuel</option>
-<option value=\"Sylvie\">Sylvie</option>
-</select>
-</div>
-<div class=\"mb-3\">
-<input type=\"file\" class=\"custom-file-input\" name=\"Image\">
-</div>
+";
+        yield from [];
+    }
 
-<button type=\"submit\" class=\"btn btn-primary\">Valider</button>
-</form>
+    // line 61
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_javascript(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        // line 62
+        yield "<script>
+    var map = L.map('map', {
+        center: [49.4431, 1.0993], // Default center (Paris)
+        zoom: 12
+    });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'
+    }).addTo(map);
 
+    var marker;
 
+    map.on('click', function(e) {
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
 
+        if (marker) {
+            marker.setLatLng(e.latlng);
+        } else {
+            marker = L.marker(e.latlng).addTo(map);
+        }
+
+        document.getElementById('Latitude').value = lat;
+        document.getElementById('Longitude').value = lng;
+    });
+</script>
 ";
         yield from [];
     }
@@ -128,50 +187,98 @@ name=\"Titre\">
      */
     public function getDebugInfo(): array
     {
-        return array (  72 => 6,  65 => 5,  52 => 3,  41 => 1,);
+        return array (  139 => 62,  132 => 61,  72 => 4,  65 => 3,  53 => 2,  42 => 1,);
     }
 
     public function getSourceContext(): Source
     {
         return new Source("{% extends \"base.html.twig\" %}
-
-{% block title %}ADMIN - {{parent()}} - Ajout d'un Hobby {% endblock %}
-
+{% block title %}Add Hobby - {{ parent() }}{% endblock %}
 {% block body %}
-<h1>Ajout Hobby</h1>
-
-<form method=\"post\" enctype=\"multipart/form-data\">
-<div class=\"mb-3\">
-<input type=\"text\" class=\"form-control\" placeholder=\"Saisir un titre\"
-name=\"Titre\">
+<div class=\"container mt-5\">
+    <div class=\"row justify-content-center\">
+        <div class=\"col-lg-8\">
+            <div class=\"card\">
+                <div class=\"card-body\">
+                    <h1 class=\"card-title text-center\">Add Hobby</h1>
+                    <form method=\"post\" enctype=\"multipart/form-data\">
+                        <div class=\"mb-3\">
+                            <label for=\"Titre\" class=\"form-label\">Titre</label>
+                            <input type=\"text\" class=\"form-control\" id=\"Titre\" name=\"Titre\" placeholder=\"Saisir un titre\" required>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Description\" class=\"form-label\">Description</label>
+                            <textarea class=\"form-control\" id=\"Description\" name=\"Description\" rows=\"3\" placeholder=\"Saisir une description\" required></textarea>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Date\" class=\"form-label\">Date</label>
+                            <input type=\"date\" class=\"form-control\" id=\"Date\" name=\"Date\" required>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Auteur\" class=\"form-label\">Auteur</label>
+                            <select class=\"form-select\" id=\"Auteur\" name=\"Auteur\" required>
+                                <option value=\"\" disabled selected>Choisir un auteur</option>
+                                <option value=\"Brice\">Brice</option>
+                                <option value=\"Bruno\">Bruno</option>
+                                <option value=\"Fabien\">Fabien</option>
+                                <option value=\"Marion\">Marion</option>
+                                <option value=\"Jean-Pierre\">Jean-Pierre</option>
+                                <option value=\"Benoit\">Benoit</option>
+                                <option value=\"Emmanuel\">Emmanuel</option>
+                                <option value=\"Sylvie\">Sylvie</option>
+                            </select>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Image\" class=\"form-label\">Image</label>
+                            <input type=\"file\" class=\"form-control\" id=\"Image\" name=\"Image\" required>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Latitude\" class=\"form-label\">Latitude</label>
+                            <input type=\"text\" class=\"form-control\" id=\"Latitude\" name=\"Latitude\" placeholder=\"Saisir la latitude\" required>
+                        </div>
+                        <div class=\"mb-3\">
+                            <label for=\"Longitude\" class=\"form-label\">Longitude</label>
+                            <input type=\"text\" class=\"form-control\" id=\"Longitude\" name=\"Longitude\" placeholder=\"Saisir la longitude\" required>
+                        </div>
+                        <div id=\"map\" style=\"height: 400px;\" class=\"mb-3\"></div>
+                        <div class=\"d-grid\">
+                            <button type=\"submit\" class=\"btn btn-primary\">Valider</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class=\"mb-3\">
-<textarea class=\"form-control\" name=\"Description\" rows=\"3\"></textarea>
-</div>
-<div class=\"mb-3\">
-<input type=\"date\" class=\"form-control\" name=\"Date\">
-</div>
-<div class=\"mb-3\">
-<select class=\"form-select\" name=\"Auteur\">
-<option value=\"Brice\">Brice</option>
-<option value=\"Bruno\">Bruno</option>
-<option value=\"Fabien\">Fabien</option>
-<option value=\"Marion\">Marion</option>
-<option value=\"Jean-Pierre\">Jean-Pierre</option>
-<option value=\"Benoit\">Benoit</option>
-<option value=\"Emmanuel\">Emmanuel</option>
-<option value=\"Sylvie\">Sylvie</option>
-</select>
-</div>
-<div class=\"mb-3\">
-<input type=\"file\" class=\"custom-file-input\" name=\"Image\">
-</div>
+{% endblock %}
 
-<button type=\"submit\" class=\"btn btn-primary\">Valider</button>
-</form>
+{% block javascript %}
+<script>
+    var map = L.map('map', {
+        center: [49.4431, 1.0993], // Default center (Paris)
+        zoom: 12
+    });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'
+    }).addTo(map);
 
+    var marker;
 
+    map.on('click', function(e) {
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
 
+        if (marker) {
+            marker.setLatLng(e.latlng);
+        } else {
+            marker = L.marker(e.latlng).addTo(map);
+        }
+
+        document.getElementById('Latitude').value = lat;
+        document.getElementById('Longitude').value = lng;
+    });
+</script>
 {% endblock %}", "Admin/Hobby/add.html.twig", "C:\\wamp64\\www\\php-individuel\\src\\View\\Admin\\Hobby\\add.html.twig");
     }
 }

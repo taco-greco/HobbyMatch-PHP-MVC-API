@@ -22,9 +22,10 @@ class Hobby implements JsonSerializable
 
     private ?String $ImageFileName = null;
 
-    private ?float $Latitude = null;
+    private ?string $Latitude = null;
 
-    private ?float $Longitude = null;
+    private ?string $Longitude = null;
+    
 
 
 
@@ -154,23 +155,23 @@ class Hobby implements JsonSerializable
         return $this;
     }
 
-    public function getLatitude(): ?float
+    public function getLatitude(): ?String
     {
         return $this->Latitude;
     }
 
-    public function setLatitude(?float $Latitude): self
+    public function setLatitude(?String $Latitude): self
     {
         $this->Latitude = $Latitude;
         return $this;
     }
 
-    public function getLongitude(): ?float
+    public function getLongitude(): ?String
     {
         return $this->Longitude;
     }
 
-    public function setLongitude(?float $Longitude): self
+    public function setLongitude(?String $Longitude): self
     {
         $this->Longitude = $Longitude;
         return $this;
@@ -178,20 +179,24 @@ class Hobby implements JsonSerializable
 
     public static function SqlAdd(Hobby $hobby)
     {
-        $requete = BDD::getInstance()->prepare("INSERT INTO hobbies (Titre,Description,DatePublication,Auteur, ImageRepository, ImageFileName) VALUES (:Titre,:Description,:DatePublication,:Auteur, :ImageRepository, :ImageFileName)");
+        $requete = BDD::getInstance()->prepare("INSERT INTO hobbies (Titre,Description,DatePublication,Auteur, ImageRepository, ImageFileName,Latitude,Longitude) VALUES (:Titre,:Description,:DatePublication,:Auteur, :ImageRepository, :ImageFileName, :Latitude, :Longitude)");
         $requete->bindValue(':Titre', $hobby->getTitre());
         $requete->bindValue(':Description', $hobby->getDescription());
         $requete->bindValue(':DatePublication', $hobby->getDate()->format('Y-m-d'));
         $requete->bindValue(':Auteur', $hobby->getAuteur());
         $requete->bindValue(':ImageRepository', $hobby->getImageRepository());
         $requete->bindValue(':ImageFileName', $hobby->getImageFileName());
+        $requete->bindValue(':Latitude', $hobby->getLatitude());
+        $requete->bindValue(':Longitude', $hobby->getLongitude());
         $requete->execute([
             'Titre' => $hobby->getTitre(),
             'Description' => $hobby->getDescription(),
             'DatePublication' => $hobby->getDate()->format('Y-m-d'),
             'Auteur' => $hobby->getAuteur(),
             'ImageRepository' => $hobby->getImageRepository(),
-            'ImageFileName' => $hobby->getImageFileName()
+            'ImageFileName' => $hobby->getImageFileName(),
+            'Latitude' => $hobby->getLatitude(),
+            'Longitude' =>$hobby->getLongitude()
         ]);
 
         return BDD::getInstance()->lastInsertId();
