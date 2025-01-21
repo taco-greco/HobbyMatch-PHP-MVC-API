@@ -136,7 +136,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 
 \t\t\t<div class=\"container-fluid py-4 mt-4 bg-dark border-top\">
 \t\t\t\t<footer class=\"d-flex flex-wrap justify-content-between align-items-center px-2 px-md-4\">
-\t\t\t\t\t<p class=\"col-md-4 mb-0 text-light\">© 2024 Company, Inc</p>
+\t\t\t\t\t<p class=\"col-md-4 mb-0 text-light\">© 2024 HobbyMatch, Inc</p>
 
 \t\t\t\t\t<a href=\"/\" class=\"col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none\">
 \t\t\t\t\t\t<svg class=\"bi me-2\" width=\"40\" height=\"32\">
@@ -313,7 +313,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 
 \t\t\t<div class=\"container-fluid py-4 mt-4 bg-dark border-top\">
 \t\t\t\t<footer class=\"d-flex flex-wrap justify-content-between align-items-center px-2 px-md-4\">
-\t\t\t\t\t<p class=\"col-md-4 mb-0 text-light\">© 2024 Company, Inc</p>
+\t\t\t\t\t<p class=\"col-md-4 mb-0 text-light\">© 2024 HobbyMatch, Inc</p>
 
 \t\t\t\t\t<a href=\"/\" class=\"col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none\">
 \t\t\t\t\t\t<svg class=\"bi me-2\" width=\"40\" height=\"32\">
