@@ -112,7 +112,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         // line 45
         if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 45)) {
             // line 46
-            yield "\t\t\t\t\t\t\t\t<a class=\"btn btn-danger ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
+            yield "\t\t\t\t\t\t\t\t<a class=\"btn btn-warning ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
 \t\t\t\t\t\t\t";
         } else {
             // line 48
@@ -296,7 +296,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t\t\t</form>
 \t\t\t\t\t\t<div>
 \t\t\t\t\t\t\t{% if session.login is defined %}
-\t\t\t\t\t\t\t\t<a class=\"btn btn-danger ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
+\t\t\t\t\t\t\t\t<a class=\"btn btn-warning ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
 \t\t\t\t\t\t\t{% else %}
 \t\t\t\t\t\t\t\t<a class=\"btn btn-success ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
 \t\t\t\t\t\t\t{% endif %}

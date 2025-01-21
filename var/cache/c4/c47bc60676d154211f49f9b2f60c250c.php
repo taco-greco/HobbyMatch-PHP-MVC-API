@@ -72,7 +72,7 @@ class __TwigTemplate_e8aee39d0f72bde01636212e0c5b6371 extends Template
     {
         $macros = $this->macros;
         // line 9
-        yield "\t<h1 class=\"pb-3\">Voici les derniers 20 hobbies :</h1>
+        yield "\t<h1 class=\"pb-3\"><span class=\"badge bg-dark\">Les derniers hobbies :</span></h1>
 
 \t<div class=\"row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 pb-3\">
 \t\t";
@@ -82,7 +82,7 @@ class __TwigTemplate_e8aee39d0f72bde01636212e0c5b6371 extends Template
         foreach ($context['_seq'] as $context["_key"] => $context["hobby"]) {
             // line 13
             yield "\t\t\t<div class=\"col\">
-\t\t\t\t<div class=\"card h-100 border-dark\">
+\t\t\t\t<div class=\"card h-100 border-dark border-3\">
 \t\t\t\t\t<div class=\"card-body\">
 \t\t\t\t\t\t<div class=\"d-flex justify-content-between align-items-center\">
 \t\t\t\t\t\t\t<h5 class=\"card-title\">
@@ -165,12 +165,12 @@ class __TwigTemplate_e8aee39d0f72bde01636212e0c5b6371 extends Template
 {% endblock %}
 
 {% block body %}
-\t<h1 class=\"pb-3\">Voici les derniers 20 hobbies :</h1>
+\t<h1 class=\"pb-3\"><span class=\"badge bg-dark\">Les derniers hobbies :</span></h1>
 
 \t<div class=\"row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 pb-3\">
 \t\t{% for hobby in hobbies %}
 \t\t\t<div class=\"col\">
-\t\t\t\t<div class=\"card h-100 border-dark\">
+\t\t\t\t<div class=\"card h-100 border-dark border-3\">
 \t\t\t\t\t<div class=\"card-body\">
 \t\t\t\t\t\t<div class=\"d-flex justify-content-between align-items-center\">
 \t\t\t\t\t\t\t<h5 class=\"card-title\">

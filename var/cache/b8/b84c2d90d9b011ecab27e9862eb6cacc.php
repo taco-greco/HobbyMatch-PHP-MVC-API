@@ -80,71 +80,75 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
         $macros = $this->macros;
         // line 9
         yield "
-\t<h1>";
+\t<h1 class=\"my-4\"><span class=\"badge bg-dark\">";
         // line 10
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "titre", [], "any", false, false, false, 10), "html", null, true);
-        yield "</h1>
+        yield "</span></h1>
+\t<div class=\"card border-dark border-3\">
+\t<div class=\"card-body\">
 \t<div class=\"d-xl-flex justify-content-center\">
 \t\t<div class=\"p-xl-2\">
 \t\t\t<p>
 \t\t\t\t";
-        // line 14
-        if (($this->env->getFunction('file_exist')->getCallable()(((("./uploads/images/" . CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageRepository", [], "any", false, false, false, 14)) . "/") . CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 14))) && (CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 14) != ""))) {
-            // line 15
+        // line 16
+        if (($this->env->getFunction('file_exist')->getCallable()(((("./uploads/images/" . CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageRepository", [], "any", false, false, false, 16)) . "/") . CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 16))) && (CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 16) != ""))) {
+            // line 17
             yield "
 \t\t\t\t\t<img src=\"/uploads/images/";
-            // line 16
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageRepository", [], "any", false, false, false, 16), "html", null, true);
+            // line 18
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageRepository", [], "any", false, false, false, 18), "html", null, true);
             yield "/";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 16), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 18), "html", null, true);
             yield "\" class=\"img-thumbnail\" style=\"max-height:250px;\"/>
 \t\t\t\t";
         }
-        // line 18
+        // line 20
         yield "\t\t\t</p>
 \t\t\t<p class=\"text-break\">
 \t\t\t\t<strong>Description :</strong>
 \t\t\t\t";
-        // line 21
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "description", [], "any", false, false, false, 21), "html", null, true);
+        // line 23
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "description", [], "any", false, false, false, 23), "html", null, true);
         yield "</p>
 \t\t\t<p>
 \t\t\t\t<strong>Auteur :</strong>
 \t\t\t\t";
-        // line 24
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 24), "html", null, true);
+        // line 26
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 26), "html", null, true);
         yield "</p>
 \t\t\t<p>
 \t\t\t\t<strong>Date :</strong>
 \t\t\t\t";
-        // line 27
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "date", [], "any", false, false, false, 27), "d/m/Y"), "html", null, true);
+        // line 29
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "date", [], "any", false, false, false, 29), "d/m/Y"), "html", null, true);
         yield "</p>
 \t\t</div>
         <div class=\"p-xl-2\">
 \t\t<div id=\"map\"></div>
 \t</div>
     </div>
+    </div>
+    </div>
 ";
         yield from [];
     }
 
-    // line 35
+    // line 39
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_javascript(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 36
+        // line 40
         yield "\t<script>
 \tvar map = L.map('map', {
         center: [
             ";
-        // line 39
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 39), "html", null, true);
+        // line 43
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 43), "html", null, true);
         yield ", ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 39), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 43), "html", null, true);
         yield "
         ],
         zoom: 16
@@ -154,18 +158,18 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
         attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'
     }).addTo(map);
     var marker = L.marker([";
-        // line 47
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 47), "html", null, true);
+        // line 51
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 51), "html", null, true);
         yield ", ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 47), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 51), "html", null, true);
         yield "]).addTo(map);
 
     // Reverse geocoding to get the street name and number
     fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=";
-        // line 50
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 50), "html", null, true);
+        // line 54
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 54), "html", null, true);
         yield "&lon=";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 50), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 54), "html", null, true);
         yield "&zoom=18&addressdetails=1`)
         .then(response => response.json())
         .then(data => {
@@ -203,7 +207,7 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  166 => 50,  158 => 47,  145 => 39,  140 => 36,  133 => 35,  121 => 27,  115 => 24,  109 => 21,  104 => 18,  97 => 16,  94 => 15,  92 => 14,  85 => 10,  82 => 9,  75 => 8,  68 => 6,  63 => 4,  60 => 3,  53 => 2,  42 => 1,);
+        return array (  170 => 54,  162 => 51,  149 => 43,  144 => 40,  137 => 39,  123 => 29,  117 => 26,  111 => 23,  106 => 20,  99 => 18,  96 => 17,  94 => 16,  85 => 10,  82 => 9,  75 => 8,  68 => 6,  63 => 4,  60 => 3,  53 => 2,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -217,7 +221,9 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
 {% endblock %}
 {% block body %}
 
-\t<h1>{{ hobby.titre }}</h1>
+\t<h1 class=\"my-4\"><span class=\"badge bg-dark\">{{ hobby.titre }}</span></h1>
+\t<div class=\"card border-dark border-3\">
+\t<div class=\"card-body\">
 \t<div class=\"d-xl-flex justify-content-center\">
 \t\t<div class=\"p-xl-2\">
 \t\t\t<p>
@@ -239,6 +245,8 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
         <div class=\"p-xl-2\">
 \t\t<div id=\"map\"></div>
 \t</div>
+    </div>
+    </div>
     </div>
 {% endblock %}
 

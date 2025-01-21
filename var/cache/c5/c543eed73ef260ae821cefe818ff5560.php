@@ -75,13 +75,13 @@ class __TwigTemplate_724d8c02c6c03ee3bbfa33a309d4bb23 extends Template
         $macros = $this->macros;
         // line 7
         yield "
-\t<div class=\"container mt-5\">
+\t<div class=\"mt-5\">
 \t\t<div class=\"row justify-content-center\">
 
 \t\t\t<div class=\"col-lg-8\">
-\t\t\t\t<div class=\"card\">
+\t\t\t\t<div class=\"card border-dark border-3\">
 \t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h1>Update Hobby</h1>
+\t\t\t\t\t\t<h1><span class=\"badge bg-dark mb-3\">Update Hobby</span></h1>
 \t\t\t\t\t\t<form method=\"post\" enctype=\"multipart/form-data\">
 \t\t\t\t\t\t\t<div class=\"mb-3\">
 \t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Saisir un titre\" name=\"Titre\" value=\"";
@@ -295,13 +295,13 @@ class __TwigTemplate_724d8c02c6c03ee3bbfa33a309d4bb23 extends Template
 {% endblock %}
 {% block body %}
 
-\t<div class=\"container mt-5\">
+\t<div class=\"mt-5\">
 \t\t<div class=\"row justify-content-center\">
 
 \t\t\t<div class=\"col-lg-8\">
-\t\t\t\t<div class=\"card\">
+\t\t\t\t<div class=\"card border-dark border-3\">
 \t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h1>Update Hobby</h1>
+\t\t\t\t\t\t<h1><span class=\"badge bg-dark mb-3\">Update Hobby</span></h1>
 \t\t\t\t\t\t<form method=\"post\" enctype=\"multipart/form-data\">
 \t\t\t\t\t\t\t<div class=\"mb-3\">
 \t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Saisir un titre\" name=\"Titre\" value=\"{{ hobby.Titre }}\">

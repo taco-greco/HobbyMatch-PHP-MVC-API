@@ -2,28 +2,30 @@
 {% block title %}{{parent()}}- Liste des Hobbies{% endblock%}
 {% block body %}
 
-<table class="table table-hover">
+<div class="table-responsive">
+<table class="table table-hover text-center">
 <thead>
 <tr>
 <th scope="col">Id</th>
 <th scope="col">Titre</th>
-<th scope="col">DatePublication</th>
-<th scope="col">Auteur</th>
+<th scope="col" class="d-none d-lg-table-cell">DatePublication</th>
+<th scope="col" class="d-none d-lg-table-cell">Auteur</th>
 <th scope="col">Edit</th>
 <th scope="col">Delete</th>
 </tr>
 </thead>
-<tbody>
+<tbody class="table-group-divider">
 {% for hobby in hobbies %}
 <tr>
-<th scope="row"><a>{{ hobby.Id }}</a></th>
-<td><a href="/AdminHobby/show/{{hobby.id}}">{{ hobby.Titre }}</a></td>
-<td>{{ hobby.DatePublication|date('d/m/Y') }}
-<td>{{ hobby.Auteur }}</td>
-<td><a href="/AdminHobby/update/{{hobby.id}}"><i class="bi bi-pencil-square"></i></a></td>
-<td><a href="/AdminHobby/delete/{{hobby.Id}}"><i class="bi bi-trash"></i></a></td>
+<th scope="row">{{ hobby.Id }}</th>
+<td><a href="/AdminHobby/show/{{hobby.id}}" class="btn btn-link">{{ hobby.Titre }}</a></td>
+<td class="d-none d-lg-table-cell">{{ hobby.DatePublication|date('d/m/Y') }}
+<td class="d-none d-lg-table-cell">{{ hobby.Auteur }}</td>
+<td><a href="/AdminHobby/update/{{hobby.id}}" class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a></td>
+<td><a href="/AdminHobby/delete/{{hobby.Id}}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
+</div>
 {% endblock %}
