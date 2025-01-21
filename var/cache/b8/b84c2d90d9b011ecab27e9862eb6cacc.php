@@ -84,7 +84,7 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
         // line 10
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "titre", [], "any", false, false, false, 10), "html", null, true);
         yield "</h1>
-\t<div class=\"d-xl-flex\">
+\t<div class=\"d-xl-flex justify-content-center\">
 \t\t<div class=\"p-xl-2\">
 \t\t\t<p>
 \t\t\t\t";
@@ -218,7 +218,7 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
 {% block body %}
 
 \t<h1>{{ hobby.titre }}</h1>
-\t<div class=\"d-xl-flex\">
+\t<div class=\"d-xl-flex justify-content-center\">
 \t\t<div class=\"p-xl-2\">
 \t\t\t<p>
 \t\t\t\t{% if file_exist( './uploads/images/'~hobby.ImageRepository~'/'~hobby.ImageFileName ) and hobby.ImageFileName !=\"\" %}
