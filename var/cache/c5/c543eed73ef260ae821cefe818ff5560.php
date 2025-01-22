@@ -81,128 +81,135 @@ class __TwigTemplate_724d8c02c6c03ee3bbfa33a309d4bb23 extends Template
 \t\t\t<div class=\"col-lg-8\">
 \t\t\t\t<div class=\"card border-dark border-3\">
 \t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h1><span class=\"badge bg-dark mb-3\">Update Hobby</span></h1>
+\t\t\t\t\t\t<h1>
+\t\t\t\t\t\t\t<span class=\"badge bg-dark mb-3\">Update Hobby</span>
+\t\t\t\t\t\t</h1>
 \t\t\t\t\t\t<form method=\"post\" enctype=\"multipart/form-data\">
 \t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t <label for=\"Titre\" class=\"form-label\">Titre</label>
 \t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Saisir un titre\" name=\"Titre\" value=\"";
-        // line 17
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Titre", [], "any", false, false, false, 17), "html", null, true);
+        // line 20
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Titre", [], "any", false, false, false, 20), "html", null, true);
         yield "\">
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t<label for=\"Description\" class=\"form-label\">Description</label>
 \t\t\t\t\t\t\t\t<textarea class=\"form-control\" name=\"Description\" rows=\"3\">";
-        // line 20
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source,         // line 21
-($context["hobby"] ?? null), "Description", [], "any", false, false, false, 21), "html", null, true);
+        // line 24
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source,         // line 25
+($context["hobby"] ?? null), "Description", [], "any", false, false, false, 25), "html", null, true);
         yield "</textarea>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t<label for=\"DatePublication\" class=\"form-label\">Date</label>
 \t\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" name=\"DatePublication\" value=\"";
-        // line 24
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "DatePublication", [], "any", false, false, false, 24), "Y-m-d"), "html", null, true);
+        // line 29
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "DatePublication", [], "any", false, false, false, 29), "Y-m-d"), "html", null, true);
         yield "\">
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t<label for=\"Auteur\" class=\"form-label\">Auteur</label>
 \t\t\t\t\t\t\t\t<select class=\"form-select\" name=\"Auteur\">
 \t\t\t\t\t\t\t\t\t<option value=\"Brice\" ";
-        // line 28
-        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 28) == "Brice")) {
+        // line 34
+        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 34) == "Brice")) {
             yield " selected ";
         }
         yield ">Brice</option>
 \t\t\t\t\t\t\t\t\t<option value=\"Bruno\" ";
-        // line 29
-        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 29) == "Bruno")) {
+        // line 35
+        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 35) == "Bruno")) {
             yield " selected ";
         }
         yield ">Bruno</option>
 \t\t\t\t\t\t\t\t\t<option value=\"Fabien\" ";
-        // line 30
-        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 30) == "Fabien")) {
+        // line 36
+        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 36) == "Fabien")) {
             yield " selected ";
         }
         yield ">Fabien</option>
 \t\t\t\t\t\t\t\t\t<option value=\"Marion\" ";
-        // line 31
-        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 31) == "Marion")) {
+        // line 37
+        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 37) == "Marion")) {
             yield " selected ";
         }
         yield ">Marion</option>
 \t\t\t\t\t\t\t\t\t<option value=\"Jean-Pierre\" ";
-        // line 32
-        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 32) == "Jean-Pierre")) {
+        // line 38
+        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 38) == "Jean-Pierre")) {
             yield " selected ";
         }
         yield ">Jean-Pierre</option>
 \t\t\t\t\t\t\t\t\t<option value=\"Benoit\" ";
-        // line 33
-        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 33) == "Benoit")) {
+        // line 39
+        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 39) == "Benoit")) {
             yield " selected ";
         }
         yield ">Benoit</option>
 \t\t\t\t\t\t\t\t\t<option value=\"Emmanuel\" ";
-        // line 34
-        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 34) == "Emmanuel")) {
+        // line 40
+        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 40) == "Emmanuel")) {
             yield " selected ";
         }
         yield ">Emmanuel</option>
 \t\t\t\t\t\t\t\t\t<option value=\"Sylvie\" ";
-        // line 35
-        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 35) == "Sylvie")) {
+        // line 41
+        if ((CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 41) == "Sylvie")) {
             yield " selected ";
         }
         yield ">Sylvie</option>
 \t\t\t\t\t\t\t\t</select>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"mb-3\">
-\t\t\t\t\t\t\t\t<input type=\"file\" class=\"custom-file-input\" name=\"Image\">
+                            <label for=\"Image\" class=\"form-label\">Image</label>
+\t\t\t\t\t\t\t\t<input type=\"file\" class=\"form-control\" name=\"Image\">
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t";
-        // line 41
-        if (($this->env->getFunction('file_exist')->getCallable()(((("./uploads/images/" . CoreExtension::getAttribute($this->env, $this->source,         // line 42
-($context["hobby"] ?? null), "ImageRepository", [], "any", false, false, false, 42)) . "/") . CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 42))) && (CoreExtension::getAttribute($this->env, $this->source,         // line 43
-($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 43) != ""))) {
-            // line 44
+        // line 48
+        if (($this->env->getFunction('file_exist')->getCallable()(((("./uploads/images/" . CoreExtension::getAttribute($this->env, $this->source,         // line 49
+($context["hobby"] ?? null), "ImageRepository", [], "any", false, false, false, 49)) . "/") . CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 49))) && (CoreExtension::getAttribute($this->env, $this->source,         // line 50
+($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 50) != ""))) {
+            // line 51
             yield "\t\t\t\t\t\t\t\t<p>Image Actuelle :</p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\t<img style=\"max-width:250px;\" class=\"img-thumbnail\" src=\"/uploads/images/";
-            // line 46
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageRepository", [], "any", false, false, false, 46), "html", null, true);
+            // line 53
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageRepository", [], "any", false, false, false, 53), "html", null, true);
             yield "/";
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source,             // line 47
-($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 47), "html", null, true);
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source,             // line 54
+($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 54), "html", null, true);
             yield "\" class=\"img-thumbnail\"/>
 \t\t\t\t\t\t\t\t</p>
 \t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"ImageRepository\" value=\"";
-            // line 49
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageRepository", [], "any", false, false, false, 49), "html", null, true);
+            // line 56
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageRepository", [], "any", false, false, false, 56), "html", null, true);
             yield "\">
 \t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"ImageFileName\" value=\"";
-            // line 50
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 50), "html", null, true);
+            // line 57
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "ImageFileName", [], "any", false, false, false, 57), "html", null, true);
             yield "\">
 \t\t\t\t\t\t\t";
         }
-        // line 52
-        yield "
-\t\t\t\t\t\t\t <div class=\"mb-3\">
-                            <label for=\"Latitude\" class=\"form-label\">Latitude</label>
-                            <input type=\"text\" class=\"form-control\" id=\"Latitude\" name=\"Latitude\" value=\"";
-        // line 55
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 55), "html", null, true);
-        yield "\" required>
-                        </div>
-                        <div class=\"mb-3\">
-                            <label for=\"Longitude\" class=\"form-label\">Longitude</label>
-                            <input type=\"text\" class=\"form-control\" id=\"Longitude\" name=\"Longitude\" value=\"";
         // line 59
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 59), "html", null, true);
+        yield "
+\t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t\t<label for=\"Latitude\" class=\"form-label\">Latitude</label>
+\t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"Latitude\" name=\"Latitude\" value=\"";
+        // line 62
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 62), "html", null, true);
         yield "\" required>
-                        </div>
-                        <div id=\"map\" style=\"height: 400px;\" class=\"mb-3\"></div>
-                        <div class=\"d-grid\">
-                            <button type=\"submit\" class=\"btn btn-primary\">Valider</button>
-                        </div>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t\t<label for=\"Longitude\" class=\"form-label\">Longitude</label>
+\t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"Longitude\" name=\"Longitude\" value=\"";
+        // line 66
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 66), "html", null, true);
+        yield "\" required>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t<div id=\"map\" style=\"height: 400px;\" class=\"mb-3\"></div>
+\t\t\t\t\t\t\t<div class=\"d-grid\">
+\t\t\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn-primary\">Valider</button>
+\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</form>
 \t\t\t\t\t</div>
 \t\t\t\t</div>
@@ -214,50 +221,52 @@ class __TwigTemplate_724d8c02c6c03ee3bbfa33a309d4bb23 extends Template
         yield from [];
     }
 
-    // line 74
+    // line 81
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_javascript(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 75
-        yield "<script>
-    var map = L.map('map', {
-        center: [";
-        // line 77
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 77), "html", null, true);
-        yield ", ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 77), "html", null, true);
-        yield "], // Center on current hobby location
-        zoom: 12
-    });
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'
-    }).addTo(map);
-
-    var marker = L.marker([";
+        // line 82
+        yield "\t<script>
+\t\tvar map = L.map('map', {
+center: [
+";
         // line 85
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 85), "html", null, true);
         yield ", ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 85), "html", null, true);
+        yield "
+], // Center on current hobby location
+zoom: 12
+});
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+maxZoom: 19,
+attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'
+}).addTo(map);
+
+var marker = L.marker([";
+        // line 94
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 94), "html", null, true);
+        yield ", ";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 94), "html", null, true);
         yield "]).addTo(map);
 
-    map.on('click', function(e) {
-        var lat = e.latlng.lat;
-        var lng = e.latlng.lng;
+map.on('click', function (e) {
+var lat = e.latlng.lat;
+var lng = e.latlng.lng;
 
-        if (marker) {
-            marker.setLatLng(e.latlng);
-        } else {
-            marker = L.marker(e.latlng).addTo(map);
-        }
+if (marker) {
+marker.setLatLng(e.latlng);
+} else {
+marker = L.marker(e.latlng).addTo(map);
+}
 
-        document.getElementById('Latitude').value = lat;
-        document.getElementById('Longitude').value = lng;
-    });
-</script>
+document.getElementById('Latitude').value = lat;
+document.getElementById('Longitude').value = lng;
+});
+\t</script>
 ";
         yield from [];
     }
@@ -283,7 +292,7 @@ class __TwigTemplate_724d8c02c6c03ee3bbfa33a309d4bb23 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  242 => 85,  229 => 77,  225 => 75,  218 => 74,  199 => 59,  192 => 55,  187 => 52,  182 => 50,  178 => 49,  173 => 47,  170 => 46,  166 => 44,  164 => 43,  163 => 42,  162 => 41,  151 => 35,  145 => 34,  139 => 33,  133 => 32,  127 => 31,  121 => 30,  115 => 29,  109 => 28,  102 => 24,  96 => 21,  95 => 20,  89 => 17,  77 => 7,  70 => 6,  62 => 3,  53 => 2,  42 => 1,);
+        return array (  251 => 94,  237 => 85,  232 => 82,  225 => 81,  206 => 66,  199 => 62,  194 => 59,  189 => 57,  185 => 56,  180 => 54,  177 => 53,  173 => 51,  171 => 50,  170 => 49,  169 => 48,  157 => 41,  151 => 40,  145 => 39,  139 => 38,  133 => 37,  127 => 36,  121 => 35,  115 => 34,  107 => 29,  100 => 25,  99 => 24,  92 => 20,  77 => 7,  70 => 6,  62 => 3,  53 => 2,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -301,19 +310,25 @@ class __TwigTemplate_724d8c02c6c03ee3bbfa33a309d4bb23 extends Template
 \t\t\t<div class=\"col-lg-8\">
 \t\t\t\t<div class=\"card border-dark border-3\">
 \t\t\t\t\t<div class=\"card-body\">
-\t\t\t\t\t\t<h1><span class=\"badge bg-dark mb-3\">Update Hobby</span></h1>
+\t\t\t\t\t\t<h1>
+\t\t\t\t\t\t\t<span class=\"badge bg-dark mb-3\">Update Hobby</span>
+\t\t\t\t\t\t</h1>
 \t\t\t\t\t\t<form method=\"post\" enctype=\"multipart/form-data\">
 \t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t <label for=\"Titre\" class=\"form-label\">Titre</label>
 \t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Saisir un titre\" name=\"Titre\" value=\"{{ hobby.Titre }}\">
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t<label for=\"Description\" class=\"form-label\">Description</label>
 \t\t\t\t\t\t\t\t<textarea class=\"form-control\" name=\"Description\" rows=\"3\">{{
 hobby.Description }}</textarea>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t<label for=\"DatePublication\" class=\"form-label\">Date</label>
 \t\t\t\t\t\t\t\t<input type=\"date\" class=\"form-control\" name=\"DatePublication\" value=\"{{ hobby.DatePublication|date(\"Y-m-d\") }}\">
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t<label for=\"Auteur\" class=\"form-label\">Auteur</label>
 \t\t\t\t\t\t\t\t<select class=\"form-select\" name=\"Auteur\">
 \t\t\t\t\t\t\t\t\t<option value=\"Brice\" {% if (hobby.Auteur == \"Brice\") %} selected {% endif %}>Brice</option>
 \t\t\t\t\t\t\t\t\t<option value=\"Bruno\" {% if (hobby.Auteur == \"Bruno\") %} selected {% endif %}>Bruno</option>
@@ -326,7 +341,8 @@ hobby.Description }}</textarea>
 \t\t\t\t\t\t\t\t</select>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"mb-3\">
-\t\t\t\t\t\t\t\t<input type=\"file\" class=\"custom-file-input\" name=\"Image\">
+                            <label for=\"Image\" class=\"form-label\">Image</label>
+\t\t\t\t\t\t\t\t<input type=\"file\" class=\"form-control\" name=\"Image\">
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t{% if file_exist(
 './uploads/images/'~hobby.ImageRepository~'/'~hobby.ImageFileName ) and
@@ -334,24 +350,24 @@ hobby.ImageFileName !=\"\" %}
 \t\t\t\t\t\t\t\t<p>Image Actuelle :</p>
 \t\t\t\t\t\t\t\t<p>
 \t\t\t\t\t\t\t\t\t<img style=\"max-width:250px;\" class=\"img-thumbnail\" src=\"/uploads/images/{{ hobby.ImageRepository }}/{{
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\thobby.ImageFileName }}\" class=\"img-thumbnail\"/>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\thobby.ImageFileName }}\" class=\"img-thumbnail\"/>
 \t\t\t\t\t\t\t\t</p>
 \t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"ImageRepository\" value=\"{{ hobby.ImageRepository }}\">
 \t\t\t\t\t\t\t\t<input type=\"hidden\" name=\"ImageFileName\" value=\"{{ hobby.ImageFileName }}\">
 \t\t\t\t\t\t\t{% endif %}
 
-\t\t\t\t\t\t\t <div class=\"mb-3\">
-                            <label for=\"Latitude\" class=\"form-label\">Latitude</label>
-                            <input type=\"text\" class=\"form-control\" id=\"Latitude\" name=\"Latitude\" value=\"{{ hobby.Latitude }}\" required>
-                        </div>
-                        <div class=\"mb-3\">
-                            <label for=\"Longitude\" class=\"form-label\">Longitude</label>
-                            <input type=\"text\" class=\"form-control\" id=\"Longitude\" name=\"Longitude\" value=\"{{ hobby.Longitude }}\" required>
-                        </div>
-                        <div id=\"map\" style=\"height: 400px;\" class=\"mb-3\"></div>
-                        <div class=\"d-grid\">
-                            <button type=\"submit\" class=\"btn btn-primary\">Valider</button>
-                        </div>
+\t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t\t<label for=\"Latitude\" class=\"form-label\">Latitude</label>
+\t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"Latitude\" name=\"Latitude\" value=\"{{ hobby.Latitude }}\" required>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t<div class=\"mb-3\">
+\t\t\t\t\t\t\t\t<label for=\"Longitude\" class=\"form-label\">Longitude</label>
+\t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"Longitude\" name=\"Longitude\" value=\"{{ hobby.Longitude }}\" required>
+\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t<div id=\"map\" style=\"height: 400px;\" class=\"mb-3\"></div>
+\t\t\t\t\t\t\t<div class=\"d-grid\">
+\t\t\t\t\t\t\t\t<button type=\"submit\" class=\"btn btn-primary\">Valider</button>
+\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t</form>
 \t\t\t\t\t</div>
 \t\t\t\t</div>
@@ -362,32 +378,34 @@ hobby.ImageFileName !=\"\" %}
 {% endblock %}
 
 {% block javascript %}
-<script>
-    var map = L.map('map', {
-        center: [{{ hobby.Latitude }}, {{ hobby.Longitude }}], // Center on current hobby location
-        zoom: 12
-    });
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'
-    }).addTo(map);
+\t<script>
+\t\tvar map = L.map('map', {
+center: [
+{{ hobby.Latitude }}, {{ hobby.Longitude }}
+], // Center on current hobby location
+zoom: 12
+});
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+maxZoom: 19,
+attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'
+}).addTo(map);
 
-    var marker = L.marker([{{ hobby.Latitude }}, {{ hobby.Longitude }}]).addTo(map);
+var marker = L.marker([{{ hobby.Latitude }}, {{ hobby.Longitude }}]).addTo(map);
 
-    map.on('click', function(e) {
-        var lat = e.latlng.lat;
-        var lng = e.latlng.lng;
+map.on('click', function (e) {
+var lat = e.latlng.lat;
+var lng = e.latlng.lng;
 
-        if (marker) {
-            marker.setLatLng(e.latlng);
-        } else {
-            marker = L.marker(e.latlng).addTo(map);
-        }
+if (marker) {
+marker.setLatLng(e.latlng);
+} else {
+marker = L.marker(e.latlng).addTo(map);
+}
 
-        document.getElementById('Latitude').value = lat;
-        document.getElementById('Longitude').value = lng;
-    });
-</script>
+document.getElementById('Latitude').value = lat;
+document.getElementById('Longitude').value = lng;
+});
+\t</script>
 {% endblock %}
 ", "Admin/Hobby/update.html.twig", "C:\\wamp64\\www\\php-individuel\\src\\View\\Admin\\Hobby\\update.html.twig");
     }
