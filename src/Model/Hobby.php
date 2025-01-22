@@ -268,7 +268,12 @@ LIMIT :limit');
                 ->setId($hobbySQL["Id"])
                 ->setDescription($hobbySQL["Description"])
                 ->setDate($date)
-                ->setAuteur($hobbySQL["Auteur"]);
+                ->setAuteur($hobbySQL["Auteur"])
+                ->setImageRepository($hobbySQL["ImageRepository"])
+                ->setImageFileName($hobbySQL["ImageFileName"])
+                ->setPrix($hobbySQL['Prix'])
+                ->setEmailContact($hobbySQL['EmailContact']);
+
             $hobbiesObjet[] = $hobby;
         }
         return $hobbiesObjet;
@@ -339,7 +344,9 @@ ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, Latitude=:Latitu
                 'Description' => $this->getDescription(),
                 'DatePublication' => $this->getDate()->format('Y-m-d'),
                 'ImageRepository' => $this->getImageRepository(),
-                'ImageFileName' => $this->getImageFileName()
+                'ImageFileName' => $this->getImageFileName(),
+                'Prix' => $this->getPrix(),
+                'EmailContact' => $this->getEmailContact()
             ];
     }
 }

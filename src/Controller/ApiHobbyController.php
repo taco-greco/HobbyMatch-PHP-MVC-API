@@ -81,7 +81,9 @@ class ApiHobbyController
             ->setDate(new \DateTime($json->DatePublication))
             ->setAuteur($json->Auteur)
             ->setImageRepository($sqlRepository)
-            ->setImageFileName($nomImage);
+            ->setImageFileName($nomImage)
+            ->setPrix($json->Prix)
+            ->setEmailContact($json->EmailContact);
         $id = Hobby::SqlAdd($hobby);
         return json_encode([
             "code" => 0,
