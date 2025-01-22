@@ -16,20 +16,24 @@
 						</h1>
 						<form method="post" enctype="multipart/form-data">
 							<div class="mb-3">
-							 <label for="Titre" class="form-label">Titre</label>
+								<label for="Titre" class="form-label">Titre</label>
 								<input type="text" class="form-control" placeholder="Saisir un titre" name="Titre" value="{{ hobby.Titre }}">
 							</div>
 							<div class="mb-3">
-							<label for="Description" class="form-label">Description</label>
+								<label for="Description" class="form-label">Description</label>
 								<textarea class="form-control" name="Description" rows="3">{{
 hobby.Description }}</textarea>
 							</div>
 							<div class="mb-3">
-							<label for="DatePublication" class="form-label">Date</label>
+								<label for="DatePublication" class="form-label">Date</label>
 								<input type="date" class="form-control" name="DatePublication" value="{{ hobby.DatePublication|date("Y-m-d") }}">
 							</div>
 							<div class="mb-3">
-							<label for="Auteur" class="form-label">Auteur</label>
+								<label for="Prix" class="form-label">Prix</label>
+								<input type="number" value="{{ hobby.Prix }}" step="0.01" class="form-control" id="Prix" name="Prix">
+							</div>
+							<div class="mb-3">
+								<label for="Auteur" class="form-label">Auteur</label>
 								<select class="form-select" name="Auteur">
 									<option value="Brice" {% if (hobby.Auteur == "Brice") %} selected {% endif %}>Brice</option>
 									<option value="Bruno" {% if (hobby.Auteur == "Bruno") %} selected {% endif %}>Bruno</option>
@@ -42,7 +46,7 @@ hobby.Description }}</textarea>
 								</select>
 							</div>
 							<div class="mb-3">
-                            <label for="Image" class="form-label">Image</label>
+								<label for="Image" class="form-label">Image</label>
 								<input type="file" class="form-control" name="Image">
 							</div>
 							{% if file_exist(
@@ -51,7 +55,7 @@ hobby.ImageFileName !="" %}
 								<p>Image Actuelle :</p>
 								<p>
 									<img style="max-width:250px;" class="img-thumbnail" src="/uploads/images/{{ hobby.ImageRepository }}/{{
-																																																							hobby.ImageFileName }}" class="img-thumbnail"/>
+																																																																	hobby.ImageFileName }}" class="img-thumbnail"/>
 								</p>
 								<input type="hidden" name="ImageRepository" value="{{ hobby.ImageRepository }}">
 								<input type="hidden" name="ImageFileName" value="{{ hobby.ImageFileName }}">

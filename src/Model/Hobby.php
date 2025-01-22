@@ -25,7 +25,9 @@ class Hobby implements JsonSerializable
     private ?string $Latitude = null;
 
     private ?string $Longitude = null;
-    
+
+    private ?String $Prix = null;
+
 
 
 
@@ -176,10 +178,20 @@ class Hobby implements JsonSerializable
         $this->Longitude = $Longitude;
         return $this;
     }
+    public function getPrix(): ?String
+    {
+        return $this->Prix;
+    }
+
+    public function setPrix(?String $Prix): self
+    {
+        $this->Prix = $Prix;
+        return $this;
+    }
 
     public static function SqlAdd(Hobby $hobby)
     {
-        $requete = BDD::getInstance()->prepare("INSERT INTO hobbies (Titre,Description,DatePublication,Auteur, ImageRepository, ImageFileName,Latitude,Longitude) VALUES (:Titre,:Description,:DatePublication,:Auteur, :ImageRepository, :ImageFileName, :Latitude, :Longitude)");
+        $requete = BDD::getInstance()->prepare("INSERT INTO hobbies (Titre,Description,DatePublication,Auteur, ImageRepository, ImageFileName,Latitude,Longitude,Prix) VALUES (:Titre,:Description,:DatePublication,:Auteur, :ImageRepository, :ImageFileName, :Latitude, :Longitude, :Prix)");
         $requete->bindValue(':Titre', $hobby->getTitre());
         $requete->bindValue(':Description', $hobby->getDescription());
         $requete->bindValue(':DatePublication', $hobby->getDate()->format('Y-m-d'));
@@ -188,6 +200,7 @@ class Hobby implements JsonSerializable
         $requete->bindValue(':ImageFileName', $hobby->getImageFileName());
         $requete->bindValue(':Latitude', $hobby->getLatitude());
         $requete->bindValue(':Longitude', $hobby->getLongitude());
+        $requete->bindValue(':Prix', $hobby->getPrix());
         $requete->execute([
             'Titre' => $hobby->getTitre(),
             'Description' => $hobby->getDescription(),
@@ -196,7 +209,8 @@ class Hobby implements JsonSerializable
             'ImageRepository' => $hobby->getImageRepository(),
             'ImageFileName' => $hobby->getImageFileName(),
             'Latitude' => $hobby->getLatitude(),
-            'Longitude' =>$hobby->getLongitude()
+            'Longitude' => $hobby->getLongitude(),
+            'Prix' => $hobby->getPrix(),
         ]);
 
         return BDD::getInstance()->lastInsertId();
@@ -271,7 +285,8 @@ LIMIT :limit');
                 ->setId($hobbySQL["Id"])
                 ->setImageFileName($hobbySQL["ImageFileName"])
                 ->setLatitude($hobbySQL["Latitude"])
-                ->setLongitude($hobbySQL['Longitude']);
+                ->setLongitude($hobbySQL['Longitude'])
+                ->setPrix($hobbySQL['Prix']);
             return $hobby;
         }
         return null;
@@ -281,7 +296,7 @@ LIMIT :limit');
     {
         $requete = BDD::getInstance()->prepare("UPDATE hobbies SET Titre=:Titre,
 Description=:Description, DatePublication=:DatePublication, Auteur=:Auteur,
-ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, Latitude=:Latitude, Longitude=:Longitude WHERE Id=:Id");
+ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, Latitude=:Latitude, Longitude=:Longitude, Prix=:Prix WHERE Id=:Id");
         $bool = $requete->execute([
             "Titre" => $hobby->getTitre(),
             "Description" => $hobby->getDescription(),
@@ -291,6 +306,7 @@ ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, Latitude=:Latitu
             "ImageFileName" => $hobby->getImageFileName(),
             "Latitude" => $hobby->getLatitude(),
             "Longitude" => $hobby->getLongitude(),
+            "Prix" => $hobby->getPrix(),
             "Id" => $hobby->getId()
         ]);
     }

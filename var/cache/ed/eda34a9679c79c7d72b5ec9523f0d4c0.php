@@ -89,6 +89,10 @@ class __TwigTemplate_273c093a928f38ea959aa500817ce034 extends Template
                             <input type=\"date\" class=\"form-control\" id=\"Date\" name=\"Date\" required>
                         </div>
                         <div class=\"mb-3\">
+                        <label for=\"Prix\" class=\"form-label\">Prix</label>
+                        <input type=\"number\" placeholder=\"0.0\" step=\"0.01\" class=\"form-control\" id=\"Prix\" name=\"Prix\">
+                        </div>
+                        <div class=\"mb-3\">
                             <label for=\"Auteur\" class=\"form-label\">Auteur</label>
                             <select class=\"form-select\" id=\"Auteur\" name=\"Auteur\" required>
                                 <option value=\"\" disabled selected>Choisir un auteur</option>
@@ -128,14 +132,14 @@ class __TwigTemplate_273c093a928f38ea959aa500817ce034 extends Template
         yield from [];
     }
 
-    // line 61
+    // line 65
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_javascript(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 62
+        // line 66
         yield "<script>
     var map = L.map('map', {
         center: [49.4431, 1.0993], // Default center (Paris)
@@ -187,7 +191,7 @@ class __TwigTemplate_273c093a928f38ea959aa500817ce034 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  139 => 62,  132 => 61,  72 => 4,  65 => 3,  53 => 2,  42 => 1,);
+        return array (  143 => 66,  136 => 65,  72 => 4,  65 => 3,  53 => 2,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -213,6 +217,10 @@ class __TwigTemplate_273c093a928f38ea959aa500817ce034 extends Template
                         <div class=\"mb-3\">
                             <label for=\"Date\" class=\"form-label\">Date</label>
                             <input type=\"date\" class=\"form-control\" id=\"Date\" name=\"Date\" required>
+                        </div>
+                        <div class=\"mb-3\">
+                        <label for=\"Prix\" class=\"form-label\">Prix</label>
+                        <input type=\"number\" placeholder=\"0.0\" step=\"0.01\" class=\"form-control\" id=\"Prix\" name=\"Prix\">
                         </div>
                         <div class=\"mb-3\">
                             <label for=\"Auteur\" class=\"form-label\">Auteur</label>
