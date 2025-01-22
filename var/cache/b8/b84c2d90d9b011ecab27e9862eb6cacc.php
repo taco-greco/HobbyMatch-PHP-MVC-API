@@ -113,7 +113,7 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
         // line 26
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Auteur", [], "any", false, false, false, 26), "html", null, true);
         yield "</p>
-\t\t\t\t\t<p class=\"badge rounded-pill bg-secondary\">
+\t\t\t\t\t<p class=\"badge rounded-pill bg-light\">
 \t\t\t\t\t\t<strong>Date :</strong>
 \t\t\t\t\t\t";
         // line 29
@@ -125,6 +125,15 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
         // line 32
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Prix", [], "any", false, false, false, 32), "html", null, true);
         yield "€</p>
+\t\t\t\t\t<p class=\"badge rounded-pill bg-secondary\">
+\t\t\t\t\t\t<strong>Contact :</strong>
+\t\t\t\t\t\t<a href=\"mailto:";
+        // line 35
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "EmailContact", [], "any", false, false, false, 35), "html", null, true);
+        yield "\">";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "EmailContact", [], "any", false, false, false, 35), "html", null, true);
+        yield "</a>
+\t\t\t\t\t</p>
 \t\t\t\t</div>
 
 \t\t\t\t<div class=\"p-xl-2\">
@@ -135,8 +144,8 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
 \t\t\t\t\t</h5>
 \t\t\t\t\t<p class=\"text-break\">
 \t\t\t\t\t\t";
-        // line 42
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "description", [], "any", false, false, false, 42), "html", null, true);
+        // line 46
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "description", [], "any", false, false, false, 46), "html", null, true);
         yield "</p>
 
 \t\t\t\t</div>
@@ -150,22 +159,22 @@ class __TwigTemplate_65f0159e8de1b81f739d6a527841fa43 extends Template
         yield from [];
     }
 
-    // line 53
+    // line 57
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_javascript(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 54
+        // line 58
         yield "\t<script>
 \t\tvar map = L.map('map', {
 center: [
 ";
-        // line 57
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 57), "html", null, true);
+        // line 61
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 61), "html", null, true);
         yield ", ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 57), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 61), "html", null, true);
         yield "
 ],
 zoom: 16
@@ -175,18 +184,18 @@ maxZoom: 19,
 attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'
 }).addTo(map);
 var marker = L.marker([";
-        // line 65
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 65), "html", null, true);
+        // line 69
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 69), "html", null, true);
         yield ", ";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 65), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 69), "html", null, true);
         yield "]).addTo(map);
 
 // Reverse geocoding to get the street name and number
 fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=";
-        // line 68
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 68), "html", null, true);
+        // line 72
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Latitude", [], "any", false, false, false, 72), "html", null, true);
         yield "&lon=";
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 68), "html", null, true);
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Longitude", [], "any", false, false, false, 72), "html", null, true);
         yield "&zoom=18&addressdetails=1`).then(response => response.json()).then(data => {
 var streetName = data.address.road || 'Unknown street';
 var houseNumber = data.address.house_number || '';
@@ -221,7 +230,7 @@ console.error('Error fetching street name:', error);
      */
     public function getDebugInfo(): array
     {
-        return array (  187 => 68,  179 => 65,  166 => 57,  161 => 54,  154 => 53,  139 => 42,  126 => 32,  120 => 29,  114 => 26,  109 => 23,  102 => 21,  99 => 20,  97 => 19,  86 => 11,  82 => 9,  75 => 8,  68 => 6,  63 => 4,  60 => 3,  53 => 2,  42 => 1,);
+        return array (  196 => 72,  188 => 69,  175 => 61,  170 => 58,  163 => 57,  148 => 46,  132 => 35,  126 => 32,  120 => 29,  114 => 26,  109 => 23,  102 => 21,  99 => 20,  97 => 19,  86 => 11,  82 => 9,  75 => 8,  68 => 6,  63 => 4,  60 => 3,  53 => 2,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -252,12 +261,16 @@ console.error('Error fetching street name:', error);
 \t\t\t\t\t<p class=\"badge rounded-pill bg-info\">
 \t\t\t\t\t\t<strong>Auteur :</strong>
 \t\t\t\t\t\t{{ hobby.Auteur }}</p>
-\t\t\t\t\t<p class=\"badge rounded-pill bg-secondary\">
+\t\t\t\t\t<p class=\"badge rounded-pill bg-light\">
 \t\t\t\t\t\t<strong>Date :</strong>
 \t\t\t\t\t\t{{ hobby.date|date(\"d/m/Y\") }}</p>
 \t\t\t\t\t<p class=\"badge rounded-pill bg-success\">
 \t\t\t\t\t\t<strong>Prix :</strong>
 \t\t\t\t\t\t{{ hobby.Prix }}€</p>
+\t\t\t\t\t<p class=\"badge rounded-pill bg-secondary\">
+\t\t\t\t\t\t<strong>Contact :</strong>
+\t\t\t\t\t\t<a href=\"mailto:{{hobby.EmailContact}}\">{{ hobby.EmailContact }}</a>
+\t\t\t\t\t</p>
 \t\t\t\t</div>
 
 \t\t\t\t<div class=\"p-xl-2\">

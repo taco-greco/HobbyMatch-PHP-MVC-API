@@ -33,6 +33,10 @@ hobby.Description }}</textarea>
 								<input type="number" value="{{ hobby.Prix }}" step="0.01" class="form-control" id="Prix" name="Prix">
 							</div>
 							<div class="mb-3">
+								<label for="EmailContact" class="form-label">Contact</label>
+								<input type="email" value="{{ hobby.EmailContact }}" class="form-control" id="EmailContact" name="EmailContact">
+							</div>
+							<div class="mb-3">
 								<label for="Auteur" class="form-label">Auteur</label>
 								<select class="form-select" name="Auteur">
 									<option value="Brice" {% if (hobby.Auteur == "Brice") %} selected {% endif %}>Brice</option>
@@ -55,7 +59,7 @@ hobby.ImageFileName !="" %}
 								<p>Image Actuelle :</p>
 								<p>
 									<img style="max-width:250px;" class="img-thumbnail" src="/uploads/images/{{ hobby.ImageRepository }}/{{
-																																																																	hobby.ImageFileName }}" class="img-thumbnail"/>
+																																																																																					hobby.ImageFileName }}" class="img-thumbnail"/>
 								</p>
 								<input type="hidden" name="ImageRepository" value="{{ hobby.ImageRepository }}">
 								<input type="hidden" name="ImageFileName" value="{{ hobby.ImageFileName }}">

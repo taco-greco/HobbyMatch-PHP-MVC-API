@@ -58,6 +58,7 @@ class AdminHobbyController extends AbstractController
             $hobby->setDate(new \DateTime($_POST['DatePublication']));
             $hobby->setLatitude($_POST['Latitude']);
             $hobby->setLongitude($_POST['Longitude']);
+            $hobby->setEmailContact($_POST['EmailContact']);
             $hobby->setPrix($_POST['Prix']);
 
             //3. Exécuter la requete SQL d'ajout (model)
@@ -128,7 +129,8 @@ class AdminHobbyController extends AbstractController
                 ->setImageFileName($nomImage)
                 ->setLatitude($_POST['Latitude'])
                 ->setLongitude($_POST['Longitude'])
-                ->setPrix($_POST['Prix']);
+                ->setPrix($_POST['Prix'])
+                ->setEmailContact($_POST['EmailContact']);
             Hobby::SqlUpdate($hobby);
             header("Location:/AdminHobby/show/{$id}");
             exit();

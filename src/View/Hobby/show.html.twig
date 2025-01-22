@@ -24,12 +24,16 @@
 					<p class="badge rounded-pill bg-info">
 						<strong>Auteur :</strong>
 						{{ hobby.Auteur }}</p>
-					<p class="badge rounded-pill bg-secondary">
+					<p class="badge rounded-pill bg-light">
 						<strong>Date :</strong>
 						{{ hobby.date|date("d/m/Y") }}</p>
 					<p class="badge rounded-pill bg-success">
 						<strong>Prix :</strong>
 						{{ hobby.Prix }}€</p>
+					<p class="badge rounded-pill bg-secondary">
+						<strong>Contact :</strong>
+						<a href="mailto:{{hobby.EmailContact}}">{{ hobby.EmailContact }}</a>
+					</p>
 				</div>
 
 				<div class="p-xl-2">
