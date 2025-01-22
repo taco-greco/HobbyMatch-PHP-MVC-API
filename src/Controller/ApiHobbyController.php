@@ -11,6 +11,32 @@ class ApiHobbyController
         header('Content-Type: application/json; charset=utf-8');
     }
 
+    public function delete(int $id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] != "DELETE") {
+            header("HTTP/1.1 405 Method Not Allowed");
+            return json_encode([
+                "code" => 1,
+                "Message" => "Get Attendu"
+            ]);
+        }
+
+        $hobby = Hobby::SqlGetById($id);
+        if (!$hobby) {
+            header("HTTP/1.1 404 Not Found");
+            return json_encode([
+                "code" => 1,
+                "Message" => "Hobby non trouvé"
+            ]);
+        }
+
+        Hobby::SqlDelete($id);
+        return json_encode([
+            "code" => 0,
+            "Message" => "Hobby supprimé avec succès"
+        ]);
+    }
+
     public function getAll()
     {
         if ($_SERVER["REQUEST_METHOD"] != "GET") {
@@ -94,7 +120,7 @@ class ApiHobbyController
         ]);
     }
 
-    public function update($id)
+    public function update(int $id)
     {
         if ($_SERVER["REQUEST_METHOD"] != "PUT") {
             header("HTTP/1.1 405 Method Not Allowed");
