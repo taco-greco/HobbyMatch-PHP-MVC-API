@@ -272,7 +272,9 @@ LIMIT :limit');
                 ->setImageRepository($hobbySQL["ImageRepository"])
                 ->setImageFileName($hobbySQL["ImageFileName"])
                 ->setPrix($hobbySQL['Prix'])
-                ->setEmailContact($hobbySQL['EmailContact']);
+                ->setEmailContact($hobbySQL['EmailContact'])
+                ->setLatitude($hobbySQL['Latitude'])
+                ->setLongitude($hobbySQL['Longitude']);
 
             $hobbiesObjet[] = $hobby;
         }
@@ -346,7 +348,9 @@ ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, Latitude=:Latitu
                 'ImageRepository' => $this->getImageRepository(),
                 'ImageFileName' => $this->getImageFileName(),
                 'Prix' => $this->getPrix(),
-                'EmailContact' => $this->getEmailContact()
+                'EmailContact' => $this->getEmailContact(),
+                'Latitude' =>$this->getLatitude(),
+                'Longitude' => $this->getLongitude()
             ];
     }
 }

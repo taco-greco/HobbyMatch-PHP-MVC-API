@@ -83,7 +83,9 @@ class ApiHobbyController
             ->setImageRepository($sqlRepository)
             ->setImageFileName($nomImage)
             ->setPrix($json->Prix)
-            ->setEmailContact($json->EmailContact);
+            ->setEmailContact($json->EmailContact)
+            ->setLatitude($json->Latitude)
+            ->setLongitude($json->Longitude);
         $id = Hobby::SqlAdd($hobby);
         return json_encode([
             "code" => 0,
