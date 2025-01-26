@@ -71,7 +71,7 @@ class AdminHobbyController extends AbstractController
             $mail->send(
                 from: "admin@votresite.com",
                 to: "admin@votresite.com",
-                subjet: "Nouvel Article posté",
+                subjet: "Nouvel Hobby posté",
                 html: ($this->twig->render('Mailing/hobby.add.html.twig', ["hobby" =>
                 $hobby]))
             );
