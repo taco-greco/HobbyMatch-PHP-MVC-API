@@ -3,6 +3,7 @@
 namespace src\Controller;
 
 use src\Model\Hobby;
+use src\Service\MailService;
 
 class AdminHobbyController extends AbstractController
 {
@@ -62,10 +63,22 @@ class AdminHobbyController extends AbstractController
             $hobby->setPrix($_POST['Prix']);
 
             //3. Exécuter la requete SQL d'ajout (model)
-            $id = Hobby::SqlAdd($hobby);
+            $result = Hobby::SqlAdd($hobby);
+
+            // Envoi du mail
+            $hobby->setId($result[2]);
+            $mail = new MailService();
+            $mail->send(
+                from: "admin@votresite.com",
+                to: "admin@votresite.com",
+                subjet: "Nouvel Article posté",
+                html: ($this->twig->render('Mailing/hobby.add.html.twig', ["hobby" =>
+                $hobby]))
+            );
+            header("Location:/AdminArticle/list");
 
             //4. Rédiriger l'internaute sur la page liste
-            header("location: /AdminHobby/show/{$id}");
+            header("location: /AdminHobby/show/{$result[2]}");
             exit();
         }
         return $this->twig->render('Admin/Hobby/add.html.twig');

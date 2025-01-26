@@ -205,31 +205,37 @@ class Hobby implements JsonSerializable
 
     public static function SqlAdd(Hobby $hobby)
     {
-        $requete = BDD::getInstance()->prepare("INSERT INTO hobbies (Titre,Description,DatePublication,Auteur, ImageRepository, ImageFileName,Latitude,Longitude,Prix, EmailContact) VALUES (:Titre,:Description,:DatePublication,:Auteur, :ImageRepository, :ImageFileName, :Latitude, :Longitude, :Prix, :EmailContact)");
-        $requete->bindValue(':Titre', $hobby->getTitre());
-        $requete->bindValue(':Description', $hobby->getDescription());
-        $requete->bindValue(':DatePublication', $hobby->getDate()->format('Y-m-d'));
-        $requete->bindValue(':Auteur', $hobby->getAuteur());
-        $requete->bindValue(':ImageRepository', $hobby->getImageRepository());
-        $requete->bindValue(':ImageFileName', $hobby->getImageFileName());
-        $requete->bindValue(':Latitude', $hobby->getLatitude());
-        $requete->bindValue(':Longitude', $hobby->getLongitude());
-        $requete->bindValue(':Prix', $hobby->getPrix());
-        $requete->bindValue(':EmailContact', $hobby->getEmailContact());
-        $requete->execute([
-            'Titre' => $hobby->getTitre(),
-            'Description' => $hobby->getDescription(),
-            'DatePublication' => $hobby->getDate()->format('Y-m-d'),
-            'Auteur' => $hobby->getAuteur(),
-            'ImageRepository' => $hobby->getImageRepository(),
-            'ImageFileName' => $hobby->getImageFileName(),
-            'Latitude' => $hobby->getLatitude(),
-            'Longitude' => $hobby->getLongitude(),
-            'Prix' => $hobby->getPrix(),
-            'EmailContact' => $hobby->getEmailContact(),
-        ]);
+        try {
+            $requete = BDD::getInstance()->prepare("INSERT INTO hobbies (Titre,Description,DatePublication,Auteur, ImageRepository, ImageFileName,Latitude,Longitude,Prix, EmailContact) VALUES (:Titre,:Description,:DatePublication,:Auteur, :ImageRepository, :ImageFileName, :Latitude, :Longitude, :Prix, :EmailContact)");
+            $requete->bindValue(':Titre', $hobby->getTitre());
+            $requete->bindValue(':Description', $hobby->getDescription());
+            $requete->bindValue(':DatePublication', $hobby->getDate()->format('Y-m-d'));
+            $requete->bindValue(':Auteur', $hobby->getAuteur());
+            $requete->bindValue(':ImageRepository', $hobby->getImageRepository());
+            $requete->bindValue(':ImageFileName', $hobby->getImageFileName());
+            $requete->bindValue(':Latitude', $hobby->getLatitude());
+            $requete->bindValue(':Longitude', $hobby->getLongitude());
+            $requete->bindValue(':Prix', $hobby->getPrix());
+            $requete->bindValue(':EmailContact', $hobby->getEmailContact());
+            $requete->execute([
+                'Titre' => $hobby->getTitre(),
+                'Description' => $hobby->getDescription(),
+                'DatePublication' => $hobby->getDate()->format('Y-m-d'),
+                'Auteur' => $hobby->getAuteur(),
+                'ImageRepository' => $hobby->getImageRepository(),
+                'ImageFileName' => $hobby->getImageFileName(),
+                'Latitude' => $hobby->getLatitude(),
+                'Longitude' => $hobby->getLongitude(),
+                'Prix' => $hobby->getPrix(),
+                'EmailContact' => $hobby->getEmailContact(),
+            ]);
 
-        return BDD::getInstance()->lastInsertId();
+            return array("0", "[OK] Insertion", BDD::getInstance()->lastInsertId());
+        } catch (\Exception $e) {
+            return array("1", "[ERREUR] " . $e->getMessage());
+        }
+
+        // return BDD::getInstance()->lastInsertId();
     }
 
     public static function SqlGetLast(int $nb)
@@ -336,13 +342,14 @@ ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, Latitude=:Latitu
         ]);
     }
 
-    public static function SqlSearch(string $keyword) : array {
+    public static function SqlSearch(string $keyword): array
+    {
         $requete = BDD::getInstance()->prepare('SELECT * FROM hobbies WHERE Titre LIKE :keyword OR Description LIKE :keyword ORDER BY Id DESC');
-        $requete->bindValue(':keyword','%'.$keyword.'%');
+        $requete->bindValue(':keyword', '%' . $keyword . '%');
         $requete->execute();
         $hobbiessSql = $requete->fetchAll(\PDO::FETCH_ASSOC);
         $hobbiesObjet = [];
-        foreach ($hobbiessSql as $hobbySql){
+        foreach ($hobbiessSql as $hobbySql) {
             $hobby = new Hobby();
             $hobby->setId($hobbySql["Id"]);
             $hobby->setTitre($hobbySql["Titre"]);
@@ -369,7 +376,7 @@ ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, Latitude=:Latitu
                 'ImageFileName' => $this->getImageFileName(),
                 'Prix' => $this->getPrix(),
                 'EmailContact' => $this->getEmailContact(),
-                'Latitude' =>$this->getLatitude(),
+                'Latitude' => $this->getLatitude(),
                 'Longitude' => $this->getLongitude()
             ];
     }
