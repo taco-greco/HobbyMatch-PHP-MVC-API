@@ -57,10 +57,11 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lumen/bootstrap.min.css\">
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\">
 \t\t<link rel=\"stylesheet\" href=\"/assets/css/style.css\">
-\t\t<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" integrity=\"sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=\" crossorigin=\"\"/> ";
-        // line 14
-        yield from $this->unwrap()->yieldBlock('css', $context, $blocks);
+\t\t<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" integrity=\"sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=\" crossorigin=\"\"/>
+\t\t<link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css\"> ";
         // line 15
+        yield from $this->unwrap()->yieldBlock('css', $context, $blocks);
+        // line 16
         yield "\t\t</head>
 \t\t<body>
 \t\t\t<nav class=\"navbar navbar-expand-lg bg-primary px-2 px-md-4\" data-bs-theme=\"dark\">
@@ -73,53 +74,58 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t\t\t<ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">
 \t\t\t\t\t\t\t<li class=\"nav-item\">
 \t\t\t\t\t\t\t\t<a class=\"";
-        // line 26
+        // line 27
         yield (((($context["current_uri"] ?? null) == "/")) ? ("active nav-link") : ("nav-link"));
         yield "\" href=\"/\">Accueil</a>
 \t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t";
-        // line 28
-        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 28)) {
-            // line 29
+        // line 29
+        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 29)) {
+            // line 30
             yield "\t\t\t\t\t\t\t\t<li class=\"nav-item\">
 \t\t\t\t\t\t\t\t\t<a class=\"";
-            // line 30
+            // line 31
             yield (((($context["current_uri"] ?? null) == "/AdminHobby/list")) ? ("nav-link active") : ("nav-link"));
             yield "\" href=\"/AdminHobby/list\">Admin List</a>
 \t\t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t\t<li class=\"nav-item\">
 \t\t\t\t\t\t\t\t\t<a class=\"";
-            // line 33
+            // line 34
             yield (((($context["current_uri"] ?? null) == "/AdminHobby/add")) ? ("nav-link active") : ("nav-link"));
             yield "\" href=\"/AdminHobby/add\">Admin Add</a>
 \t\t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t\t<li class=\"nav-item\">
 \t\t\t\t\t\t\t\t\t<a class=\"";
-            // line 36
+            // line 37
             yield (((($context["current_uri"] ?? null) == "/Hobby/fixtures")) ? ("nav-link active") : ("nav-link"));
             yield "\" href=\"/Hobby/fixtures\">Fixtures</a>
 \t\t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t";
         }
-        // line 39
+        // line 40
         yield "\t\t\t\t\t\t</ul>
-\t\t\t\t\t\t<form class=\"d-flex\" role=\"search\">
-\t\t\t\t\t\t\t<input class=\"form-control\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
-\t\t\t\t\t\t\t<button class=\"btn btn-outline-light ms-1\" type=\"submit\">Search</button>
-\t\t\t\t\t\t</form>
+\t\t\t\t\t\t<form class=\"d-flex\" role=\"search\" action=\"/AdminHobby/show/";
+        // line 41
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "id", [], "any", false, false, false, 41), "html", null, true);
+        yield "\">
+\t\t\t\t\t\t\t<input
+\t\t\t\t\t\t\tclass=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\" id=\"Search\">
+\t\t\t\t\t\t";
+        // line 45
+        yield "\t\t\t\t\t\t</form>
 \t\t\t\t\t\t<div>
 \t\t\t\t\t\t\t";
-        // line 45
-        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 45)) {
-            // line 46
+        // line 47
+        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 47)) {
+            // line 48
             yield "\t\t\t\t\t\t\t\t<a class=\"btn btn-warning ms-2 mt-1 mt-xl-0\" href=\"/User/logout\" role=\"button\">Log OUT</a>
 \t\t\t\t\t\t\t";
         } else {
-            // line 48
+            // line 50
             yield "\t\t\t\t\t\t\t\t<a class=\"btn btn-success ms-2 mt-1 mt-xl-0\" href=\"/User/login\" role=\"button\">Log IN</a>
 \t\t\t\t\t\t\t";
         }
-        // line 50
+        // line 52
         yield "\t\t\t\t\t\t</div>
 \t\t\t\t\t</div>
 \t\t\t\t</div>
@@ -128,9 +134,9 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t<div class=\"container mt-4 min-vh-100\">
 \t\t\t\t<main>
 \t\t\t\t\t";
-        // line 57
+        // line 59
         yield from $this->unwrap()->yieldBlock('body', $context, $blocks);
-        // line 58
+        // line 60
         yield "\t\t\t\t</main>
 \t\t\t</div>
 
@@ -149,9 +155,9 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t\t\t\t<a href=\"#\" class=\"nav-link px-2 text-light\">Home</a>
 \t\t\t\t\t\t</li>
 \t\t\t\t\t\t";
-        // line 75
-        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 75)) {
-            // line 76
+        // line 77
+        if (CoreExtension::getAttribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", true, true, false, 77)) {
+            // line 78
             yield "
 \t\t\t\t\t\t\t<li class=\"nav-item\">
 \t\t\t\t\t\t\t\t<a href=\"/AdminHobby/list\" class=\"nav-link px-2 text-light\">Admin List</a>
@@ -164,17 +170,20 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t";
         }
-        // line 87
+        // line 89
         yield "\t\t\t\t\t</ul>
 \t\t\t\t</footer>
 \t\t\t</div>
 \t\t\t<!-- Make sure you put this AFTER Leaflet's CSS -->
 \t\t\t<script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\" integrity=\"sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=\" crossorigin=\"\"></script>
+\t\t\t<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js\"></script>
+\t\t\t<script src=\"https://code.jquery.com/ui/1.13.1/jquery-ui.min.js\"></script>
 \t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
+\t\t\t<script src=\"/assets/js/script.js\"></script>
 \t\t\t";
-        // line 93
+        // line 98
         yield from $this->unwrap()->yieldBlock('javascript', $context, $blocks);
-        // line 94
+        // line 99
         yield "
 \t\t</body>
 \t</html>
@@ -195,7 +204,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 14
+    // line 15
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -205,7 +214,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 57
+    // line 59
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -215,7 +224,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
         yield from [];
     }
 
-    // line 93
+    // line 98
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -246,7 +255,7 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  219 => 93,  209 => 57,  199 => 14,  193 => 8,  186 => 7,  178 => 94,  176 => 93,  168 => 87,  155 => 76,  153 => 75,  134 => 58,  132 => 57,  123 => 50,  119 => 48,  115 => 46,  113 => 45,  105 => 39,  99 => 36,  93 => 33,  87 => 30,  84 => 29,  82 => 28,  77 => 26,  64 => 15,  62 => 14,  56 => 10,  54 => 7,  46 => 1,);
+        return array (  228 => 98,  218 => 59,  208 => 15,  202 => 8,  195 => 7,  187 => 99,  185 => 98,  174 => 89,  161 => 78,  159 => 77,  140 => 60,  138 => 59,  129 => 52,  125 => 50,  121 => 48,  119 => 47,  115 => 45,  109 => 41,  106 => 40,  100 => 37,  94 => 34,  88 => 31,  85 => 30,  83 => 29,  78 => 27,  65 => 16,  63 => 15,  56 => 10,  54 => 7,  46 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -264,7 +273,8 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lumen/bootstrap.min.css\">
 \t\t<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css\">
 \t\t<link rel=\"stylesheet\" href=\"/assets/css/style.css\">
-\t\t<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" integrity=\"sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=\" crossorigin=\"\"/> {% block css %}{% endblock %}
+\t\t<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" integrity=\"sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=\" crossorigin=\"\"/>
+\t\t<link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css\"> {% block css %}{% endblock %}
 \t\t</head>
 \t\t<body>
 \t\t\t<nav class=\"navbar navbar-expand-lg bg-primary px-2 px-md-4\" data-bs-theme=\"dark\">
@@ -290,9 +300,10 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t\t\t\t\t\t</li>
 \t\t\t\t\t\t\t{% endif %}
 \t\t\t\t\t\t</ul>
-\t\t\t\t\t\t<form class=\"d-flex\" role=\"search\">
-\t\t\t\t\t\t\t<input class=\"form-control\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
-\t\t\t\t\t\t\t<button class=\"btn btn-outline-light ms-1\" type=\"submit\">Search</button>
+\t\t\t\t\t\t<form class=\"d-flex\" role=\"search\" action=\"/AdminHobby/show/{{hobby.id}}\">
+\t\t\t\t\t\t\t<input
+\t\t\t\t\t\t\tclass=\"form-control me-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\" id=\"Search\">
+\t\t\t\t\t\t{# <button class=\"btn btn-outline-light ms-1\" type=\"submit\">Search</button> #}
 \t\t\t\t\t\t</form>
 \t\t\t\t\t\t<div>
 \t\t\t\t\t\t\t{% if session.login is defined %}
@@ -342,7 +353,10 @@ class __TwigTemplate_f874f5eae46d430de0fee2bb496ccdde extends Template
 \t\t\t</div>
 \t\t\t<!-- Make sure you put this AFTER Leaflet's CSS -->
 \t\t\t<script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\" integrity=\"sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=\" crossorigin=\"\"></script>
+\t\t\t<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js\"></script>
+\t\t\t<script src=\"https://code.jquery.com/ui/1.13.1/jquery-ui.min.js\"></script>
 \t\t\t<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\" crossorigin=\"anonymous\"></script>
+\t\t\t<script src=\"/assets/js/script.js\"></script>
 \t\t\t{% block javascript %}{% endblock %}
 
 \t\t</body>

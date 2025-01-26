@@ -201,4 +201,40 @@ class ApiHobbyController
             "Message" => "Hobby mis à jour avec succès"
         ]);
     }
+
+    public function search(){
+        if($_SERVER["REQUEST_METHOD"] != "POST") {
+            header("HTTP/1.1 405 Method Not Allowed");
+            return json_encode(
+                [
+                    "status" => "error",
+                    "message" => "Post Attendu"]
+            );
+        }
+
+        // Récupération du Body en String
+        $data  = file_get_contents("php://input");
+        //Conversion du String en JSON
+        $json = json_decode($data);
+
+        if(empty($json)) {
+            header("HTTP/1.1 400 Bad Request");
+            return json_encode(
+                [
+                    "status" => "error",
+                    "message" => "Il faut des données"]
+            );
+        }
+
+        if(!isset($json->keyword) ) {
+            header("HTTP/1.1 400 Bad Request");
+            return json_encode(
+                [
+                    "status" => "error",
+                    "message" => "Il faut des données"]
+            );
+        }
+        $hobbies = Hobby::SqlSearch($json->keyword);
+        return json_encode($hobbies);
+    }
 }

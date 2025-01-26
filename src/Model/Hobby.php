@@ -336,6 +336,26 @@ ImageRepository=:ImageRepository, ImageFileName=:ImageFileName, Latitude=:Latitu
         ]);
     }
 
+    public static function SqlSearch(string $keyword) : array {
+        $requete = BDD::getInstance()->prepare('SELECT * FROM hobbies WHERE Titre LIKE :keyword OR Description LIKE :keyword ORDER BY Id DESC');
+        $requete->bindValue(':keyword','%'.$keyword.'%');
+        $requete->execute();
+        $hobbiessSql = $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $hobbiesObjet = [];
+        foreach ($hobbiessSql as $hobbySql){
+            $hobby = new Hobby();
+            $hobby->setId($hobbySql["Id"]);
+            $hobby->setTitre($hobbySql["Titre"]);
+            $hobby->setDescription($hobbySql["Description"]);
+            $hobby->setDate(new \DateTime($hobbySql["DatePublication"]));
+            $hobby->setAuteur($hobbySql["Auteur"]);
+            $hobby->setImageRepository($hobbySql["ImageRepository"]);
+            $hobby->setImageFileName($hobbySql["ImageFileName"]);
+            $hobbiesObjet[] = $hobby;
+        }
+        return $hobbiesObjet;
+    }
+
     public function jsonSerialize(): mixed
     {
         return
