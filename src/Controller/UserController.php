@@ -3,6 +3,7 @@
 namespace src\Controller;
 
 use src\Model\User;
+use src\Service\JwtService;
 
 class UserController extends AbstractController
 {
@@ -48,25 +49,84 @@ class UserController extends AbstractController
         }
     }
 
-    public static function haveGoodRole(array $rolesCompatibles) {
-        if(!isset($_SESSION["login"])){
-        throw new \Exception("Vous devez vous authentifier pour accéder à cette page");
+    public static function haveGoodRole(array $rolesCompatibles)
+    {
+        if (!isset($_SESSION["login"])) {
+            throw new \Exception("Vous devez vous authentifier pour accéder à cette page");
         }
         // Comparaison role par role
         $roleFound = false;
-        foreach ($_SESSION["login"]["Roles"] as $role){
-        if(in_array($role, $rolesCompatibles)){
-        $roleFound = true;
-        break;
+        foreach ($_SESSION["login"]["Roles"] as $role) {
+            if (in_array($role, $rolesCompatibles)) {
+                $roleFound = true;
+                break;
+            }
         }
+        if (!$roleFound) {
+            throw new \Exception("Vous dn'avez pas le bon role pour accéder à cette page");
         }
-        if(!$roleFound){
-        throw new \Exception("Vous dn'avez pas le bon role pour accéder à cette page");
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['login']);
+        header("Location:/");
+    }
+
+    //Rote qu'on va appeler par API 
+    public function loginjwt()
+    {
+        header("Content-Type: application/json; charset=utf-8");
+
+        if ($_SERVER["REQUEST_METHOD"] != "POST") {
+            header("HTTP/1.1 405 Method Not Allowed");
+            return json_encode([
+                "code" => 1,
+                "Message" => "Post Attendu"
+            ]);
         }
+        // Récuperation du body en String
+        $data = file_get_contents("php://input");
+        //Conversion du String en JSON
+        $json = json_decode($data);
+
+        if (empty($json)) {
+            header("HTTP/1.1 403 Forbidden");
+            return json_encode([
+                "code" => 1,
+                "Message" => "Il faut des données"
+            ]);
         }
 
-        public function logout(){
-            unset($_SESSION['login']);
-            header("Location:/");
+        if (!isset($json->mail) || !isset($json->password)) {
+            header("HTTP/1.1 403 Forbidden");
+            return json_encode([
+                "code" => 1,
+                "Message" => "Il manque le mail ou le password"
+            ]);
         }
+        // Récupérer les info de l'utilisateur par son mail
+        $user = User::SqlGetByMail($json->mail);
+        if ($user == null) {
+            header("HTTP/1.1 403 Forbidden");
+            return json_encode([
+                "code" => 1,
+                "Message" => "User inexistant"
+            ]);
+        }
+        // Comparer le mot de passe avec celui hashé en bdd
+        if (!password_verify($json->password, $user->getPassword())) {
+            header("HTTP/1.1 403 Forbidden");
+            return json_encode([
+                "code" => 1,
+                "Message" => "Mot de passe invalid"
+            ]);
+        }
+        // Return JWT
+        return JwtService::createToken([
+            "mail" => $user->getEmail(),
+            "roles" => $user->getRoles()
+        ]);
+
+    }
 }
