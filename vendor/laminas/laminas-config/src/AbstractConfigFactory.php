@@ -1,54 +1,58 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-config for the canonical source repository
- * @copyright https://github.com/laminas/laminas-config/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-config/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Config;
 
-use Laminas\ServiceManager;
+use Interop\Container\Containerinterface;
+use InvalidArgumentException;
+use Laminas\ServiceManager\AbstractFactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use Traversable;
 
-/**
- * Class AbstractConfigFactory
- */
-class AbstractConfigFactory implements ServiceManager\AbstractFactoryInterface
+use function array_unshift;
+use function is_array;
+use function is_string;
+use function iterator_to_array;
+use function preg_match;
+
+class AbstractConfigFactory implements AbstractFactoryInterface
 {
-    /**
-     * @var array
-     */
-    protected $configs = array();
+    /** @var array */
+    protected $configs = [];
 
-    /**
-     * @var string[]
-     */
-    protected $defaultPatterns = array(
+    /** @var string[] */
+    protected $defaultPatterns = [
         '#config[\._-](.*)$#i',
-        '#^(.*)[\\\\\._-]config$#i'
-    );
+        '#^(.*)[\\\\\._-]config$#i',
+    ];
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     protected $patterns;
 
     /**
-     * Determine if we can create a service with name
+     * Determine if we can create a service with name (SM v2)
      *
-     * @param ServiceManager\ServiceLocatorInterface $serviceLocator
      * @param string $name
      * @param string $requestedName
      * @return bool
      */
-    public function canCreateServiceWithName(ServiceManager\ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+    public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+    {
+        return $this->canCreate($serviceLocator, $requestedName);
+    }
+
+    /**
+     * Determine if we can create a service (SM v3)
+     *
+     * @param string $requestedName
+     * @return bool
+     */
+    public function canCreate(Containerinterface $container, $requestedName)
     {
         if (isset($this->configs[$requestedName])) {
             return true;
         }
 
-        if (!$serviceLocator->has('Config')) {
+        if (! $container->has('config')) {
             return false;
         }
 
@@ -57,19 +61,29 @@ class AbstractConfigFactory implements ServiceManager\AbstractFactoryInterface
             return false;
         }
 
-        $config = $serviceLocator->get('Config');
+        $config = $container->get('config');
         return isset($config[$key]);
     }
 
     /**
-     * Create service with name
+     * Create service with name (SM v2)
      *
-     * @param ServiceManager\ServiceLocatorInterface $serviceLocator
      * @param string $name
      * @param string $requestedName
      * @return string|mixed|array
      */
-    public function createServiceWithName(ServiceManager\ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+    public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
+    {
+        return $this($serviceLocator, $requestedName);
+    }
+
+    /**
+     * Create service with name (SM v3)
+     *
+     * @param string $requestedName
+     * @return string|mixed|array
+     */
+    public function __invoke(Containerinterface $container, $requestedName, ?array $options = null)
     {
         if (isset($this->configs[$requestedName])) {
             return $this->configs[$requestedName];
@@ -81,7 +95,7 @@ class AbstractConfigFactory implements ServiceManager\AbstractFactoryInterface
             return $this->configs[$key];
         }
 
-        $config = $serviceLocator->get('Config');
+        $config                        = $container->get('config');
         $this->configs[$requestedName] = $this->configs[$key] = $config[$key];
         return $config[$key];
     }
@@ -93,7 +107,7 @@ class AbstractConfigFactory implements ServiceManager\AbstractFactoryInterface
      */
     public function addPattern($pattern)
     {
-        if (!is_string($pattern)) {
+        if (! is_string($pattern)) {
             throw new Exception\InvalidArgumentException('pattern must be string');
         }
 
@@ -114,7 +128,7 @@ class AbstractConfigFactory implements ServiceManager\AbstractFactoryInterface
             $patterns = iterator_to_array($patterns);
         }
 
-        if (!is_array($patterns)) {
+        if (! is_array($patterns)) {
             throw new Exception\InvalidArgumentException("patterns must be array or Traversable");
         }
 
@@ -128,7 +142,7 @@ class AbstractConfigFactory implements ServiceManager\AbstractFactoryInterface
     /**
      * @param array|Traversable $patterns
      * @return self
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function setPatterns($patterns)
     {
@@ -136,8 +150,8 @@ class AbstractConfigFactory implements ServiceManager\AbstractFactoryInterface
             $patterns = iterator_to_array($patterns);
         }
 
-        if (!is_array($patterns)) {
-            throw new \InvalidArgumentException("patterns must be array or Traversable");
+        if (! is_array($patterns)) {
+            throw new InvalidArgumentException("patterns must be array or Traversable");
         }
 
         $this->patterns = $patterns;
@@ -166,6 +180,6 @@ class AbstractConfigFactory implements ServiceManager\AbstractFactoryInterface
                 return $matches[1];
             }
         }
-        return;
+        return null;
     }
 }

@@ -1,14 +1,27 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-config for the canonical source repository
- * @copyright https://github.com/laminas/laminas-config/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-config/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Config\Reader;
 
 use Laminas\Config\Exception;
+
+use function array_merge_recursive;
+use function array_replace_recursive;
+use function array_shift;
+use function dirname;
+use function explode;
+use function is_array;
+use function is_file;
+use function is_readable;
+use function parse_ini_file;
+use function parse_ini_string;
+use function restore_error_handler;
+use function set_error_handler;
+use function sprintf;
+use function strpos;
+
+use const E_WARNING;
+use const INI_SCANNER_NORMAL;
+use const INI_SCANNER_TYPED;
 
 /**
  * INI config reader.
@@ -28,6 +41,25 @@ class Ini implements ReaderInterface
      * @var string
      */
     protected $directory;
+
+    /**
+     * Flag which determines whether sections are processed or not.
+     *
+     * @see https://www.php.net/parse_ini_file
+     *
+     * @var bool
+     */
+    protected $processSections = true;
+
+    /**
+     * Flag which determines whether boolean, null, and integer values should be
+     * returned as their proper types.
+     *
+     * @see https://www.php.net/parse_ini_file
+     *
+     * @var bool
+     */
+    protected $typedMode = false;
 
     /**
      * Set nest separator.
@@ -52,16 +84,81 @@ class Ini implements ReaderInterface
     }
 
     /**
+     * Marks whether sections should be processed.
+     * When sections are not processed,section names are stripped and section
+     * values are merged
+     *
+     * @see https://www.php.net/parse_ini_file
+     *
+     * @param bool $processSections
+     * @return $this
+     */
+    public function setProcessSections($processSections)
+    {
+        $this->processSections = (bool) $processSections;
+        return $this;
+    }
+
+    /**
+     * Get if sections should be processed
+     * When sections are not processed,section names are stripped and section
+     * values are merged
+     *
+     * @see https://www.php.net/parse_ini_file
+     *
+     * @return bool
+     */
+    public function getProcessSections()
+    {
+        return $this->processSections;
+    }
+
+    /**
+     * Set whether boolean, null, and integer values should be returned as their proper types.
+     * When set to false, all values will be returned as strings.
+     *
+     * @see https://www.php.net/parse_ini_file
+     */
+    public function setTypedMode(bool $typedMode): self
+    {
+        $this->typedMode = $typedMode;
+        return $this;
+    }
+
+    /**
+     * Get whether boolean, null, and integer values should be returned as their proper types.
+     * When set to false, all values will be returned as strings.
+     *
+     * @see https://www.php.net/parse_ini_file
+     */
+    public function getTypedMode(): bool
+    {
+        return $this->typedMode;
+    }
+
+    /**
+     * Get the scanner-mode constant value to be used with the built-in parse_ini_file function.
+     * Either INI_SCANNER_NORMAL or INI_SCANNER_TYPED depending on $typedMode.
+     *
+     * @see https://www.php.net/parse_ini_file
+     */
+    public function getScannerMode(): int
+    {
+        return $this->getTypedMode() ? INI_SCANNER_TYPED : INI_SCANNER_NORMAL;
+    }
+
+    /**
      * fromFile(): defined by Reader interface.
      *
      * @see    ReaderInterface::fromFile()
+     *
      * @param  string $filename
      * @return array
      * @throws Exception\RuntimeException
      */
     public function fromFile($filename)
     {
-        if (!is_file($filename) || !is_readable($filename)) {
+        if (! is_file($filename) || ! is_readable($filename)) {
             throw new Exception\RuntimeException(sprintf(
                 "File '%s' doesn't exist or not readable",
                 $filename
@@ -79,7 +176,7 @@ class Ini implements ReaderInterface
             },
             E_WARNING
         );
-        $ini = parse_ini_file($filename, true);
+        $ini = parse_ini_file($filename, $this->getProcessSections(), $this->getScannerMode());
         restore_error_handler();
 
         return $this->process($ini);
@@ -95,7 +192,7 @@ class Ini implements ReaderInterface
     public function fromString($string)
     {
         if (empty($string)) {
-            return array();
+            return [];
         }
         $this->directory = null;
 
@@ -108,7 +205,7 @@ class Ini implements ReaderInterface
             },
             E_WARNING
         );
-        $ini = parse_ini_string($string, true);
+        $ini = parse_ini_string($string, $this->getProcessSections(), $this->getScannerMode());
         restore_error_handler();
 
         return $this->process($ini);
@@ -117,18 +214,17 @@ class Ini implements ReaderInterface
     /**
      * Process data from the parsed ini file.
      *
-     * @param  array $data
      * @return array
      */
     protected function process(array $data)
     {
-        $config = array();
+        $config = [];
 
         foreach ($data as $section => $value) {
             if (is_array($value)) {
                 if (strpos($section, $this->nestSeparator) !== false) {
                     $sections = explode($this->nestSeparator, $section);
-                    $config = array_merge_recursive($config, $this->buildNestedSection($sections, $value));
+                    $config   = array_merge_recursive($config, $this->buildNestedSection($sections, $value));
                 } else {
                     $config[$section] = $this->processSection($value);
                 }
@@ -149,13 +245,13 @@ class Ini implements ReaderInterface
      */
     private function buildNestedSection($sections, $value)
     {
-        if (count($sections) == 0) {
+        if (! $sections) {
             return $this->processSection($value);
         }
 
-        $nestedSection = array();
+        $nestedSection = [];
 
-        $first = array_shift($sections);
+        $first                 = array_shift($sections);
         $nestedSection[$first] = $this->buildNestedSection($sections, $value);
 
         return $nestedSection;
@@ -164,12 +260,11 @@ class Ini implements ReaderInterface
     /**
      * Process a section.
      *
-     * @param  array $section
      * @return array
      */
     protected function processSection(array $section)
     {
-        $config = array();
+        $config = [];
 
         foreach ($section as $key => $value) {
             $this->processKey($key, $value, $config);
@@ -183,8 +278,6 @@ class Ini implements ReaderInterface
      *
      * @param  string $key
      * @param  string $value
-     * @param  array  $config
-     * @return array
      * @throws Exception\RuntimeException
      */
     protected function processKey($key, $value, array &$config)
@@ -192,15 +285,17 @@ class Ini implements ReaderInterface
         if (strpos($key, $this->nestSeparator) !== false) {
             $pieces = explode($this->nestSeparator, $key, 2);
 
-            if (!strlen($pieces[0]) || !strlen($pieces[1])) {
+            if ($pieces[0] === '' || $pieces[1] === '') {
                 throw new Exception\RuntimeException(sprintf('Invalid key "%s"', $key));
-            } elseif (!isset($config[$pieces[0]])) {
-                if ($pieces[0] === '0' && !empty($config)) {
-                    $config = array($pieces[0] => $config);
+            }
+
+            if (! isset($config[$pieces[0]])) {
+                if ($pieces[0] === '0' && ! empty($config)) {
+                    $config = [$pieces[0] => $config];
                 } else {
-                    $config[$pieces[0]] = array();
+                    $config[$pieces[0]] = [];
                 }
-            } elseif (!is_array($config[$pieces[0]])) {
+            } elseif (! is_array($config[$pieces[0]])) {
                 throw new Exception\RuntimeException(
                     sprintf('Cannot create sub-key for "%s", as key already exists', $pieces[0])
                 );

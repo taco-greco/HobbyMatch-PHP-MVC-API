@@ -2,7 +2,8 @@
     "require": {
         "twig/twig": "^3.18",
         "symfony/mailer": "^7.2",
-        "firebase/php-jwt": "^6.11",
-        "laminas/laminas-config": "^2.5"
+        "firebase/php-jwt": "^6.10",
+        "laminas/laminas-config": "^3.6",
+        "ext-openssl": "*"
     }
 }

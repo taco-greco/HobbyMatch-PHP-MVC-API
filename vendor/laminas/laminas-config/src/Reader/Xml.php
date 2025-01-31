@@ -1,15 +1,24 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-config for the canonical source repository
- * @copyright https://github.com/laminas/laminas-config/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-config/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Config\Reader;
 
 use Laminas\Config\Exception;
 use XMLReader;
+
+use function array_key_exists;
+use function array_merge;
+use function dirname;
+use function in_array;
+use function is_array;
+use function is_file;
+use function is_readable;
+use function is_string;
+use function restore_error_handler;
+use function set_error_handler;
+use function sprintf;
+
+use const E_WARNING;
+use const LIBXML_XINCLUDE;
 
 /**
  * XML config reader.
@@ -35,24 +44,25 @@ class Xml implements ReaderInterface
      *
      * @var array
      */
-    protected $textNodes = array(
+    protected $textNodes = [
         XMLReader::TEXT,
         XMLReader::CDATA,
         XMLReader::WHITESPACE,
-        XMLReader::SIGNIFICANT_WHITESPACE
-    );
+        XMLReader::SIGNIFICANT_WHITESPACE,
+    ];
 
     /**
      * fromFile(): defined by Reader interface.
      *
      * @see    ReaderInterface::fromFile()
+     *
      * @param  string $filename
      * @return array
      * @throws Exception\RuntimeException
      */
     public function fromFile($filename)
     {
-        if (!is_file($filename) || !is_readable($filename)) {
+        if (! is_file($filename) || ! is_readable($filename)) {
             throw new Exception\RuntimeException(sprintf(
                 "File '%s' doesn't exist or not readable",
                 $filename
@@ -83,6 +93,7 @@ class Xml implements ReaderInterface
      * fromString(): defined by Reader interface.
      *
      * @see    ReaderInterface::fromString()
+     *
      * @param  string $string
      * @return array|bool
      * @throws Exception\RuntimeException
@@ -90,11 +101,11 @@ class Xml implements ReaderInterface
     public function fromString($string)
     {
         if (empty($string)) {
-            return array();
+            return [];
         }
         $this->reader = new XMLReader();
 
-        $this->reader->xml($string, null, LIBXML_XINCLUDE);
+        $this->reader->XML($string, null, LIBXML_XINCLUDE);
 
         $this->directory = null;
 
@@ -131,7 +142,7 @@ class Xml implements ReaderInterface
      */
     protected function processNextElement()
     {
-        $children = array();
+        $children = [];
         $text     = '';
 
         while ($this->reader->read()) {
@@ -144,26 +155,26 @@ class Xml implements ReaderInterface
                 $name       = $this->reader->name;
 
                 if ($this->reader->isEmptyElement) {
-                    $child = array();
+                    $child = [];
                 } else {
                     $child = $this->processNextElement();
                 }
 
                 if ($attributes) {
                     if (is_string($child)) {
-                        $child = array('_' => $child);
+                        $child = ['_' => $child];
                     }
 
                     if (! is_array($child)) {
-                        $child = array();
+                        $child = [];
                     }
 
                     $child = array_merge($child, $attributes);
                 }
 
                 if (isset($children[$name])) {
-                    if (!is_array($children[$name]) || !array_key_exists(0, $children[$name])) {
-                        $children[$name] = array($children[$name]);
+                    if (! is_array($children[$name]) || ! array_key_exists(0, $children[$name])) {
+                        $children[$name] = [$children[$name]];
                     }
 
                     $children[$name][] = $child;
@@ -187,7 +198,7 @@ class Xml implements ReaderInterface
      */
     protected function getAttributes()
     {
-        $attributes = array();
+        $attributes = [];
 
         if ($this->reader->hasAttributes) {
             while ($this->reader->moveToNextAttribute()) {

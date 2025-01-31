@@ -1,43 +1,60 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-config for the canonical source repository
- * @copyright https://github.com/laminas/laminas-config/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-config/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Config\Writer;
 
 use Laminas\Config\Exception;
+
+use function addslashes;
+use function class_exists;
+use function dirname;
+use function file_put_contents;
+use function interface_exists;
+use function is_array;
+use function is_bool;
+use function is_int;
+use function is_object;
+use function is_string;
+use function preg_match;
+use function restore_error_handler;
+use function set_error_handler;
+use function sprintf;
+use function str_repeat;
+use function str_replace;
+use function strlen;
+use function trait_exists;
+use function var_export;
+
+use const E_WARNING;
+use const LOCK_EX;
 
 class PhpArray extends AbstractWriter
 {
     /**
      * @var string
      */
-    const INDENT_STRING = '    ';
+    public const INDENT_STRING = '    ';
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $useBracketArraySyntax = false;
+
+    /** @var bool */
+    protected $useClassNameScalars = false;
 
     /**
      * processConfig(): defined by AbstractWriter.
      *
-     * @param  array $config
      * @return string
      */
     public function processConfig(array $config)
     {
-        $arraySyntax = array(
-            'open' => $this->useBracketArraySyntax ? '[' : 'array(',
-            'close' => $this->useBracketArraySyntax ? ']' : ')'
-        );
+        $arraySyntax = [
+            'open'  => $this->useBracketArraySyntax ? '[' : 'array(',
+            'close' => $this->useBracketArraySyntax ? ']' : ')',
+        ];
 
-        return "<?php\n" .
-               "return " . $arraySyntax['open'] . "\n" . $this->processIndented($config, $arraySyntax) .
-               $arraySyntax['close'] . ";\n";
+        return "<?php\n"
+        . "return " . $arraySyntax['open'] . "\n" . $this->processIndented($config, $arraySyntax)
+        . $arraySyntax['close'] . ";\n";
     }
 
     /**
@@ -53,9 +70,30 @@ class PhpArray extends AbstractWriter
     }
 
     /**
+     * Sets whether or not to render resolvable FQN strings as scalars, using PHP 5.5+ class-keyword
+     *
+     * @param boolean $value
+     * @return self
+     */
+    public function setUseClassNameScalars($value)
+    {
+        $this->useClassNameScalars = $value;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getUseClassNameScalars()
+    {
+        return $this->useClassNameScalars;
+    }
+
+    /**
      * toFile(): defined by Writer interface.
      *
      * @see    WriterInterface::toFile()
+     *
      * @param  string  $filename
      * @param  mixed   $config
      * @param  bool $exclusiveLock
@@ -88,8 +126,8 @@ class PhpArray extends AbstractWriter
             // for Windows, paths are escaped.
             $dirname = str_replace('\\', '\\\\', dirname($filename));
 
-            $string  = $this->toString($config);
-            $string  = str_replace("'" . $dirname, "__DIR__ . '", $string);
+            $string = $this->toString($config);
+            $string = str_replace("'" . $dirname, "__DIR__ . '", $string);
 
             file_put_contents($filename, $string, $flags);
         } catch (\Exception $e) {
@@ -103,8 +141,6 @@ class PhpArray extends AbstractWriter
     /**
      * Recursively processes a PHP config array structure into a readable format.
      *
-     * @param  array $config
-     * @param  array $arraySyntax
      * @param  int   $indentLevel
      * @return string
      */
@@ -114,19 +150,21 @@ class PhpArray extends AbstractWriter
 
         foreach ($config as $key => $value) {
             $arrayString .= str_repeat(self::INDENT_STRING, $indentLevel);
-            $arrayString .= (is_int($key) ? $key : "'" . addslashes($key) . "'") . ' => ';
+            $arrayString .= (is_int($key) ? $key : $this->processStringKey($key)) . ' => ';
 
             if (is_array($value)) {
-                if ($value === array()) {
+                if ($value === []) {
                     $arrayString .= $arraySyntax['open'] . $arraySyntax['close'] . ",\n";
                 } else {
                     $indentLevel++;
                     $arrayString .= $arraySyntax['open'] . "\n"
-                                  . $this->processIndented($value, $arraySyntax, $indentLevel)
-                                  . str_repeat(self::INDENT_STRING, --$indentLevel) . $arraySyntax['close'] . ",\n";
+                        . $this->processIndented($value, $arraySyntax, $indentLevel)
+                        . str_repeat(self::INDENT_STRING, --$indentLevel) . $arraySyntax['close'] . ",\n";
                 }
-            } elseif (is_object($value) || is_string($value)) {
+            } elseif (is_object($value)) {
                 $arrayString .= var_export($value, true) . ",\n";
+            } elseif (is_string($value)) {
+                $arrayString .= $this->processStringValue($value) . ",\n";
             } elseif (is_bool($value)) {
                 $arrayString .= ($value ? 'true' : 'false') . ",\n";
             } elseif ($value === null) {
@@ -137,5 +175,74 @@ class PhpArray extends AbstractWriter
         }
 
         return $arrayString;
+    }
+
+    /**
+     * Process a string configuration value
+     *
+     * @param string $value
+     * @return string
+     */
+    protected function processStringValue($value)
+    {
+        if ($this->useClassNameScalars && false !== ($fqnValue = $this->fqnStringToClassNameScalar($value))) {
+            return $fqnValue;
+        }
+
+        return var_export($value, true);
+    }
+
+    /**
+     * Process a string configuration key
+     *
+     * @param string $key
+     * @return string
+     */
+    protected function processStringKey($key)
+    {
+        if ($this->useClassNameScalars && false !== ($fqnKey = $this->fqnStringToClassNameScalar($key))) {
+            return $fqnKey;
+        }
+
+        return "'" . addslashes($key) . "'";
+    }
+
+    /**
+     * Attempts to convert a FQN string to class name scalar.
+     * Returns false if string is not a valid FQN or can not be resolved to an existing name.
+     *
+     * @param string $string
+     * @return bool|string
+     */
+    protected function fqnStringToClassNameScalar($string)
+    {
+        if (strlen($string) < 1) {
+            return false;
+        }
+
+        if ($string[0] !== '\\') {
+            $string = '\\' . $string;
+        }
+
+        if ($this->checkStringIsFqn($string)) {
+            return $string . '::class';
+        }
+
+        return false;
+    }
+
+    /**
+     * Check whether a string represents a resolvable FQCN
+     *
+     * @param string $string
+     * @return bool
+     */
+    protected function checkStringIsFqn($string)
+    {
+        if (! preg_match('/^(?:\x5c[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)+$/', $string)) {
+            return false;
+        }
+
+        return class_exists($string) || interface_exists($string) || trait_exists($string);
     }
 }

@@ -1,16 +1,19 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-config for the canonical source repository
- * @copyright https://github.com/laminas/laminas-config/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-config/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Config\Processor;
 
 use Laminas\Config\Config;
 use Laminas\Config\Exception;
 use Traversable;
+
+use function array_keys;
+use function gettype;
+use function is_array;
+use function is_bool;
+use function is_numeric;
+use function is_scalar;
+use function is_string;
+use function strtr;
 
 class Token implements ProcessorInterface
 {
@@ -20,6 +23,13 @@ class Token implements ProcessorInterface
      * @var string
      */
     protected $prefix = '';
+
+    /**
+     * Whether or not to process keys as well as values.
+     *
+     * @var bool
+     */
+    protected $processKeys = false;
 
     /**
      * Token suffix.
@@ -33,40 +43,44 @@ class Token implements ProcessorInterface
      *
      * @var array
      */
-    protected $tokens = array();
+    protected $tokens = [];
 
     /**
      * Replacement map
      *
      * @var array
      */
-    protected $map = null;
+    protected $map;
 
     /**
      * Token Processor walks through a Config structure and replaces all
      * occurrences of tokens with supplied values.
      *
-     * @param  array|Config|Traversable   $tokens  Associative array of TOKEN => value
-     *                                             to replace it with
-     * @param    string $prefix
-     * @param    string $suffix
-     * @return   Token
+     * @param array|Config|Traversable $tokens Associative array of TOKEN =>
+     *     value to replace it with
+     * @param string $prefix
+     * @param string $suffix
+     * @param bool $enableKeyProcessing Whether or not to enable processing of
+     *     token values in configuration keys; defaults to false.
      */
-    public function __construct($tokens = array(), $prefix = '', $suffix = '')
+    public function __construct($tokens = [], $prefix = '', $suffix = '', $enableKeyProcessing = false)
     {
         $this->setTokens($tokens);
-        $this->setPrefix($prefix);
-        $this->setSuffix($suffix);
+        $this->setPrefix((string) $prefix);
+        $this->setSuffix((string) $suffix);
+        if (true === $enableKeyProcessing) {
+            $this->enableKeyProcessing();
+        }
     }
 
     /**
      * @param  string $prefix
-     * @return Token
+     * @return self
      */
     public function setPrefix($prefix)
     {
         // reset map
-        $this->map = null;
+        $this->map    = null;
         $this->prefix = $prefix;
         return $this;
     }
@@ -81,12 +95,12 @@ class Token implements ProcessorInterface
 
     /**
      * @param  string $suffix
-     * @return Token
+     * @return self
      */
     public function setSuffix($suffix)
     {
         // reset map
-        $this->map = null;
+        $this->map    = null;
         $this->suffix = $suffix;
 
         return $this;
@@ -103,9 +117,9 @@ class Token implements ProcessorInterface
     /**
      * Set token registry.
      *
-     * @param  array|Config|Traversable  $tokens  Associative array of TOKEN => value
-     *                                            to replace it with
-     * @return Token
+     * @param array|Config|Traversable $tokens Associative array of TOKEN =>
+     *     value to replace it with
+     * @return self
      * @throws Exception\InvalidArgumentException
      */
     public function setTokens($tokens)
@@ -115,7 +129,7 @@ class Token implements ProcessorInterface
         } elseif ($tokens instanceof Config) {
             $this->tokens = $tokens->toArray();
         } elseif ($tokens instanceof Traversable) {
-            $this->tokens = array();
+            $this->tokens = [];
             foreach ($tokens as $key => $val) {
                 $this->tokens[$key] = $val;
             }
@@ -142,14 +156,14 @@ class Token implements ProcessorInterface
     /**
      * Add new token.
      *
-     * @param  string $token
-     * @param  mixed $value
-     * @return Token
+     * @param string $token
+     * @param mixed $value
+     * @return self
      * @throws Exception\InvalidArgumentException
      */
     public function addToken($token, $value)
     {
-        if (!is_scalar($token)) {
+        if (! is_scalar($token)) {
             throw new Exception\InvalidArgumentException('Cannot use ' . gettype($token) . ' as token name.');
         }
         $this->tokens[$token] = $value;
@@ -165,11 +179,21 @@ class Token implements ProcessorInterface
      *
      * @param string $token
      * @param mixed $value
-     * @return Token
+     * @return self
      */
     public function setToken($token, $value)
     {
         return $this->addToken($token, $value);
+    }
+
+    /**
+     * Enable processing keys as well as values.
+     *
+     * @return void
+     */
+    public function enableKeyProcessing()
+    {
+        $this->processKeys = true;
     }
 
     /**
@@ -180,10 +204,10 @@ class Token implements ProcessorInterface
     protected function buildMap()
     {
         if (null === $this->map) {
-            if (!$this->suffix && !$this->prefix) {
+            if (! $this->suffix && ! $this->prefix) {
                 $this->map = $this->tokens;
             } else {
-                $this->map = array();
+                $this->map = [];
 
                 foreach ($this->tokens as $token => $value) {
                     $this->map[$this->prefix . $token . $this->suffix] = $value;
@@ -203,7 +227,6 @@ class Token implements ProcessorInterface
     /**
      * Process
      *
-     * @param  Config $config
      * @return Config
      * @throws Exception\InvalidArgumentException
      */
@@ -215,7 +238,7 @@ class Token implements ProcessorInterface
     /**
      * Process a single value
      *
-     * @param $value
+     * @param mixed $value
      * @return mixed
      */
     public function processValue($value)
@@ -227,13 +250,10 @@ class Token implements ProcessorInterface
      * Applies replacement map to the given value by modifying the value itself
      *
      * @param mixed $value
-     * @param array $replacements
-     *
      * @return mixed
-     *
-     * @throws Exception\InvalidArgumentException if the provided value is a read-only {@see Config}
+     * @throws Exception\InvalidArgumentException If the provided value is a read-only {@see Config}.
      */
-    private function doProcess($value, array $replacements)
+    protected function doProcess($value, array $replacements)
     {
         if ($value instanceof Config) {
             if ($value->isReadOnly()) {
@@ -241,21 +261,27 @@ class Token implements ProcessorInterface
             }
 
             foreach ($value as $key => $val) {
-                $value->$key = $this->doProcess($val, $replacements);
+                $newKey         = $this->processKeys ? $this->doProcess($key, $replacements) : $key;
+                $value->$newKey = $this->doProcess($val, $replacements);
+
+                // If the processed key differs from the original, remove the original
+                if ($newKey !== $key) {
+                    unset($value->$key);
+                }
             }
 
             return $value;
         }
 
         if ($value instanceof Traversable || is_array($value)) {
-            foreach ($value as & $val) {
+            foreach ($value as &$val) {
                 $val = $this->doProcess($val, $replacements);
             }
 
             return $value;
         }
 
-        if (!is_string($value) && (is_bool($value) || is_numeric($value))) {
+        if (! is_string($value) && (is_bool($value) || is_numeric($value))) {
             $stringVal  = (string) $value;
             $changedVal = strtr($stringVal, $this->map);
 

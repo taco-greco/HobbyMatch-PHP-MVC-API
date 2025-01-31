@@ -1,16 +1,22 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-config for the canonical source repository
- * @copyright https://github.com/laminas/laminas-config/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-config/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Config\Reader;
 
 use Laminas\Config\Exception;
-use Laminas\Json\Exception as JsonException;
-use Laminas\Json\Json as JsonFormat;
+
+use function array_replace_recursive;
+use function dirname;
+use function file_get_contents;
+use function is_array;
+use function is_file;
+use function is_readable;
+use function json_decode;
+use function json_last_error;
+use function json_last_error_msg;
+use function sprintf;
+use function trim;
+
+use const JSON_ERROR_NONE;
 
 /**
  * JSON config reader.
@@ -28,13 +34,14 @@ class Json implements ReaderInterface
      * fromFile(): defined by Reader interface.
      *
      * @see    ReaderInterface::fromFile()
+     *
      * @param  string $filename
      * @return array
      * @throws Exception\RuntimeException
      */
     public function fromFile($filename)
     {
-        if (!is_file($filename) || !is_readable($filename)) {
+        if (! is_file($filename) || ! is_readable($filename)) {
             throw new Exception\RuntimeException(sprintf(
                 "File '%s' doesn't exist or not readable",
                 $filename
@@ -43,11 +50,7 @@ class Json implements ReaderInterface
 
         $this->directory = dirname($filename);
 
-        try {
-            $config = JsonFormat::decode(file_get_contents($filename), JsonFormat::TYPE_ARRAY);
-        } catch (JsonException\RuntimeException $e) {
-            throw new Exception\RuntimeException($e->getMessage());
-        }
+        $config = $this->decode(file_get_contents($filename));
 
         return $this->process($config);
     }
@@ -56,6 +59,7 @@ class Json implements ReaderInterface
      * fromString(): defined by Reader interface.
      *
      * @see    ReaderInterface::fromString()
+     *
      * @param  string $string
      * @return array|bool
      * @throws Exception\RuntimeException
@@ -63,16 +67,12 @@ class Json implements ReaderInterface
     public function fromString($string)
     {
         if (empty($string)) {
-            return array();
+            return [];
         }
 
         $this->directory = null;
 
-        try {
-            $config = JsonFormat::decode($string, JsonFormat::TYPE_ARRAY);
-        } catch (JsonException\RuntimeException $e) {
-            throw new Exception\RuntimeException($e->getMessage());
-        }
+        $config = $this->decode($string);
 
         return $this->process($config);
     }
@@ -80,7 +80,6 @@ class Json implements ReaderInterface
     /**
      * Process the array for @include
      *
-     * @param  array $data
      * @return array
      * @throws Exception\RuntimeException
      */
@@ -100,5 +99,37 @@ class Json implements ReaderInterface
             }
         }
         return $data;
+    }
+
+    /**
+     * Decode JSON configuration.
+     *
+     * Determines if ext/json is present, and, if so, uses that to decode the
+     * configuration. Otherwise, it uses laminas-json, and, if that is missing,
+     * raises an exception indicating inability to decode.
+     *
+     * @param string $data
+     * @return array
+     * @throws Exception\RuntimeException For any decoding errors.
+     */
+    private function decode($data)
+    {
+        $config = json_decode($data, true);
+
+        if (null !== $config && ! is_array($config)) {
+            throw new Exception\RuntimeException(
+                'Invalid JSON configuration; did not return an array or object'
+            );
+        }
+
+        if (null !== $config) {
+            return $config;
+        }
+
+        if (JSON_ERROR_NONE === json_last_error()) {
+            return $config;
+        }
+
+        throw new Exception\RuntimeException(json_last_error_msg());
     }
 }

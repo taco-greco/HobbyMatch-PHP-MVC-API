@@ -1,14 +1,16 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-config for the canonical source repository
- * @copyright https://github.com/laminas/laminas-config/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-config/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Config\Writer;
 
 use Laminas\Config\Exception;
+
+use function array_merge;
+use function implode;
+use function is_array;
+use function is_bool;
+use function is_float;
+use function is_int;
+use function strpos;
 
 class Ini extends AbstractWriter
 {
@@ -55,8 +57,8 @@ class Ini extends AbstractWriter
      * If set to true, the INI file is rendered without sections completely
      * into the global namespace of the INI file.
      *
-     * @param  bool $withoutSections
-     * @return Ini
+     * @param bool $withoutSections
+     * @return self
      */
     public function setRenderWithoutSectionsFlags($withoutSections)
     {
@@ -77,7 +79,6 @@ class Ini extends AbstractWriter
     /**
      * processConfig(): defined by AbstractWriter.
      *
-     * @param  array $config
      * @return string
      */
     public function processConfig(array $config)
@@ -90,15 +91,15 @@ class Ini extends AbstractWriter
             $config = $this->sortRootElements($config);
 
             foreach ($config as $sectionName => $data) {
-                if (!is_array($data)) {
+                if (! is_array($data)) {
                     $iniString .= $sectionName
-                               .  ' = '
-                               .  $this->prepareValue($data)
-                               .  "\n";
+                               . ' = '
+                               . $this->prepareValue($data)
+                               . "\n";
                 } else {
                     $iniString .= '[' . $sectionName . ']' . "\n"
-                               .  $this->addBranch($data)
-                               .  "\n";
+                               . $this->addBranch($data)
+                               . "\n";
                 }
             }
         }
@@ -109,24 +110,23 @@ class Ini extends AbstractWriter
     /**
      * Add a branch to an INI string recursively.
      *
-     * @param  array $config
      * @param  array $parents
      * @return string
      */
-    protected function addBranch(array $config, $parents = array())
+    protected function addBranch(array $config, $parents = [])
     {
         $iniString = '';
 
         foreach ($config as $key => $value) {
-            $group = array_merge($parents, array($key));
+            $group = array_merge($parents, [$key]);
 
             if (is_array($value)) {
                 $iniString .= $this->addBranch($value, $group);
             } else {
                 $iniString .= implode($this->nestSeparator, $group)
-                           .  ' = '
-                           .  $this->prepareValue($value)
-                           .  "\n";
+                           . ' = '
+                           . $this->prepareValue($value)
+                           . "\n";
             }
         }
 
@@ -144,25 +144,28 @@ class Ini extends AbstractWriter
     {
         if (is_int($value) || is_float($value)) {
             return $value;
-        } elseif (is_bool($value)) {
-            return ($value ? 'true' : 'false');
-        } elseif (false === strpos($value, '"')) {
-            return '"' . $value .  '"';
-        } else {
-            throw new Exception\RuntimeException('Value can not contain double quotes');
         }
+
+        if (is_bool($value)) {
+            return $value ? 'true' : 'false';
+        }
+
+        if (false === strpos($value, '"')) {
+            return '"' . $value . '"';
+        }
+
+        throw new Exception\RuntimeException('Value can not contain double quotes');
     }
 
     /**
      * Root elements that are not assigned to any section needs to be on the
      * top of config.
      *
-     * @param  array $config
      * @return array
      */
     protected function sortRootElements(array $config)
     {
-        $sections = array();
+        $sections = [];
 
         // Remove sections from config array.
         foreach ($config as $key => $value) {

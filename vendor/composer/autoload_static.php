@@ -7,7 +7,6 @@ namespace Composer\Autoload;
 class ComposerStaticInit19b0974c8ed31292a8cd7bea470e26f5
 {
     public static $files = array (
-        '7e9bd612cc444b3eed788ebbe46263a0' => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src/autoload.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -46,9 +45,7 @@ class ComposerStaticInit19b0974c8ed31292a8cd7bea470e26f5
         ),
         'L' => 
         array (
-            'Laminas\\ZendFrameworkBridge\\' => 28,
             'Laminas\\Stdlib\\' => 15,
-            'Laminas\\Hydrator\\' => 17,
             'Laminas\\Config\\' => 15,
         ),
         'F' => 
@@ -122,17 +119,9 @@ class ComposerStaticInit19b0974c8ed31292a8cd7bea470e26f5
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
-        'Laminas\\ZendFrameworkBridge\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laminas/laminas-zendframework-bridge/src',
-        ),
         'Laminas\\Stdlib\\' => 
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-stdlib/src',
-        ),
-        'Laminas\\Hydrator\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laminas/laminas-hydrator/src',
         ),
         'Laminas\\Config\\' => 
         array (

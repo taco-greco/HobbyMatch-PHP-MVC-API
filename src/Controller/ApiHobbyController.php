@@ -3,6 +3,7 @@
 namespace src\Controller;
 
 use src\Model\Hobby;
+use src\Service\JwtService;
 
 class ApiHobbyController
 {
@@ -46,6 +47,21 @@ class ApiHobbyController
                 "Message" => "Get Attendu"
             ]);
         }
+
+        $jwtresult = JwtService::checkToken();
+        if ($jwtresult["status"] == "error") {
+            return json_encode($jwtresult["message"]);
+        }
+
+        if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
+            return json_encode(
+                [
+                    "status" => "error",
+                    "message" => "Vous n'avez pas le role Toto"
+                ]
+            );
+        }
+
         $hobbies = Hobby::SqlGetAll();
         return json_encode($hobbies);
     }
@@ -202,13 +218,15 @@ class ApiHobbyController
         ]);
     }
 
-    public function search(){
-        if($_SERVER["REQUEST_METHOD"] != "POST") {
+    public function search()
+    {
+        if ($_SERVER["REQUEST_METHOD"] != "POST") {
             header("HTTP/1.1 405 Method Not Allowed");
             return json_encode(
                 [
                     "status" => "error",
-                    "message" => "Post Attendu"]
+                    "message" => "Post Attendu"
+                ]
             );
         }
 
@@ -217,21 +235,23 @@ class ApiHobbyController
         //Conversion du String en JSON
         $json = json_decode($data);
 
-        if(empty($json)) {
+        if (empty($json)) {
             header("HTTP/1.1 400 Bad Request");
             return json_encode(
                 [
                     "status" => "error",
-                    "message" => "Il faut des données"]
+                    "message" => "Il faut des données"
+                ]
             );
         }
 
-        if(!isset($json->keyword) ) {
+        if (!isset($json->keyword)) {
             header("HTTP/1.1 400 Bad Request");
             return json_encode(
                 [
                     "status" => "error",
-                    "message" => "Il faut des données"]
+                    "message" => "Il faut des données"
+                ]
             );
         }
         $hobbies = Hobby::SqlSearch($json->keyword);

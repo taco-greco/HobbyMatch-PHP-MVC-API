@@ -1,20 +1,35 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-config for the canonical source repository
- * @copyright https://github.com/laminas/laminas-config/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-config/blob/master/LICENSE.md New BSD License
- */
-
 namespace Laminas\Config\Reader;
 
 use Laminas\Config\Exception;
+
+use function array_replace_recursive;
+use function dirname;
+use function explode;
+use function file_get_contents;
+use function gettype;
+use function is_file;
+use function is_object;
+use function is_readable;
+use function is_string;
+use function sprintf;
+use function stripslashes;
+use function strlen;
+use function strpos;
+use function strrpos;
+use function substr;
+use function trim;
 
 /**
  * Java-style properties config reader.
  */
 class JavaProperties implements ReaderInterface
 {
+    public const DELIMITER_DEFAULT = ':';
+    public const WHITESPACE_TRIM   = true;
+    public const WHITESPACE_KEEP   = false;
+
     /**
      * Directory of the Java-style properties file
      *
@@ -23,16 +38,50 @@ class JavaProperties implements ReaderInterface
     protected $directory;
 
     /**
+     * Delimiter for key/value pairs.
+     *
+     * @var string
+     */
+    private $delimiter;
+
+    /**
+     * Whether or not to trim whitespace from discovered keys and values.
+     *
+     * @var bool
+     */
+    private $trimWhitespace;
+
+    /**
+     * @param string $delimiter Delimiter to use for key/value pairs; defaults
+     *     to self::DELIMITER_DEFAULT (':')
+     * @param bool $trimWhitespace
+     * @throws Exception\InvalidArgumentException For invalid $delimiter values.
+     */
+    public function __construct($delimiter = self::DELIMITER_DEFAULT, $trimWhitespace = self::WHITESPACE_KEEP)
+    {
+        if (! is_string($delimiter) || '' === $delimiter) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                'Invalid delimiter of type "%s"; must be a non-empty string',
+                is_object($delimiter) ? $delimiter::class : gettype($delimiter)
+            ));
+        }
+
+        $this->delimiter      = $delimiter;
+        $this->trimWhitespace = (bool) $trimWhitespace;
+    }
+
+    /**
      * fromFile(): defined by Reader interface.
      *
      * @see    ReaderInterface::fromFile()
+     *
      * @param  string $filename
      * @return array
-     * @throws Exception\RuntimeException if the file cannot be read
+     * @throws Exception\RuntimeException If the file cannot be read.
      */
     public function fromFile($filename)
     {
-        if (!is_file($filename) || !is_readable($filename)) {
+        if (! is_file($filename) || ! is_readable($filename)) {
             throw new Exception\RuntimeException(sprintf(
                 "File '%s' doesn't exist or not readable",
                 $filename
@@ -50,14 +99,15 @@ class JavaProperties implements ReaderInterface
      * fromString(): defined by Reader interface.
      *
      * @see    ReaderInterface::fromString()
+     *
      * @param  string $string
      * @return array
-     * @throws Exception\RuntimeException if an @include key is found
+     * @throws Exception\RuntimeException If an @include key is found.
      */
     public function fromString($string)
     {
         if (empty($string)) {
-            return array();
+            return [];
         }
 
         $this->directory = null;
@@ -70,9 +120,8 @@ class JavaProperties implements ReaderInterface
     /**
      * Process the array for @include
      *
-     * @param  array $data
      * @return array
-     * @throws Exception\RuntimeException if an @include key is found
+     * @throws Exception\RuntimeException If an @include key is found.
      */
     protected function process(array $data)
     {
@@ -94,39 +143,47 @@ class JavaProperties implements ReaderInterface
      *
      * @todo Support use of the equals sign "key=value" as key-value delimiter
      * @todo Ignore whitespace that precedes text past the first line of multiline values
-     *
      * @param  string $string
      * @return array
      */
     protected function parse($string)
     {
-        $result = array();
-        $lines = explode("\n", $string);
-        $key = "";
+        $delimiter          = $this->delimiter;
+        $delimLength        = strlen($delimiter);
+        $result             = [];
+        $lines              = explode("\n", $string);
+        $key                = '';
         $isWaitingOtherLine = false;
         foreach ($lines as $i => $line) {
             // Ignore empty lines and commented lines
-            if (empty($line)
-               || (!$isWaitingOtherLine && strpos($line, "#") === 0)
-               || (!$isWaitingOtherLine && strpos($line, "!") === 0)) {
+            if (
+                empty($line)
+                || (! $isWaitingOtherLine && strpos($line, "#") === 0)
+                || (! $isWaitingOtherLine && strpos($line, "!") === 0)
+            ) {
                 continue;
             }
 
             // Add a new key-value pair or append value to a previous pair
-            if (!$isWaitingOtherLine) {
-                $key = substr($line, 0, strpos($line, ':'));
-                $value = substr($line, strpos($line, ':') + 1, strlen($line));
+            if (! $isWaitingOtherLine) {
+                $key   = substr($line, 0, strpos($line, $delimiter));
+                $value = substr($line, strpos($line, $delimiter) + $delimLength, strlen($line));
             } else {
                 $value .= $line;
             }
 
             // Check if ends with single '\' (indicating another line is expected)
             if (strrpos($value, "\\") === strlen($value) - strlen("\\")) {
-                $value = substr($value, 0, strlen($value) - 1);
+                $value              = substr($value, 0, -1);
                 $isWaitingOtherLine = true;
             } else {
                 $isWaitingOtherLine = false;
             }
+
+            $key   = $this->trimWhitespace ? trim($key) : $key;
+            $value = $this->trimWhitespace && ! $isWaitingOtherLine
+                ? trim($value)
+                : $value;
 
             $result[$key] = stripslashes($value);
             unset($lines[$i]);
