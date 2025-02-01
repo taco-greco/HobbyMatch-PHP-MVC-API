@@ -2,8 +2,10 @@
 
 namespace src\Controller;
 
-use src\Model\Hobby;
+use Mpdf\Mpdf;
 use src\Model\BDD;
+use src\Model\Hobby;
+use Mpdf\Output\Destination;
 
 
 class HobbyController extends AbstractController
@@ -51,5 +53,17 @@ class HobbyController extends AbstractController
                 ->setImageFileName("image.jpg");
             Hobby::SqlAdd($hobby);
         }
+    }
+
+    public function pdf(int $id)
+    {
+        $hobby = Hobby::SqlGetById($id);
+        $mpdf = new Mpdf([
+            "tempDir" => $_SERVER["DOCUMENT_ROOT"]."/../var/cache/pdf"
+            ]);
+            $mpdf->WriteHTML($this->twig->render('Hobby/pdf.html.twig',[
+                'hobby' => $hobby
+                ]));
+                $mpdf->Output($_SERVER["DOCUMENT_ROOT"]."/uploads/pdf/hobby-".$hobby->getId().".pdf", dest: Destination::DOWNLOAD);
     }
 }
