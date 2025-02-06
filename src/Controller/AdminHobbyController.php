@@ -11,14 +11,19 @@ class AdminHobbyController extends AbstractController
     {
         UserController::haveGoodRole(["Verificateur", "Administrateur", "Redacteur"]);
         $hobbies = Hobby::SqlGetAll();
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
         return $this->twig->render('Admin/Hobby/list.html.twig', [
-            'hobbies' => $hobbies
+            'hobbies' => $hobbies,
+            'token' => $token
         ]);
     }
-    public function delete(int $id)
+    public function delete()
     {
         UserController::haveGoodRole(["Administrateur"]);
-        Hobby::SqlDelete($id);
+        if ($_SESSION['token'] == $_POST['token']) {
+            Hobby::SqlDelete($_POST['id']);
+        }
         header("Location:/AdminHobby/list");
     }
 

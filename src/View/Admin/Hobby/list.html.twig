@@ -2,30 +2,45 @@
 {% block title %}{{parent()}}- Liste des Hobbies{% endblock%}
 {% block body %}
 
-<div class="table-responsive">
-<table class="table table-hover text-center">
-<thead>
-<tr>
-<th scope="col">Id</th>
-<th scope="col">Titre</th>
-<th scope="col" class="d-none d-lg-table-cell">DatePublication</th>
-<th scope="col" class="d-none d-lg-table-cell">Auteur</th>
-<th scope="col">Edit</th>
-<th scope="col">Delete</th>
-</tr>
-</thead>
-<tbody class="table-group-divider">
-{% for hobby in hobbies %}
-<tr>
-<th scope="row">{{ hobby.Id }}</th>
-<td><a href="/AdminHobby/show/{{hobby.id}}" class="btn btn-link">{{ hobby.Titre }}</a></td>
-<td class="d-none d-lg-table-cell">{{ hobby.DatePublication|date('d/m/Y') }}
-<td class="d-none d-lg-table-cell">{{ hobby.Auteur }}</td>
-<td><a href="/AdminHobby/update/{{hobby.id}}" class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a></td>
-<td><a href="/AdminHobby/delete/{{hobby.Id}}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a></td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-</div>
+	<div class="table-responsive">
+		<table class="table table-hover text-center">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Titre</th>
+					<th scope="col" class="d-none d-lg-table-cell">DatePublication</th>
+					<th scope="col" class="d-none d-lg-table-cell">Auteur</th>
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for hobby in hobbies %}
+					<tr>
+						<th scope="row">{{ hobby.Id }}</th>
+						<td>
+							<a href="/AdminHobby/show/{{hobby.id}}" class="btn btn-link">{{ hobby.Titre }}</a>
+						</td>
+						<td class="d-none d-lg-table-cell">{{ hobby.DatePublication|date('d/m/Y') }}</td>
+						<td class="d-none d-lg-table-cell">{{ hobby.Auteur }}</td>
+						<td>
+							<a href="/AdminHobby/update/{{hobby.id}}" class="btn btn-info btn-sm">
+								<i class="bi bi-pencil-square"></i>
+							</a>
+						</td>
+						<td>
+							<form method="post" action="/AdminHobby/delete">
+								<input type="hidden" value="{{ hobby.id }}" name="id">
+								<input type="hidden" value="{{ token }}" name="token">
+								<button type="submit" class="btn btn-danger btn-sm">
+									<i class="bi bi-trash"></i>
+								</button>
+							</form>
+							{# <a href="/AdminHobby/delete/{{hobby.Id}}" class="btn btn-danger btn-sm"></a></td> #}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}
