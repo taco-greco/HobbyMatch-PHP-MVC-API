@@ -53,6 +53,7 @@ class HobbyController extends AbstractController
                 ->setImageFileName("image.jpg");
             Hobby::SqlAdd($hobby);
         }
+        header('location: /');
     }
 
     public function pdf(int $id)
