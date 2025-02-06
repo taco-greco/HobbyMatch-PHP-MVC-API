@@ -48,19 +48,19 @@ class ApiHobbyController
             ]);
         }
 
-        $jwtresult = JwtService::checkToken();
-        if ($jwtresult["status"] == "error") {
-            return json_encode($jwtresult["message"]);
-        }
+        // $jwtresult = JwtService::checkToken();
+        // if ($jwtresult["status"] == "error") {
+        //     return json_encode($jwtresult["message"]);
+        // }
 
-        if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
-            return json_encode(
-                [
-                    "status" => "error",
-                    "message" => "Vous n'avez pas le role Toto"
-                ]
-            );
-        }
+        // if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
+        //     return json_encode(
+        //         [
+        //             "status" => "error",
+        //             "message" => "Vous n'avez pas le role Toto"
+        //         ]
+        //     );
+        // }
 
         $hobbies = Hobby::SqlGetAll();
         return json_encode($hobbies);
