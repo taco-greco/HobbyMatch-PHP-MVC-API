@@ -17,10 +17,15 @@ function chargerClasse($classe)
 spl_autoload_register('chargerClasse');
 
 // Router
-$URLS = explode("/",$_GET["url"]);
-$controller = (isset($URLS[0])) ? $URLS[0] : '';
-$action = (isset($URLS[1])) ? $URLS[1] : '';
-$param = (isset($URLS[2])) ? $URLS[2] : '';
+$uri = $_SERVER['REQUEST_URI'];
+$scriptName = dirname($_SERVER['SCRIPT_NAME']);
+$uri = substr($uri, strlen($scriptName));
+$uri = trim($uri, '/');
+$URLS = explode("/", $uri);
+
+$controller = (isset($URLS[0]) && $URLS[0] != '') ? $URLS[0] : 'Hobby';
+$action = (isset($URLS[1]) && $URLS[1] != '') ? $URLS[1] : 'index';
+$param = (isset($URLS[2]) && is_numeric($URLS[2])) ? (int)$URLS[2] : null;
 
 if ($controller != '') {
     try {
