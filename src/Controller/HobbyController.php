@@ -6,7 +6,7 @@ use Mpdf\Mpdf;
 use src\Model\BDD;
 use src\Model\Hobby;
 use Mpdf\Output\Destination;
-
+use Faker\Factory;
 
 class HobbyController extends AbstractController
 {
@@ -21,36 +21,50 @@ class HobbyController extends AbstractController
     public function fixtures()
     {
         $requette = BDD::getInstance()->prepare("TRUNCATE TABLE hobbies")->execute();
-        $arrayTitre = [
+        $faker = Factory::create();
+        $dateDuJour = new \DateTime();
+
+        // Generate a list of 20 unique titles
+        $uniqueTitles = [
             'Lecture',
             'Jardinage',
             'Peinture',
             'Cuisine',
             'Voyage',
-            'Photographie'
+            'Photographie',
+            'Cyclisme',
+            'Randonnée',
+            'Pêche',
+            'Tricot',
+            'Travail du bois',
+            'Observation des oiseaux',
+            'Danse',
+            'Écriture',
+            'Yoga',
+            'Méditation',
+            'Jeux vidéo',
+            'Collection',
+            'Dessin',
+            'Couture'
         ];
-        $arrayAuteurs = [
-            'Jean',
-            'Paul',
-            'Jacques',
-            'Marie',
-            'Pierre',
-            'Julie'
-        ];
-        $dateDuJour = new \DateTime();
+
+        // Rouen coordinates
+        $rouenLat = 49.4431;
+        $rouenLon = 1.0993;
 
         for ($i = 0; $i < 200; $i++) {
             $dateDuJour->modify('+1 day');
-            shuffle($arrayTitre);
-            shuffle($arrayAuteurs);
             $hobby = new Hobby();
-            $hobby->setTitre($arrayTitre[0])
-                ->setAuteur($arrayAuteurs[0])
+            $hobby->setTitre($uniqueTitles[$i % 20]) // Use one of the 20 unique titles
+                ->setAuteur($faker->firstName)
                 ->setDate($dateDuJour)
-                ->setDescription("Description de l'article ")
-                ->setDescription("Ceci est une description générale pour le hobby " . $arrayTitre[0])
+                ->setDescription("Ceci est une description générale pour le hobby " . $uniqueTitles[$i % 20])
                 ->setImageRepository("images")
-                ->setImageFileName("image.jpg");
+                ->setImageFileName("image" . ($i % 20) . ".jpg") // Assuming you have images named image0.jpg, image1.jpg, ..., image19.jpg
+                ->setEmailContact($faker->email)
+                ->setLatitude($rouenLat + $faker->randomFloat(6, -0.01, 0.01)) // Latitude within a small range around Rouen
+                ->setLongitude($rouenLon + $faker->randomFloat(6, -0.01, 0.01)) // Longitude within a small range around Rouen
+                ->setPrix($faker->randomFloat(2, 10, 100)); // Random price between 10 and 100
             Hobby::SqlAdd($hobby);
         }
         header('location: /');
@@ -60,11 +74,11 @@ class HobbyController extends AbstractController
     {
         $hobby = Hobby::SqlGetById($id);
         $mpdf = new Mpdf([
-            "tempDir" => $_SERVER["DOCUMENT_ROOT"]."/../var/cache/pdf"
-            ]);
-            $mpdf->WriteHTML($this->twig->render('Hobby/pdf.html.twig',[
-                'hobby' => $hobby
-                ]));
-                $mpdf->Output($_SERVER["DOCUMENT_ROOT"]."/uploads/pdf/hobby-".$hobby->getId().".pdf", dest: Destination::DOWNLOAD);
+            "tempDir" => $_SERVER["DOCUMENT_ROOT"] . "/../var/cache/pdf"
+        ]);
+        $mpdf->WriteHTML($this->twig->render('Hobby/pdf.html.twig', [
+            'hobby' => $hobby
+        ]));
+        $mpdf->Output($_SERVER["DOCUMENT_ROOT"] . "/uploads/pdf/hobby-" . $hobby->getId() . ".pdf", dest: Destination::DOWNLOAD);
     }
 }
