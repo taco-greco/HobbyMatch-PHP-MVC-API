@@ -59,8 +59,8 @@ class HobbyController extends AbstractController
                 ->setAuteur($faker->firstName)
                 ->setDate($dateDuJour)
                 ->setDescription("Ceci est une description générale pour le hobby " . $uniqueTitles[$i % 20])
-                ->setImageRepository("images")
-                ->setImageFileName("image" . ($i % 20) . ".jpg") // Assuming you have images named image0.jpg, image1.jpg, ..., image19.jpg
+                ->setImageRepository("fixtures")
+                ->setImageFileName(strtolower(str_replace(' ', '_', $uniqueTitles[$i % 20])) . '.jpg') // Use the title as the image file namenamed image0.jpg, image1.jpg, ..., image19.jpg
                 ->setEmailContact($faker->email)
                 ->setLatitude($rouenLat + $faker->randomFloat(6, -0.01, 0.01)) // Latitude within a small range around Rouen
                 ->setLongitude($rouenLon + $faker->randomFloat(6, -0.01, 0.01)) // Longitude within a small range around Rouen
