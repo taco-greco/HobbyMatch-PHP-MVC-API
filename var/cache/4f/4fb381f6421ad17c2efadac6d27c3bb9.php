@@ -371,11 +371,11 @@ primary\">
 <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
 <tbody>
 <tr>
-<td> <a href=\"http://hobbymatch.localhost/AdminHobby/update/";
+<td> <a href=\"http://hobbymatch.localhost/AdminHobby/show/";
         // line 321
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Id", [], "any", false, false, false, 321), "html", null, true);
         yield "\"
-target=\"_blank\">Editer #";
+target=\"_blank\">Voir #";
         // line 322
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, ($context["hobby"] ?? null), "Id", [], "any", false, false, false, 322), "html", null, true);
         yield "</a> </td>
@@ -735,8 +735,8 @@ primary\">
 <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
 <tbody>
 <tr>
-<td> <a href=\"http://hobbymatch.localhost/AdminHobby/update/{{ hobby.Id }}\"
-target=\"_blank\">Editer #{{ hobby.Id }}</a> </td>
+<td> <a href=\"http://hobbymatch.localhost/AdminHobby/show/{{ hobby.Id }}\"
+target=\"_blank\">Voir #{{ hobby.Id }}</a> </td>
 </tr>
 </tbody>
 </table>
