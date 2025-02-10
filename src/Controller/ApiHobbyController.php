@@ -22,18 +22,18 @@ class ApiHobbyController
             ]);
         }
 
-         // JWT check
-         $jwtresult = JwtService::checkToken();
-         if ($jwtresult["status"] == "error") {
-             return json_encode($jwtresult["message"]);
-         }
- 
-         if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
-             return json_encode([
-                 "status" => "error",
-                 "message" => "Vous n'avez pas le role Administrateur"
-             ]);
-         }
+        // JWT check
+        $jwtresult = JwtService::checkToken();
+        if ($jwtresult["status"] == "error") {
+            return json_encode($jwtresult["message"]);
+        }
+
+        if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
+            return json_encode([
+                "status" => "error",
+                "message" => "Vous n'avez pas le role Administrateur"
+            ]);
+        }
 
         $hobby = Hobby::SqlGetById($id);
         if (!$hobby) {
@@ -60,20 +60,6 @@ class ApiHobbyController
                 "Message" => "Get Attendu"
             ]);
         }
-
-        // $jwtresult = JwtService::checkToken();
-        // if ($jwtresult["status"] == "error") {
-        //     return json_encode($jwtresult["message"]);
-        // }
-
-        // if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
-        //     return json_encode(
-        //         [
-        //             "status" => "error",
-        //             "message" => "Vous n'avez pas le role Toto"
-        //         ]
-        //     );
-        // }
 
         $hobbies = Hobby::SqlGetAll();
         return json_encode($hobbies);
@@ -173,18 +159,18 @@ class ApiHobbyController
             ]);
         }
 
-          // JWT check
-          $jwtresult = JwtService::checkToken();
-          if ($jwtresult["status"] == "error") {
-              return json_encode($jwtresult["message"]);
-          }
-  
-          if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
-              return json_encode([
-                  "status" => "error",
-                  "message" => "Vous n'avez pas le role Administrateur"
-              ]);
-          }
+        // JWT check
+        $jwtresult = JwtService::checkToken();
+        if ($jwtresult["status"] == "error") {
+            return json_encode($jwtresult["message"]);
+        }
+
+        if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
+            return json_encode([
+                "status" => "error",
+                "message" => "Vous n'avez pas le role Administrateur"
+            ]);
+        }
 
         //Récupération du body en String
         $data = file_get_contents("php://input");
