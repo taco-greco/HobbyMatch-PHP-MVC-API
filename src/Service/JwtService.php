@@ -13,7 +13,7 @@ class JwtService
     public static function createToken(array $datas) : String{
         //$datas = Données personnelles qui seront dans le payload du JWT
         $issuedAt = new \DateTimeImmutable();
-        $expire = $issuedAt->modify("+6 minutes")->getTimestamp();
+        $expire = $issuedAt->modify("+30 minutes")->getTimestamp();
         $serverName = "hobbymatch.localhost";
 
         $data = [

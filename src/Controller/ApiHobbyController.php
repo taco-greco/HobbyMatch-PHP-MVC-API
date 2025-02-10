@@ -22,6 +22,19 @@ class ApiHobbyController
             ]);
         }
 
+         // JWT check
+         $jwtresult = JwtService::checkToken();
+         if ($jwtresult["status"] == "error") {
+             return json_encode($jwtresult["message"]);
+         }
+ 
+         if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
+             return json_encode([
+                 "status" => "error",
+                 "message" => "Vous n'avez pas le role Administrateur"
+             ]);
+         }
+
         $hobby = Hobby::SqlGetById($id);
         if (!$hobby) {
             header("HTTP/1.1 404 Not Found");
@@ -75,6 +88,20 @@ class ApiHobbyController
                 "Message" => "POST Attendu"
             ]);
         }
+
+        // JWT check
+        $jwtresult = JwtService::checkToken();
+        if ($jwtresult["status"] == "error") {
+            return json_encode($jwtresult["message"]);
+        }
+
+        if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
+            return json_encode([
+                "status" => "error",
+                "message" => "Vous n'avez pas le role Administrateur"
+            ]);
+        }
+
         //Récupération du body en String
         $data = file_get_contents("php://input");
         //Conversion du string en JSON
@@ -145,6 +172,20 @@ class ApiHobbyController
                 "Message" => "PUT Attendu"
             ]);
         }
+
+          // JWT check
+          $jwtresult = JwtService::checkToken();
+          if ($jwtresult["status"] == "error") {
+              return json_encode($jwtresult["message"]);
+          }
+  
+          if (!in_array("Administrateur", $jwtresult["data"]->roles)) {
+              return json_encode([
+                  "status" => "error",
+                  "message" => "Vous n'avez pas le role Administrateur"
+              ]);
+          }
+
         //Récupération du body en String
         $data = file_get_contents("php://input");
         //Conversion du string en JSON
