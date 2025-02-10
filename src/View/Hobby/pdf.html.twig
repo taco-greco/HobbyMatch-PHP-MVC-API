@@ -1,13 +1,3 @@
-<h1>{{ hobby.titre }}</h1>
-<p>
-	<strong>Description :</strong>
-	{{ hobby.description }}</p>
-<p>
-	<strong>Auteur :</strong>
-	{{ hobby.Auteur }}</p>
-<p>
-	<strong>Date :</strong>
-	{{ hobby.DatePublication|date("d/m/Y") }}</p>
 <p>
 	{% if file_exist(
 './uploads/images/'~hobby.ImageRepository~'/'~hobby.ImageFileName ) and
@@ -16,3 +6,30 @@ hobby.ImageFileName !="" %}
 			}}" class="img-thumbnail"/>
 	{% endif %}
 </p>
+
+<h1>{{ hobby.titre }}</h1>
+<p>
+	<strong>Description :</strong>
+	{{ hobby.description }}</p>
+<p>
+	<strong>Auteur :</strong>
+	{{ hobby.Auteur }}</p>
+<p>
+<p>
+	<strong>Contact :</strong>
+	{{ hobby.EmailContact }}</p>
+<p>
+<p>
+	<strong>Prix :</strong>
+	{{ hobby.Prix }}</p>
+<p>
+	<strong>Date :</strong>
+	{{ hobby.DatePublication|date("d/m/Y") }}</p>
+<p>
+<p>
+	<strong>Latitude :</strong>
+	{{ hobby.Latitude }}</p>
+<p>
+<p>
+	<strong>Longitude :</strong>
+	{{ hobby.Longitude }}</p>
