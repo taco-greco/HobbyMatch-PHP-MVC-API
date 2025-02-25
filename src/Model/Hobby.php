@@ -286,6 +286,37 @@ LIMIT :limit');
         }
         return $hobbiesObjet;
     }
+
+    public static function FlutterGetAll($limit = 30, $page = 1)
+    {
+        $offset = ($page - 1) * $limit;
+        $bdd = BDD::getInstance();
+        $requete = $bdd->prepare('SELECT * FROM hobbies ORDER BY Id DESC LIMIT :limit OFFSET :offset');
+        $requete->bindParam(':limit', $limit, \PDO::PARAM_INT);
+        $requete->bindParam(':offset', $offset, \PDO::PARAM_INT);
+        $requete->execute();
+        $hobbiesSQL = $requete->fetchAll(\PDO::FETCH_ASSOC);
+        $hobbiesObjet = [];
+        foreach ($hobbiesSQL as $hobbySQL) {
+            $hobby = new Hobby();
+            $date = new \DateTime($hobbySQL["DatePublication"]);
+            $hobby->setTitre($hobbySQL["Titre"])
+                ->setId($hobbySQL["Id"])
+                ->setDescription($hobbySQL["Description"])
+                ->setDate($date)
+                ->setAuteur($hobbySQL["Auteur"])
+                ->setImageRepository($hobbySQL["ImageRepository"])
+                ->setImageFileName($hobbySQL["ImageFileName"])
+                ->setPrix($hobbySQL['Prix'])
+                ->setEmailContact($hobbySQL['EmailContact'])
+                ->setLatitude($hobbySQL['Latitude'])
+                ->setLongitude($hobbySQL['Longitude']);
+
+            $hobbiesObjet[] = $hobby;
+        }
+        return $hobbiesObjet;
+    }
+
     public static function SqlDelete(int $Id)
     {
         $requete = BDD::getInstance()->prepare("DELETE FROM hobbies WHERE Id=:Id");

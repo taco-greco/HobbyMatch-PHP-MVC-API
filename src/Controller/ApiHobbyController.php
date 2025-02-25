@@ -51,19 +51,38 @@ class ApiHobbyController
         ]);
     }
 
-    public function getAll()
+    // public function getAll()
+    // {
+    //     if ($_SERVER["REQUEST_METHOD"] != "GET") {
+    //         header("HTTP/1.1 405 Method Not Allowed");
+    //         return json_encode([
+    //             "code" => 1,
+    //             "Message" => "Get Attendu"
+    //         ]);
+    //     }
+
+    //     $hobbies = Hobby::SqlGetAll();
+    //     return json_encode($hobbies);
+    // }
+
+    public function getAll($page = 1)
     {
         if ($_SERVER["REQUEST_METHOD"] != "GET") {
             header("HTTP/1.1 405 Method Not Allowed");
-            return json_encode([
+            echo json_encode([
                 "code" => 1,
-                "Message" => "Get Attendu"
+                "Message" => "GET Attendu"
             ]);
+            return;
         }
 
-        $hobbies = Hobby::SqlGetAll();
-        return json_encode($hobbies);
+        $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 30;
+        $page = is_numeric($page) ? (int)$page : 1;
+
+        $hobbies = Hobby::FlutterGetAll($limit, $page);
+        echo json_encode($hobbies);
     }
+
 
     public function add()
     {
