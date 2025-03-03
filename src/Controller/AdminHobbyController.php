@@ -11,8 +11,11 @@ class AdminHobbyController extends AbstractController
     {
         UserController::haveGoodRole(["Verificateur", "Administrateur", "Redacteur"]);
         $hobbies = Hobby::SqlGetAll();
-        $token = bin2hex(random_bytes(32));
-        $_SESSION['token'] = $token;
+        if (!isset($_SESSION['token'])) {
+            $token = $this->generateCsrfToken();
+        } else {
+            $token = $_SESSION['token'];
+        }
         return $this->twig->render('Admin/Hobby/list.html.twig', [
             'hobbies' => $hobbies,
             'token' => $token
@@ -30,6 +33,13 @@ class AdminHobbyController extends AbstractController
     public function add()
     {
         UserController::haveGoodRole(["Administrateur", "Redacteur"]);
+
+        if (!isset($_SESSION['token'])) {
+            $token = $this->generateCsrfToken();
+        } else {
+            $token = $_SESSION['token'];
+        }
+
         if (isset($_POST['Titre']) && isset($_POST['Description'])) {
             //1. Upload Fichier
             $sqlRepository = null; // On ne fera pas X requetes SQL différentes donc on déclare les variables dès le début pour les utiliser dans la requete SQL
@@ -86,7 +96,9 @@ class AdminHobbyController extends AbstractController
             header("location: /AdminHobby/show/{$result[2]}");
             exit();
         }
-        return $this->twig->render('Admin/Hobby/add.html.twig');
+        return $this->twig->render('Admin/Hobby/add.html.twig', [
+            'token' => $token
+        ]);
     }
 
     public function show(int $id)
@@ -103,6 +115,12 @@ class AdminHobbyController extends AbstractController
     public function update(int $id)
     {
         UserController::haveGoodRole(["Administrateur", "Verificateur"]);
+
+        if (!isset($_SESSION['token'])) {
+            $token = $this->generateCsrfToken();
+        } else {
+            $token = $_SESSION['token'];
+        }
 
         $hobby = Hobby::SqlGetById($id);
 
@@ -154,7 +172,8 @@ class AdminHobbyController extends AbstractController
             exit();
         } else {
             return $this->twig->render("Admin/Hobby/update.html.twig", [
-                "hobby" => $hobby
+                "hobby" => $hobby,
+                "token" => $token
             ]);
         }
     }
