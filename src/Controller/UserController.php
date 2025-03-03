@@ -9,7 +9,25 @@ class UserController extends AbstractController
 {
     public function create()
     {
+
         if (isset($_POST["mail"]) && isset($_POST["password"]) && isset($_POST["roles"])) {
+            // Validate email
+        if (!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) {
+            throw new \Exception("Invalid email format");
+        }
+
+        // Validate password (minimum 8 characters, at least one letter and one number)
+        if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $_POST["password"])) {
+            throw new \Exception("Password must be at least 8 characters long and contain at least one letter and one number");
+        }
+
+        // Validate roles (assuming roles are predefined and stored in an array)
+        $validRoles = ["Verificateur", "Administrateur", "Redacteur"];
+        foreach ($_POST["roles"] as $role) {
+            if (!in_array($role, $validRoles)) {
+                throw new \Exception("Invalid role: $role");
+            }
+        }
             $user = new User();
             $hashpass = password_hash($_POST["password"], PASSWORD_BCRYPT, ["cost" => 12]);
             $user->setEMail($_POST["mail"])
