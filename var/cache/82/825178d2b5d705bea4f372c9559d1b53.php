@@ -98,17 +98,7 @@ class __TwigTemplate_1e1d861e17b397a01250cf6d720d3871 extends Template
                         </div>
                         <div class=\"mb-3\">
                             <label for=\"Auteur\" class=\"form-label\">Auteur</label>
-                            <select class=\"form-select\" id=\"Auteur\" name=\"Auteur\" required>
-                                <option value=\"\" disabled selected>Choisir un auteur</option>
-                                <option value=\"Brice\">Brice</option>
-                                <option value=\"Bruno\">Bruno</option>
-                                <option value=\"Fabien\">Fabien</option>
-                                <option value=\"Marion\">Marion</option>
-                                <option value=\"Jean-Pierre\">Jean-Pierre</option>
-                                <option value=\"Benoit\">Benoit</option>
-                                <option value=\"Emmanuel\">Emmanuel</option>
-                                <option value=\"Sylvie\">Sylvie</option>
-                            </select>
+                            <input type=\"text\" class=\"form-control\" id=\"Auteur\" name=\"Auteur\">
                         </div>
                         <div class=\"mb-3\">
                             <label for=\"Image\" class=\"form-label\">Image</label>
@@ -136,14 +126,14 @@ class __TwigTemplate_1e1d861e17b397a01250cf6d720d3871 extends Template
         yield from [];
     }
 
-    // line 69
+    // line 59
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_javascript(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 70
+        // line 60
         yield "<script>
     var map = L.map('map', {
         center: [49.4431, 1.0993], // Default center (Paris)
@@ -195,7 +185,7 @@ class __TwigTemplate_1e1d861e17b397a01250cf6d720d3871 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  147 => 70,  140 => 69,  72 => 4,  65 => 3,  53 => 2,  42 => 1,);
+        return array (  137 => 60,  130 => 59,  72 => 4,  65 => 3,  53 => 2,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -232,17 +222,7 @@ class __TwigTemplate_1e1d861e17b397a01250cf6d720d3871 extends Template
                         </div>
                         <div class=\"mb-3\">
                             <label for=\"Auteur\" class=\"form-label\">Auteur</label>
-                            <select class=\"form-select\" id=\"Auteur\" name=\"Auteur\" required>
-                                <option value=\"\" disabled selected>Choisir un auteur</option>
-                                <option value=\"Brice\">Brice</option>
-                                <option value=\"Bruno\">Bruno</option>
-                                <option value=\"Fabien\">Fabien</option>
-                                <option value=\"Marion\">Marion</option>
-                                <option value=\"Jean-Pierre\">Jean-Pierre</option>
-                                <option value=\"Benoit\">Benoit</option>
-                                <option value=\"Emmanuel\">Emmanuel</option>
-                                <option value=\"Sylvie\">Sylvie</option>
-                            </select>
+                            <input type=\"text\" class=\"form-control\" id=\"Auteur\" name=\"Auteur\">
                         </div>
                         <div class=\"mb-3\">
                             <label for=\"Image\" class=\"form-label\">Image</label>

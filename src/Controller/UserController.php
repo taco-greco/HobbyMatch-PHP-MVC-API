@@ -73,59 +73,69 @@ class UserController extends AbstractController
         header("Location:/");
     }
 
-    //Rote qu'on va appeler par API 
+    //Rote qu'on va appeler par API
     public function loginjwt()
     {
         header("Content-Type: application/json; charset=utf-8");
 
         if ($_SERVER["REQUEST_METHOD"] != "POST") {
             header("HTTP/1.1 405 Method Not Allowed");
-            return json_encode([
+            echo json_encode([
                 "code" => 1,
                 "Message" => "Post Attendu"
             ]);
+            exit;
         }
-        // Récuperation du body en String
+
         $data = file_get_contents("php://input");
-        //Conversion du String en JSON
         $json = json_decode($data);
 
         if (empty($json)) {
             header("HTTP/1.1 403 Forbidden");
-            return json_encode([
+            echo json_encode([
                 "code" => 1,
                 "Message" => "Il faut des données"
             ]);
+            exit;
         }
 
         if (!isset($json->mail) || !isset($json->password)) {
             header("HTTP/1.1 403 Forbidden");
-            return json_encode([
+            echo json_encode([
                 "code" => 1,
                 "Message" => "Il manque le mail ou le password"
             ]);
+            exit;
         }
-        // Récupérer les info de l'utilisateur par son mail
+
         $user = User::SqlGetByMail($json->mail);
         if ($user == null) {
             header("HTTP/1.1 403 Forbidden");
-            return json_encode([
+            echo json_encode([
                 "code" => 1,
                 "Message" => "User inexistant"
             ]);
+            exit;
         }
-        // Comparer le mot de passe avec celui hashé en bdd
+
         if (!password_verify($json->password, $user->getPassword())) {
             header("HTTP/1.1 403 Forbidden");
-            return json_encode([
+            echo json_encode([
                 "code" => 1,
                 "Message" => "Mot de passe invalid"
             ]);
+            exit;
         }
-        // Return JWT
-        return JwtService::createToken([
+
+        $token = JwtService::createToken([
             "mail" => $user->getEmail(),
             "roles" => $user->getRoles()
         ]);
+
+        echo json_encode([
+            "code" => 0,
+            "token" => $token
+        ]);
+        exit;
     }
 }
