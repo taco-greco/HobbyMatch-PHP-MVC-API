@@ -1,0 +1,118 @@
+{% extends "base.html.twig" %}
+{% block title %}ADMIN -
+	{{ parent() }}
+	- Update d'un Hobby
+{% endblock %}
+{% block body %}
+
+	<div class="mt-5">
+		<div class="row justify-content-center">
+
+			<div class="col-lg-8">
+				<div class="card border-dark border-3">
+					<div class="card-body">
+						<h1>
+							<span class="badge bg-dark mb-3">Update Hobby</span>
+						</h1>
+						<form method="post" enctype="multipart/form-data">
+							<div class="mb-3">
+								<label for="Titre" class="form-label">Titre</label>
+								<input type="text" class="form-control" placeholder="Saisir un titre" name="Titre" value="{{ hobby.Titre }}">
+							</div>
+							<div class="mb-3">
+								<label for="Description" class="form-label">Description</label>
+								<textarea class="form-control" name="Description" rows="3">{{
+hobby.Description }}</textarea>
+							</div>
+							<div class="mb-3">
+								<label for="DatePublication" class="form-label">Date</label>
+								<input type="date" class="form-control" name="DatePublication" value="{{ hobby.DatePublication|date("Y-m-d") }}">
+							</div>
+							<div class="mb-3">
+								<label for="Prix" class="form-label">Prix</label>
+								<input type="number" value="{{ hobby.Prix }}" step="0.01" class="form-control" id="Prix" name="Prix">
+							</div>
+							<div class="mb-3">
+								<label for="EmailContact" class="form-label">Contact</label>
+								<input type="email" value="{{ hobby.EmailContact }}" class="form-control" id="EmailContact" name="EmailContact">
+							</div>
+							<div class="mb-3">
+								<label for="Auteur" class="form-label">Auteur</label>
+								<select class="form-select" name="Auteur">
+									<option value="Brice" {% if (hobby.Auteur == "Brice") %} selected {% endif %}>Brice</option>
+									<option value="Bruno" {% if (hobby.Auteur == "Bruno") %} selected {% endif %}>Bruno</option>
+									<option value="Fabien" {% if (hobby.Auteur == "Fabien") %} selected {% endif %}>Fabien</option>
+									<option value="Marion" {% if (hobby.Auteur == "Marion") %} selected {% endif %}>Marion</option>
+									<option value="Jean-Pierre" {% if (hobby.Auteur == "Jean-Pierre") %} selected {% endif %}>Jean-Pierre</option>
+									<option value="Benoit" {% if (hobby.Auteur == "Benoit") %} selected {% endif %}>Benoit</option>
+									<option value="Emmanuel" {% if (hobby.Auteur == "Emmanuel") %} selected {% endif %}>Emmanuel</option>
+									<option value="Sylvie" {% if (hobby.Auteur == "Sylvie") %} selected {% endif %}>Sylvie</option>
+								</select>
+							</div>
+							<div class="mb-3">
+								<label for="Image" class="form-label">Image</label>
+								<input type="file" class="form-control" name="Image">
+							</div>
+							{% if file_exist(
+'./uploads/images/'~hobby.ImageRepository~'/'~hobby.ImageFileName ) and
+hobby.ImageFileName !="" %}
+								<p>Image Actuelle :</p>
+								<p>
+									<img style="max-width:250px;" class="img-thumbnail" src="/uploads/images/{{ hobby.ImageRepository }}/{{
+																																																																																					hobby.ImageFileName }}" class="img-thumbnail"/>
+								</p>
+								<input type="hidden" name="ImageRepository" value="{{ hobby.ImageRepository }}">
+								<input type="hidden" name="ImageFileName" value="{{ hobby.ImageFileName }}">
+							{% endif %}
+
+							<div class="mb-3">
+								<label for="Latitude" class="form-label">Latitude</label>
+								<input type="text" class="form-control" id="Latitude" name="Latitude" value="{{ hobby.Latitude }}" required>
+							</div>
+							<div class="mb-3">
+								<label for="Longitude" class="form-label">Longitude</label>
+								<input type="text" class="form-control" id="Longitude" name="Longitude" value="{{ hobby.Longitude }}" required>
+							</div>
+							<div id="map" style="height: 400px;" class="mb-3"></div>
+							<div class="d-grid">
+								<button type="submit" class="btn btn-primary">Valider</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script>
+		var map = L.map('map', {
+center: [
+{{ hobby.Latitude }}, {{ hobby.Longitude }}
+], // Center on current hobby location
+zoom: 12
+});
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+maxZoom: 19,
+attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+var marker = L.marker([{{ hobby.Latitude }}, {{ hobby.Longitude }}]).addTo(map);
+
+map.on('click', function (e) {
+var lat = e.latlng.lat;
+var lng = e.latlng.lng;
+
+if (marker) {
+marker.setLatLng(e.latlng);
+} else {
+marker = L.marker(e.latlng).addTo(map);
+}
+
+document.getElementById('Latitude').value = lat;
+document.getElementById('Longitude').value = lng;
+});
+	</script>
+{% endblock %}

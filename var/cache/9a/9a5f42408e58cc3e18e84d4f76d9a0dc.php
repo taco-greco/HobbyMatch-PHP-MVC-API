@@ -1,0 +1,191 @@
+<?php
+
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Extension\CoreExtension;
+use Twig\Extension\SandboxExtension;
+use Twig\Markup;
+use Twig\Sandbox\SecurityError;
+use Twig\Sandbox\SecurityNotAllowedTagError;
+use Twig\Sandbox\SecurityNotAllowedFilterError;
+use Twig\Sandbox\SecurityNotAllowedFunctionError;
+use Twig\Source;
+use Twig\Template;
+use Twig\TemplateWrapper;
+
+/* Admin/Hobby/list.html.twig */
+class __TwigTemplate_53f8fd9dfdc533c392eff69aa43fb86c extends Template
+{
+    private Source $source;
+    /**
+     * @var array<string, Template>
+     */
+    private array $macros = [];
+
+    public function __construct(Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->source = $this->getSourceContext();
+
+        $this->blocks = [
+            'title' => [$this, 'block_title'],
+            'body' => [$this, 'block_body'],
+        ];
+    }
+
+    protected function doGetParent(array $context): bool|string|Template|TemplateWrapper
+    {
+        // line 1
+        return "base.html.twig";
+    }
+
+    protected function doDisplay(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $this->parent = $this->loadTemplate("base.html.twig", "Admin/Hobby/list.html.twig", 1);
+        yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 2
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_title(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        yield from $this->yieldParentBlock("title", $context, $blocks);
+        yield "- Liste des Hobbies";
+        yield from [];
+    }
+
+    // line 3
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_body(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        // line 4
+        yield "
+<div class=\"table-responsive\">
+<table class=\"table table-hover text-center\">
+<thead>
+<tr>
+<th scope=\"col\">Id</th>
+<th scope=\"col\">Titre</th>
+<th scope=\"col\" class=\"d-none d-lg-table-cell\">DatePublication</th>
+<th scope=\"col\" class=\"d-none d-lg-table-cell\">Auteur</th>
+<th scope=\"col\">Edit</th>
+<th scope=\"col\">Delete</th>
+</tr>
+</thead>
+<tbody class=\"table-group-divider\">
+";
+        // line 18
+        $context['_parent'] = $context;
+        $context['_seq'] = CoreExtension::ensureTraversable(($context["hobbies"] ?? null));
+        foreach ($context['_seq'] as $context["_key"] => $context["hobby"]) {
+            // line 19
+            yield "<tr>
+<th scope=\"row\">";
+            // line 20
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 20), "html", null, true);
+            yield "</th>
+<td><a href=\"/AdminHobby/show/";
+            // line 21
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "id", [], "any", false, false, false, 21), "html", null, true);
+            yield "\" class=\"btn btn-link\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Titre", [], "any", false, false, false, 21), "html", null, true);
+            yield "</a></td>
+<td class=\"d-none d-lg-table-cell\">";
+            // line 22
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "DatePublication", [], "any", false, false, false, 22), "d/m/Y"), "html", null, true);
+            yield "
+<td class=\"d-none d-lg-table-cell\">";
+            // line 23
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Auteur", [], "any", false, false, false, 23), "html", null, true);
+            yield "</td>
+<td><a href=\"/AdminHobby/update/";
+            // line 24
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "id", [], "any", false, false, false, 24), "html", null, true);
+            yield "\" class=\"btn btn-info btn-sm\"><i class=\"bi bi-pencil-square\"></i></a></td>
+<td><a href=\"/AdminHobby/delete/";
+            // line 25
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["hobby"], "Id", [], "any", false, false, false, 25), "html", null, true);
+            yield "\" class=\"btn btn-danger btn-sm\"><i class=\"bi bi-trash\"></i></a></td>
+</tr>
+";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_key'], $context['hobby'], $context['_parent']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 28
+        yield "</tbody>
+</table>
+</div>
+";
+        yield from [];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getTemplateName(): string
+    {
+        return "Admin/Hobby/list.html.twig";
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function isTraitable(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getDebugInfo(): array
+    {
+        return array (  125 => 28,  116 => 25,  112 => 24,  108 => 23,  104 => 22,  98 => 21,  94 => 20,  91 => 19,  87 => 18,  71 => 4,  64 => 3,  52 => 2,  41 => 1,);
+    }
+
+    public function getSourceContext(): Source
+    {
+        return new Source("{% extends \"base.html.twig\"%}
+{% block title %}{{parent()}}- Liste des Hobbies{% endblock%}
+{% block body %}
+
+<div class=\"table-responsive\">
+<table class=\"table table-hover text-center\">
+<thead>
+<tr>
+<th scope=\"col\">Id</th>
+<th scope=\"col\">Titre</th>
+<th scope=\"col\" class=\"d-none d-lg-table-cell\">DatePublication</th>
+<th scope=\"col\" class=\"d-none d-lg-table-cell\">Auteur</th>
+<th scope=\"col\">Edit</th>
+<th scope=\"col\">Delete</th>
+</tr>
+</thead>
+<tbody class=\"table-group-divider\">
+{% for hobby in hobbies %}
+<tr>
+<th scope=\"row\">{{ hobby.Id }}</th>
+<td><a href=\"/AdminHobby/show/{{hobby.id}}\" class=\"btn btn-link\">{{ hobby.Titre }}</a></td>
+<td class=\"d-none d-lg-table-cell\">{{ hobby.DatePublication|date('d/m/Y') }}
+<td class=\"d-none d-lg-table-cell\">{{ hobby.Auteur }}</td>
+<td><a href=\"/AdminHobby/update/{{hobby.id}}\" class=\"btn btn-info btn-sm\"><i class=\"bi bi-pencil-square\"></i></a></td>
+<td><a href=\"/AdminHobby/delete/{{hobby.Id}}\" class=\"btn btn-danger btn-sm\"><i class=\"bi bi-trash\"></i></a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}
+", "Admin/Hobby/list.html.twig", "C:\\wamp64\\www\\php-individuel\\src\\View\\Admin\\Hobby\\list.html.twig");
+    }
+}
