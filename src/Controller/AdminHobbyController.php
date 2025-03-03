@@ -29,7 +29,6 @@ class AdminHobbyController extends AbstractController
         }
         header("Location:/AdminHobby/list");
     }
-
     public function add()
     {
         UserController::haveGoodRole(["Administrateur", "Redacteur"]);
@@ -41,6 +40,20 @@ class AdminHobbyController extends AbstractController
         }
 
         if (isset($_POST['Titre']) && isset($_POST['Description'])) {
+            // Validate inputs
+            if (!preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['Titre'])) {
+                throw new \Exception("Invalid title format");
+            }
+            if (!preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['Description'])) {
+                throw new \Exception("Invalid description format");
+            }
+            if (!filter_var($_POST['EmailContact'], FILTER_VALIDATE_EMAIL)) {
+                throw new \Exception("Invalid email format");
+            }
+            if (!is_numeric($_POST['Prix'])) {
+                throw new \Exception("Invalid price format");
+            }
+
             //1. Upload Fichier
             $sqlRepository = null; // On ne fera pas X requetes SQL différentes donc on déclare les variables dès le début pour les utiliser dans la requete SQL
             $nomImage = null;
@@ -125,6 +138,20 @@ class AdminHobbyController extends AbstractController
         $hobby = Hobby::SqlGetById($id);
 
         if (isset($_POST["Titre"])) {
+            // Validate inputs
+            if (!preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['Titre'])) {
+                throw new \Exception("Invalid title format");
+            }
+            if (!preg_match('/^[a-zA-Z0-9\s]+$/', $_POST['Description'])) {
+                throw new \Exception("Invalid description format");
+            }
+            if (!filter_var($_POST['EmailContact'], FILTER_VALIDATE_EMAIL)) {
+                throw new \Exception("Invalid email format");
+            }
+            if (!is_numeric($_POST['Prix'])) {
+                throw new \Exception("Invalid price format");
+            }
+
             $sqlRepository = (isset($_POST["ImageRepository"])) ? $_POST["ImageRepository"]
                 : null; // Si champ image actuelle alors on prend la valeur sinon null
             $nomImage = (isset($_POST["ImageFileName"])) ? $_POST["ImageFileName"] : null;
@@ -152,8 +179,7 @@ class AdminHobbyController extends AbstractController
                     isset($_POST["ImageFileName"]) && $_POST["ImageFileName"] != '' &&
                     file_exists("{$_SERVER["DOCUMENT_ROOT"]}/uploads/images/{$_POST["ImageRepository"]}/{$_POST["ImageFileName"]}")
                 ) {
-                    unlink("{$_SERVER["DOCUMENT_ROOT"]}/uploads/images/{$_POST["ImageRepository"]}/{$_POST["Imag
-            eFileName"]}");
+                    unlink("{$_SERVER["DOCUMENT_ROOT"]}/uploads/images/{$_POST["ImageRepository"]}/{$_POST["ImageFileName"]}");
                 }
             }
             $date = new \DateTime($_POST["DatePublication"]);
