@@ -8,6 +8,7 @@
                 <div class="card-body">
                     <h1 class="card-title"><span class="badge bg-dark mb-3">Add Hobby</span></h1>
                     <form method="post" enctype="multipart/form-data">
+                     <input type="hidden" value="{{ token }}" name="token">
                         <div class="mb-3">
                             <label for="Titre" class="form-label">Titre</label>
                             <input type="text" class="form-control" id="Titre" name="Titre" placeholder="Saisir un titre" required>

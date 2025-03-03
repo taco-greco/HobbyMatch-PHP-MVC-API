@@ -76,6 +76,10 @@ class __TwigTemplate_1e1d861e17b397a01250cf6d720d3871 extends Template
                 <div class=\"card-body\">
                     <h1 class=\"card-title\"><span class=\"badge bg-dark mb-3\">Add Hobby</span></h1>
                     <form method=\"post\" enctype=\"multipart/form-data\">
+                     <input type=\"hidden\" value=\"";
+        // line 11
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["token"] ?? null), "html", null, true);
+        yield "\" name=\"token\">
                         <div class=\"mb-3\">
                             <label for=\"Titre\" class=\"form-label\">Titre</label>
                             <input type=\"text\" class=\"form-control\" id=\"Titre\" name=\"Titre\" placeholder=\"Saisir un titre\" required>
@@ -126,14 +130,14 @@ class __TwigTemplate_1e1d861e17b397a01250cf6d720d3871 extends Template
         yield from [];
     }
 
-    // line 59
+    // line 60
     /**
      * @return iterable<null|scalar|\Stringable>
      */
     public function block_javascript(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 60
+        // line 61
         yield "<script>
     var map = L.map('map', {
         center: [49.4431, 1.0993], // Default center (Paris)
@@ -185,7 +189,7 @@ class __TwigTemplate_1e1d861e17b397a01250cf6d720d3871 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  137 => 60,  130 => 59,  72 => 4,  65 => 3,  53 => 2,  42 => 1,);
+        return array (  141 => 61,  134 => 60,  81 => 11,  72 => 4,  65 => 3,  53 => 2,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -200,6 +204,7 @@ class __TwigTemplate_1e1d861e17b397a01250cf6d720d3871 extends Template
                 <div class=\"card-body\">
                     <h1 class=\"card-title\"><span class=\"badge bg-dark mb-3\">Add Hobby</span></h1>
                     <form method=\"post\" enctype=\"multipart/form-data\">
+                     <input type=\"hidden\" value=\"{{ token }}\" name=\"token\">
                         <div class=\"mb-3\">
                             <label for=\"Titre\" class=\"form-label\">Titre</label>
                             <input type=\"text\" class=\"form-control\" id=\"Titre\" name=\"Titre\" placeholder=\"Saisir un titre\" required>

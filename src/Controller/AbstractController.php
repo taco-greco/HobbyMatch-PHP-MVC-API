@@ -23,4 +23,11 @@ abstract class AbstractController
         $this->twig->addGlobal('session', $_SESSION);
         $this->twig->addGlobal('current_uri', $_SERVER['REQUEST_URI']);
     }
+
+    protected function generateCsrfToken()
+    {
+        $token = bin2hex(random_bytes(32));
+        $_SESSION['token'] = $token;
+        return $token;
+    }
 }
