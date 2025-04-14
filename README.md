@@ -5,7 +5,7 @@ This is the backend API for **HobbyMatch**, a social platform that helps people 
 ## 📱 Flutter Frontend
 
 Check out the Flutter frontend for this API here:  
-👉 [HobbyMatch Flutter App](https://github.com/your-username/HobbyMatch-Flutter)
+👉 [HobbyMatch Flutter App](https://github.com/taco-greco/HobbyMatch-Flutter)
 
 ## 🧱 Features
 
