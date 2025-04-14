@@ -19,20 +19,30 @@ Check out the Flutter frontend for this API here:
 ## 📂 Project Structure
 
 ```
-HobbyMatch-PHP-MVC-API/
-├── app/
-│   ├── controllers/
-│   ├── core/
-│   ├── models/
-│   └── helpers/
-├── config/
-│   └── config.php
-├── public/
-│   └── index.php
-├── .env.example
-├── composer.json
-├── database.sql
-└── README.md
+└── 📁public
+    └── 📁assets
+        └── 📁css
+            └── style.css
+        └── 📁js
+            └── script.js
+    └── 📁uploads
+        └── 📁images
+            └── 📁fixtures
+        └── 📁pdf
+    └── .htaccess
+    └── index.php
+└── 📁src
+    └── 📁Controller
+    └── 📁Model
+    └── 📁Service
+    └── 📁View
+        └── 📁Admin
+            └── 📁Hobby
+        └── base.html.twig
+        └── error.html.twig
+        └── 📁Hobby
+        └── 📁Mailing
+        └── 📁User
 ```
 
 ## 📸 Screenshots
