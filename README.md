@@ -48,7 +48,7 @@ Check out the Flutter frontend for this API here:
 ## 📸 Screenshots
 
 ### 🏠 Index Page (Landing)
-![Index Page](screenshots/index-page.png)
+![Index Page](screenshots/Hobbies-Les-derniers-Hobbies.png)
 
 
 ## 🚀 Getting Started
@@ -87,10 +87,17 @@ Now you can access the API at `http://localhost:8000`.
 
 ## 🛠️ API Endpoints
 
-- `POST /register` – Register a new user  
-- `POST /login` – User login & JWT issuance  
-- `GET /users/{id}` – Get user profile  
-- `GET /matches` – Get hobby matches for authenticated user  
+### Token/login
+
+* **POST** `/User/loginjwt`
+
+### ApiHobby
+
+* **POST** `/ApiHobby/add` (Requires Token)
+* **PUT** `/ApiHobby/update/{id}` (Requires Token, e.g., `/ApiHobby/update/200`)
+* **DELETE** `/ApiHobby/delete/{id}` (Requires Token, e.g., `/ApiHobby/delete/199`)
+* **GET** `/ApiHobby/getAll`
+* **GET** `/ApiHobby/getAll/page`
 
 
 ## 🧑‍💻 Author
