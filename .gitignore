@@ -1,0 +1,34 @@
+# Composer dependencies
+/vendor/
+
+# Environment files
+.env
+.env.*
+
+# Node dependencies (if you ever use npm for tooling)
+/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/project files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
+
+# PHPUnit test results
+phpunit.xml
+phpunit.xml.dist
+
+# Cache
+cache/
+*.cache
+
+# Other
+*.bak
+*.tmp
