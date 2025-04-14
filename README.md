@@ -79,6 +79,10 @@ Check out the Flutter frontend for this API here:
    ```bash
    php -S localhost:8000 -t public
    ```
+Or
+   ```bash
+   php -S php -S 0.0.0.0:8000 -t public
+   ```
 
 Now you can access the API at `http://localhost:8000`.
 
