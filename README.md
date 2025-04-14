@@ -72,9 +72,6 @@ Check out the Flutter frontend for this API here:
    composer install
    ```
 
-3. Set up environment variables  
-   Copy `.env.example` to `.env` and update the database credentials.
-
 4. Import the database  
    Import `hobbies.sql` into your MySQL server.
 
