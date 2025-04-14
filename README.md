@@ -48,7 +48,7 @@ Check out the Flutter frontend for this API here:
 ## 📸 Screenshots
 
 ### 🏠 Index Page (Landing)
-![Index Page](screenshots/index-page.png)
+![Index Page](screenshots/Hobbies-Les-derniers-Hobbies.png)
 
 
 ## 🚀 Getting Started
