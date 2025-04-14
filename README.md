@@ -76,7 +76,7 @@ Check out the Flutter frontend for this API here:
    Copy `.env.example` to `.env` and update the database credentials.
 
 4. Import the database  
-   Import `database.sql` into your MySQL server.
+   Import `hobbies.sql` into your MySQL server.
 
 5. Run the server
    ```bash
