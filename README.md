@@ -24,8 +24,6 @@ Check out the Flutter frontend for this API here:
 ### 🧑‍💻 Example API Response
 ![API Response](screenshots/api-response.png)
 
-> Save your screenshots in a `screenshots/` folder in the root directory.
-
 ## 🚀 Getting Started
 
 ### Prerequisites
