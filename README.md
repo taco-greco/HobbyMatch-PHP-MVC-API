@@ -2,10 +2,6 @@
 
 This is the backend API for **HobbyMatch**, a social platform that helps people find others with similar hobbies and interests. Built using a custom PHP MVC architecture, this project handles user authentication, hobby matching logic, and provides a set of RESTful endpoints consumed by the HobbyMatch Flutter frontend.
 
-## 🌐 Live Demo
-
-> (Optional: Add a link if the API or frontend app is hosted somewhere)
-
 ## 📱 Flutter Frontend
 
 Check out the Flutter frontend for this API here:  
