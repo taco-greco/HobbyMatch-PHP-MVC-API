@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 14, 2025 at 06:53 PM
+-- Generation Time: Apr 14, 2025 at 06:59 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.3.0
 
@@ -250,6 +250,32 @@ INSERT INTO `hobbies` (`Id`, `Titre`, `Description`, `DatePublication`, `Auteur`
 (198, 'Collection', 'Ceci est une description générale pour le hobby Collection', '2025-10-29', 'Maia', 99.65, 49.448979, 1.099959, 'prince76@ferry.com', 'fixtures', 'collection.jpg', '2025-04-14 18:52:50', '2025-04-14 18:52:50'),
 (199, 'Dessin', 'Ceci est une description générale pour le hobby Dessin', '2025-10-30', 'Blanca', 95.96, 49.446720, 1.105125, 'sanford.bernita@mckenzie.com', 'fixtures', 'dessin.jpg', '2025-04-14 18:52:50', '2025-04-14 18:52:50'),
 (200, 'Couture', 'Ceci est une description générale pour le hobby Couture', '2025-10-31', 'Demetris', 96.97, 49.445773, 1.096790, 'wvon@hotmail.com', 'fixtures', 'couture.jpg', '2025-04-14 18:52:50', '2025-04-14 18:52:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Email` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `NomPrenom` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Roles` json DEFAULT NULL,
+  `Active` tinyint(1) DEFAULT NULL,
+  `Token` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`Id`, `Email`, `Password`, `NomPrenom`, `Roles`, `Active`, `Token`) VALUES
+(1, 'admin@admin.com', '$2y$10$qk1uI9GR/PxrOwpn65V23./gOHHM5RZLephfVQoLBcRJXg/mCD4Ya', 'Admin', '[\"Administrateur\", \"Redacteur\"]', NULL, NULL),
+(2, 'axel@test.com', '$2y$10$L3Wlxj8oqw4zWok1py6e9.PDKB0thqc5ciJ7UGjqco1RBkxUk30se', 'Olivier Carglass', '[\"Redacteur\"]', NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

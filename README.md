@@ -73,7 +73,7 @@ Check out the Flutter frontend for this API here:
    ```
 
 4. Import the database  
-   Import `hobbies.sql` into your MySQL server.
+   Import `hobbymatch.sql` into your MySQL server.
 
 5. Run the server
    ```bash
