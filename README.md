@@ -16,13 +16,30 @@ Check out the Flutter frontend for this API here:
 - 📄 RESTful API with clean routing
 - 🛡️ Input validation and error handling
 
+## 📂 Project Structure
+
+```
+HobbyMatch-PHP-MVC-API/
+├── app/
+│   ├── controllers/
+│   ├── core/
+│   ├── models/
+│   └── helpers/
+├── config/
+│   └── config.php
+├── public/
+│   └── index.php
+├── .env.example
+├── composer.json
+├── database.sql
+└── README.md
+```
+
 ## 📸 Screenshots
 
-### 📂 Project Structure
-![Project Structure](screenshots/project-structure.png)
+### 🏠 Index Page (Landing)
+![Index Page](screenshots/index-page.png)
 
-### 🧑‍💻 Example API Response
-![API Response](screenshots/api-response.png)
 
 ## 🚀 Getting Started
 
@@ -65,7 +82,6 @@ Now you can access the API at `http://localhost:8000`.
 - `GET /users/{id}` – Get user profile  
 - `GET /matches` – Get hobby matches for authenticated user  
 
-> You can add more detailed documentation in a separate file or link a Postman collection.
 
 ## 🧑‍💻 Author
 
